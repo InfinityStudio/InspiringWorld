@@ -4,8 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
-import net.simplelib.HelperMod;
 import org.lwjgl.opengl.GL11;
+import org.singularity.rune.MagicRuneMod;
 
 /**
  * @author ci010
@@ -61,6 +61,6 @@ public class FontRune extends FontRenderer
 
 	public ResourceLocation getResourceLocation(char c)
 	{
-		return new ResourceLocation(HelperMod.MODID, "textures/font/" + c + ".png");
+		return new ResourceLocation(MagicRuneMod.MODID, "textures/font/" + c + ".png");
 	}
 }
