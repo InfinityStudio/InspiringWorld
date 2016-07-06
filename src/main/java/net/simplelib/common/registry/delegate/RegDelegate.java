@@ -7,6 +7,7 @@ import api.simplelib.registry.ModProxy;
 import api.simplelib.registry.components.ComponentStruct;
 import api.simplelib.registry.components.ComponentsReference;
 import api.simplelib.registry.components.ModComponent;
+import api.simplelib.registry.components.ModCreativeTab;
 import api.simplelib.utils.TypeUtils;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
@@ -18,6 +19,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.simplelib.HelperMod;
+import net.simplelib.common.DebugLogger;
 import net.simplelib.common.registry.RegContainer;
 import net.simplelib.common.registry.RegistryHelper;
 import net.simplelib.common.registry.annotation.field.OreDic;
@@ -55,12 +57,19 @@ public class RegDelegate
 					this.getAnnotatedClass().getSimpleName() :
 					this.getAnnotation().name();
 			if (Item.class.isAssignableFrom(this.getAnnotatedClass()) || Block.class.isAssignableFrom(this
-					.getAnnotatedClass()) || this.getAnnotatedClass().isAnnotationPresent(ComponentStruct.class))
+					.getAnnotatedClass()))
 			{
 				RegComponentBase<?> base = RegComponentBase.of(name, TypeUtils.instantiateQuite(this.getAnnotatedClass()));
 				RegistryHelper.INSTANCE.include(this.getModid(), base);
 				if (this.getAnnotatedClass().isAnnotationPresent(OreDic.class))
 					base.setOreName(this.getAnnotatedClass().getAnnotation(OreDic.class).value());
+				if (this.getAnnotatedClass().isAnnotationPresent(ModCreativeTab.class))
+					base.setCreativeTabId(this.getAnnotatedClass().getAnnotation(ModCreativeTab.class).value());
+			}
+			else if (this.getAnnotatedClass().isAnnotationPresent(ComponentStruct.class))
+			{
+				RegComponentBase<?> base = RegComponentBase.of(name, TypeUtils.instantiateQuite(this.getAnnotatedClass()));
+				RegistryHelper.INSTANCE.include(this.getModid(), base);
 			}
 			else
 				HelperMod.LOG.warn("The class {} is neither a block nor an item! Moreover, it not a ComponentStruct. " +
@@ -70,7 +79,7 @@ public class RegDelegate
 
 	}
 
-	@SubscribeEvent
+	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		ComponentMaker maker = new ComponentMaker(RegistryHelper.INSTANCE.getAnnotationMap());
@@ -87,7 +96,7 @@ public class RegDelegate
 		}
 	}
 
-	@SubscribeEvent
+	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
 		for (RegContainer meta : RegistryHelper.INSTANCE)
@@ -101,7 +110,11 @@ public class RegDelegate
 	protected void register(RegContainer meta)
 	{
 		for (RegComponentBase namespace : meta)
+		{
+			DebugLogger.info("Register Component: [{}] <- [{}]", namespace.getComponent().getClass().getSimpleName(), namespace
+					.getRegisterName());
 			namespace.register();
+		}
 	}
 
 	@ModProxy(side = Side.CLIENT)

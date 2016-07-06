@@ -89,7 +89,7 @@ public class HandlerDelegate extends ASMRegistryDelegate<ModHandler>
 			}
 		if (obj == null)
 		{
-			HelperMod.LOG.fatal("Cannot create an instance of {}. It will not be registered as a handler.", this.getAnnotatedClass());
+			DebugLogger.fatal("Cannot create an instance of {}. It will not be registered as a handler.", this.getAnnotatedClass());
 			return;
 		}
 

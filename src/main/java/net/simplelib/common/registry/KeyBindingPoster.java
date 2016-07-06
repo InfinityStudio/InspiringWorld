@@ -20,7 +20,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class KeyBindingPoster
 {
-	private final List<KeyBinding> keybindArray = ReflectionHelper.getPrivateValue(KeyBinding.class, null, "keybindArray");
+	private final List<KeyBinding> keybindArray = ReflectionHelper.getPrivateValue(KeyBinding.class, null, "KEYBIND_ARRAY");
 
 	@SubscribeEvent
 	public void onKeyDown(InputEvent.KeyInputEvent event)

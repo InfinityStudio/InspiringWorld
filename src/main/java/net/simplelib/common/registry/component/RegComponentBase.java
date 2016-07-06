@@ -5,6 +5,7 @@ import api.simplelib.utils.NameFormatter;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
+
 /**
  * @author CI010
  */
@@ -12,6 +13,7 @@ public abstract class RegComponentBase<T>
 {
 	private T component;
 	private String name, oreName, regName;
+	private int creativeTabId;
 
 	public RegComponentBase(String name, T wrap)
 	{
@@ -24,6 +26,16 @@ public abstract class RegComponentBase<T>
 	{
 		this.oreName = name;
 		return this;
+	}
+
+	public int getCreativeTabId()
+	{
+		return creativeTabId;
+	}
+
+	public void setCreativeTabId(int id)
+	{
+		this.creativeTabId = id;
 	}
 
 	public T getComponent()

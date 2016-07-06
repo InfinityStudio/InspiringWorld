@@ -1,6 +1,7 @@
 package net.simplelib.common.registry.component;
 
 import api.simplelib.registry.components.ComponentStruct;
+import api.simplelib.registry.components.ModCreativeTab;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -64,6 +65,8 @@ public class RegStructReflect<T> extends RegComponentBase<T>
 			}
 			if (f.isAnnotationPresent(OreDic.class))
 				reg.setOreName(f.getAnnotation(OreDic.class).value());
+			if (f.isAnnotationPresent(ModCreativeTab.class))
+				reg.setCreativeTabId(f.getAnnotation(ModCreativeTab.class).value());
 		}
 
 		Class<?> superclass = clz.getSuperclass();

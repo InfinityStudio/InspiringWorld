@@ -3,6 +3,7 @@ package net.simplelib.common.registry.component;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -22,8 +23,8 @@ public class RegItem extends RegComponentBase<Item>
 	@Override
 	public RegComponentBase<Item> register()
 	{
-		this.getComponent().setUnlocalizedName(getRegisterName());
-		GameRegistry.registerItem(this.getComponent(), getRegisterName());
+		this.getComponent().setUnlocalizedName(getRegisterName()).setRegistryName(getRegisterName());
+		GameRegistry.register(this.getComponent());
 		if (getOreName() != null)
 			OreDictionary.registerOre(getOreName(), this.getComponent());
 		return null;
@@ -37,8 +38,8 @@ public class RegItem extends RegComponentBase<Item>
 			@Override
 			public void run()
 			{
-//				this.getComponent().setCreativeTab(tab);
 				Item item = getComponent();
+				item.setCreativeTab(CreativeTabs.CREATIVE_TAB_ARRAY[getCreativeTabId()]);
 				Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item,
 						0, new ModelResourceLocation(RegistryHelper.INSTANCE.currentMod() +
 								":" + getRegisterName(), "inventory"));
