@@ -7,9 +7,9 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkCheckHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import net.simplelib.common.DebugLogger;
 import net.simplelib.common.registry.RegistryBufferManager;
 import net.simplelib.common.registry.RegistryHelper;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
@@ -24,8 +24,6 @@ public class HelperMod
 	@Mod.Instance(MODID)
 	public static HelperMod instance;
 
-	public static Logger LOG;
-
 	@SidedProxy(modId = MODID, serverSide = "net.simplelib.CommonProxy", clientSide = "net.simplelib.client.ClientProxy")
 	public static CommonProxy proxy;
 
@@ -39,9 +37,8 @@ public class HelperMod
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		LOG = event.getModLog();
 		if (Environment.debug())
-			LOG.info("Detected that this is a development environment. Debug mode on.");
+			DebugLogger.info("Detected that this is a development environment. Debug mode on.");
 		RegistryBufferManager.instance().invoke(event);
 	}
 

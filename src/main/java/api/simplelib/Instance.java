@@ -27,17 +27,15 @@ import java.util.concurrent.TimeUnit;
 		{ElementType.FIELD, ElementType.METHOD})
 public @interface Instance
 {
-	boolean weak() default false;
-
 	class Utils
 	{
 		static Cache<Class, Object> cache = CacheBuilder.newBuilder().expireAfterAccess(1, TimeUnit.MINUTES).build();
 
-		public static <T> Optional<T> grabFast(Class<T> clz)
+		public static <T> T grabFastUnsafe(Class<T> clz)
 		{
 			Field f = null;
 			Object ifPresent = cache.getIfPresent(clz);
-			if (ifPresent != null) return Optional.of(TypeUtils.<T>cast(ifPresent));
+			if (ifPresent != null) return TypeUtils.cast(ifPresent);
 			T instance = null;
 			try {f = clz.getDeclaredField("instance");}
 			catch (NoSuchFieldException ignored) {}
@@ -63,7 +61,7 @@ public @interface Instance
 				catch (NoSuchMethodException ignored) {}
 				if (method == null)
 					try {method = clz.getMethod("getInstance");}
-					catch (NoSuchMethodException e) {e.printStackTrace();}
+					catch (NoSuchMethodException e) {}
 				if (method != null)
 					if (Modifier.isStatic(method.getModifiers()) && method.getReturnType().isAssignableFrom(clz))
 					{
@@ -84,12 +82,18 @@ public @interface Instance
 					}
 			}
 			if (instance != null) cache.put(clz, instance);
-			return Optional.fromNullable(instance);
+			return instance;
 		}
 
-		public static <T> Optional<T> grab(Class<T> clz)
+		public static <T> Optional<T> grabFast(Class<T> clz)
 		{
-			T o = null;
+			return Optional.fromNullable(grabFastUnsafe(clz));
+		}
+
+		public static <T> Optional<T> grabAll(Class<T> clz)
+		{
+			T o = grabFastUnsafe(clz);
+			if (o != null) return Optional.of(o);
 			for (Method m : clz.getMethods())
 				if (m.isAnnotationPresent(Instance.class))
 				{
@@ -117,12 +121,12 @@ public @interface Instance
 						int modifiers = field.getModifiers();
 						if (!Modifier.isStatic(modifiers))
 						{
-							HelperMod.LOG.fatal("The field annotated by EnumType should be static! cannot grab the instance.");
+							DebugLogger.fatal("The field annotated by EnumType should be static! cannot grabAll the instance.");
 							return Optional.absent();
 						}
 						if (!field.getType().isAssignableFrom(clz))
 						{
-							HelperMod.LOG.fatal("Illegal field type! The type {} cannot cast to type {}", clz, field.getType());
+							DebugLogger.fatal("Illegal field type! The type {} cannot cast to type {}", clz, field.getType());
 							return Optional.absent();
 						}
 						if (Modifier.isPrivate(modifiers))
@@ -136,20 +140,6 @@ public @interface Instance
 							{
 								e.printStackTrace();
 							}
-						if (o == null)
-							if (!annotation.weak())
-								try
-								{
-									o = clz.newInstance();
-								}
-								catch (InstantiationException e)
-								{
-									e.printStackTrace();
-								}
-								catch (IllegalAccessException e)
-								{
-									e.printStackTrace();
-								}
 					}
 				}
 			}

@@ -1,37 +1,50 @@
 package net.simplelib.common;
 
-import api.simplelib.utils.FileReference;
 import api.simplelib.utils.Environment;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.Appender;
+import org.apache.logging.log4j.core.appender.FileAppender;
+import org.apache.logging.log4j.core.appender.RollingRandomAccessFileAppender;
+import org.apache.logging.log4j.core.config.Configuration;
 import org.apache.logging.log4j.message.MessageFactory;
+import org.apache.logging.log4j.spi.LoggerContext;
 
-import java.io.*;
+import java.util.Map;
 
 /**
  * @author ci010
  */
 public class DebugLogger
 {
-	private static FileOutputStream stream;
 	private static Logger logger = LogManager.getLogger();
 	private static MessageFactory factory = logger.getMessageFactory();
 //	private static final String FQCN = AbstractLogger.class.getName();
+
+	static
+	{
+		LoggerContext context = LogManager.getContext(DebugLogger.class.getClassLoader(), true);
+		org.apache.logging.log4j.core.LoggerContext real = (org.apache.logging.log4j.core.LoggerContext) context;
+//		real.getConfiguration()
+		Configuration cfg = real.getConfiguration();
+		System.out.println(real.getConfigLocation());
+		System.out.println(cfg);
+		RollingRandomAccessFileAppender file = (RollingRandomAccessFileAppender) cfg.getAppenders().get("File");
+		for (Map.Entry<String, Appender> stringAppenderEntry : cfg.getAppenders().entrySet())
+		{
+			System.out.println(stringAppenderEntry.getKey()+ " " + stringAppenderEntry.getValue().getClass());
+		}
+//		FileAppender.createAppender("test","","","test",null,null.);
+//		FileAppender.createAppender("logs/test.log","true")
+		System.out.println(context);
+	}
 
 	public static void info(String message, Object... obj)
 	{
 		String msg = factory.newMessage(message, obj).getFormattedMessage();
 		if (Environment.debug())
 			logger.log(Level.INFO, msg);
-		try
-		{
-			stream.write(msg.concat("\n").getBytes());
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
 	}
 
 	public static void trace(String message, Object... obj)
@@ -54,22 +67,4 @@ public class DebugLogger
 		logger.warn(message, obj);
 	}
 
-	static
-	{
-		try
-		{
-			File log = new File(FileReference.getLog(), "debug.log");
-			if (!log.exists())
-				log.createNewFile();
-			stream = new FileOutputStream(log);
-		}
-		catch (FileNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
 }

@@ -72,7 +72,7 @@ public class RegDelegate
 				RegistryHelper.INSTANCE.include(this.getModid(), base);
 			}
 			else
-				HelperMod.LOG.warn("The class {} is neither a block nor an item! Moreover, it not a ComponentStruct. " +
+				DebugLogger.warn("The class {} is neither a block nor an item! Moreover, it not a ComponentStruct. " +
 						"It will not be registered!", this
 						.getAnnotatedClass().getName());
 		}
@@ -87,7 +87,7 @@ public class RegDelegate
 		for (RegContainer meta : RegistryHelper.INSTANCE)
 		{
 			RegistryHelper.INSTANCE.start(meta);
-			HelperMod.LOG.info("Start to handle [".concat(meta.modid).concat("] mod."));
+			DebugLogger.info("Start to handle [".concat(meta.modid).concat("] mod."));
 			ImmutableSet<RegComponentBase> cache;
 			for (Class c : meta.getRawContainer())
 				if ((cache = maker.apply(c)) != null)

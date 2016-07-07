@@ -75,7 +75,7 @@ public final class RegistryBufferManager
 					type = clz.getSuperclass();
 				if (type == Object.class)
 					type = clz;
-				Optional<?> grab = Instance.Utils.grab(clz);
+				Optional<?> grab = Instance.Utils.grabAll(clz);
 				if (grab.isPresent())
 					proxyClasses.put(type, grab.get());
 				else
@@ -175,7 +175,7 @@ public final class RegistryBufferManager
 			Class<?> registryDelegateType = ASMDataUtil.getClass(data);
 			boolean asmType = ASMRegistryDelegate.class.isAssignableFrom(registryDelegateType);
 
-			Optional<?> optional = Instance.Utils.grab(registryDelegateType);
+			Optional<?> optional = Instance.Utils.grabAll(registryDelegateType);
 			Object delegate = null;
 			try
 			{

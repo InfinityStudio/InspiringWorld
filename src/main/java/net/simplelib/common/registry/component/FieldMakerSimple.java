@@ -5,7 +5,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.simplelib.HelperMod;
+import net.simplelib.common.DebugLogger;
 import net.simplelib.common.registry.annotation.field.OreDic;
 
 import java.lang.reflect.Field;
@@ -82,14 +82,14 @@ public class FieldMakerSimple implements Function<Object, ImmutableSet<RegCompon
 				else
 				{
 					//TODO inject this.
-					HelperMod.LOG.fatal("Cannot include the {}.");
+					DebugLogger.fatal("Cannot include the {}.");
 				}
 
 			}
 		}
 		if (!handled)
 		{
-			HelperMod.LOG.fatal("The class {} is neither a block nor an item. Moreover, it doesn't contain any " +
+			DebugLogger.fatal("The class {} is neither a block nor an item. Moreover, it doesn't contain any " +
 					"block or item");
 		}
 		return builder.build();

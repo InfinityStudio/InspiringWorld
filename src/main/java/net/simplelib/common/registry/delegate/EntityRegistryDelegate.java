@@ -155,7 +155,7 @@ public class EntityRegistryDelegate extends ASMRegistryDelegate<ModEntity>
 			}
 			catch (NoSuchMethodException e)
 			{
-				HelperMod.LOG.fatal("Cannot create the instance of {}'s renderer. There should be a " +
+				DebugLogger.fatal("Cannot create the instance of {}'s renderer. There should be a " +
 						"constructor without any parameter for the renderer class. The entity {} won't be include a " +
 						"renderer.", name, name);
 			}

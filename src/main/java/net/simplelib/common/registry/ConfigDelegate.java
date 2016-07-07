@@ -38,15 +38,9 @@ public class ConfigDelegate extends ASMRegistryDelegate<ModConfig>
 		else throw new IllegalArgumentException();
 		if (!Modifier.isStatic(field.getModifiers()))
 		{
-			Optional<?> grab = Instance.Utils.grabFast(this.getAnnotatedClass());
-			if (grab.isPresent())
-				o = grab.get();
-			else
-			{
-				grab = Instance.Utils.grab(this.getAnnotatedClass());
-				if (grab.isPresent())
-					o = grab.get();
-			}
+			Optional<?> optional = Instance.Utils.grabAll(getAnnotatedClass());
+			if (optional.isPresent())
+				o = optional.get();
 		}
 		if (type.isArray())
 			handleArr(cfg, modConfig, field, type, o);

@@ -8,6 +8,7 @@ import com.google.common.base.Function;
 import com.google.common.primitives.Primitives;
 import net.minecraft.util.ResourceLocation;
 import net.simplelib.HelperMod;
+import net.simplelib.common.DebugLogger;
 import net.simplelib.common.registry.RegistryHelper;
 
 import java.lang.annotation.Annotation;
@@ -68,7 +69,7 @@ public abstract class ReflectionAnnotatedMaker<Input, Output> implements Functio
 			}
 			catch (NoSuchMethodException e)
 			{
-				HelperMod.LOG.fatal("Cannot find a constructor in {} with type {}. Therefore, it cannot be " +
+				DebugLogger.fatal("Cannot find a constructor in {} with type {}. Therefore, it cannot be " +
 						"instantiated", ctr.value().getName(), argType);
 			}
 		}
@@ -77,7 +78,7 @@ public abstract class ReflectionAnnotatedMaker<Input, Output> implements Functio
 
 		if (item == null)
 		{
-			HelperMod.LOG.fatal("Item Field {}'s value is null. It will not be registered!", f.getName());
+			DebugLogger.fatal("Item Field {}'s value is null. It will not be registered!", f.getName());
 			return null;
 		}
 

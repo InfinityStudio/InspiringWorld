@@ -9,7 +9,7 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.simplelib.HelperMod;
+import net.simplelib.common.DebugLogger;
 import net.simplelib.common.registry.annotation.field.OreDic;
 
 import java.lang.annotation.Annotation;
@@ -48,7 +48,7 @@ public class ComponentMaker implements Function<Class<?>, ImmutableSet<RegCompon
 	public ImmutableSet<RegComponentBase> apply(Class<?> container)
 	{
 		ImmutableSet.Builder<RegComponentBase> builder = ImmutableSet.builder();
-		Optional<?> grab = Instance.Utils.grab(container);
+		Optional<?> grab = Instance.Utils.grabAll(container);
 		if (grab.isPresent())
 		{
 			maker.setObject(grab.get());
@@ -70,7 +70,7 @@ public class ComponentMaker implements Function<Class<?>, ImmutableSet<RegCompon
 							builder.addAll(maker.apply(f));
 					}
 					else
-						HelperMod.LOG.info("The field {} in container {} is not static so that it won'registerInit be constructed and registered",
+						DebugLogger.info("The field {} in container {} is not static so that it won'registerInit be constructed and registered",
 								f.getName(),
 								container.getName());
 		return builder.build();
