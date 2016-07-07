@@ -4,12 +4,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import org.singularity.rune.MagicRuneMod;
 
 /**
  * @author ci010
  */
+@SideOnly(Side.CLIENT)
 public class FontRune extends FontRenderer
 {
 	public FontRune()
