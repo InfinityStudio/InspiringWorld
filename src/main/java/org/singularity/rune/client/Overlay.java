@@ -29,12 +29,12 @@ public class Overlay extends Gui
 	@Instance
 	public static final Overlay INSTANCE = new Overlay();
 
-	private boolean enable, reverse;
+	private boolean enable, reverse = false;
 	private int currentX, currentY;
-	private Polygon[] drawArr;
+	private Polygon[] bounding;
 	private Polygon range;
 	private float sensitivity = 0.3F;
-	private float factor;
+	private float factor = sensitivity * (reverse ? -1 : 1);
 
 	public boolean isReverse()
 	{
@@ -49,9 +49,10 @@ public class Overlay extends Gui
 
 	public void setEnable(boolean enable)
 	{
-		if (this.enable != enable)
-			if (!this.enable)
-				this.currentX = currentY = 0;
+		if (this.enable == enable)
+			return;
+		if (!this.enable)
+			this.currentX = currentY = 0;
 		this.enable = enable;
 	}
 
@@ -105,7 +106,7 @@ public class Overlay extends Gui
 					4);
 		}
 		this.range = new Polygon(xPoints, yPoints, divide);
-		this.drawArr = polygons;
+		this.bounding = polygons;
 	}
 
 
@@ -123,8 +124,7 @@ public class Overlay extends Gui
 		Tessellator instance = Tessellator.getInstance();
 		VertexBuffer buffer = instance.getBuffer();
 		GlStateManager.enableAlpha();
-		GlStateManager.disableCull();
-		for (Polygon polygon : drawArr)
+		for (Polygon polygon : bounding)
 		{
 			buffer.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_COLOR);
 			int j = 0;
@@ -141,8 +141,6 @@ public class Overlay extends Gui
 					.endVertex();
 			instance.draw();
 		}
-		GlStateManager.enableCull();
 		GlStateManager.disableAlpha();
-
 	}
 }

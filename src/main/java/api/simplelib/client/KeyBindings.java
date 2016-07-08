@@ -1,13 +1,19 @@
 package api.simplelib.client;
 
+import com.google.common.annotations.Beta;
 import com.google.common.base.Joiner;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.settings.IKeyConflictContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * @author ci010
  */
+@SideOnly(Side.CLIENT)
 public class KeyBindings
 {
 	/**
@@ -37,7 +43,9 @@ public class KeyBindings
 				category = Joiner.on('.').join(ArrayUtils.add(arr, 1, "categories"));
 			else category = "key.categories.".concat(category);
 		}
-		return new KeyBinding(id, keyCode, category);
+		KeyBinding binding = new KeyBinding(id, keyCode, category);
+		addKeyToGui(binding);
+		return binding;
 	}
 
 	/**
@@ -53,5 +61,13 @@ public class KeyBindings
 		KeyBinding binding = create(id, keyCode, category);
 		binding.setKeyConflictContext(context);
 		return binding;
+	}
+
+	@Beta
+	public static void addKeyToGui(KeyBinding keyBinding)
+	{
+		if (!ArrayUtils.contains(Minecraft.getMinecraft().gameSettings.keyBindings, keyBinding))
+			Minecraft.getMinecraft().gameSettings.keyBindings = ArrayUtils.add(Minecraft.getMinecraft().gameSettings
+					.keyBindings, keyBinding);
 	}
 }
