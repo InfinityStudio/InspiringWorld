@@ -1,6 +1,7 @@
 package net.simplelib.common.registry.delegate;
 
 import api.simplelib.utils.TypeUtils;
+import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -20,8 +21,11 @@ public class HandlerDelegate extends ASMRegistryDelegate<ModHandler>
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		Object obj = Instance.Utils.grabAll(this.getAnnotatedClass());
-		if (obj == null)
+		Optional<?> optional = Instance.Utils.grabAll(this.getAnnotatedClass());
+		Object obj;
+		if (optional.isPresent())
+			obj = optional.get();
+		else
 			obj = TypeUtils.instantiateQuite(this.getAnnotatedClass());
 		if (obj == null)
 		{

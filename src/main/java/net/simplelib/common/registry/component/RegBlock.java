@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -22,8 +23,13 @@ public class RegBlock extends RegComponentBase<Block>
 	@Override
 	public RegComponentBase<Block> register()
 	{
-		this.getComponent().setUnlocalizedName(getRegisterName()).setRegistryName(getRegisterName());
+
+		this.getComponent().setRegistryName(getRegisterName());
+		if (getComponent().getUnlocalizedName().equals("tile."))
+			getComponent().setUnlocalizedName(getRegisterName());
 		GameRegistry.register(this.getComponent());
+		ItemBlock itemBlock = new ItemBlock(getComponent());
+		GameRegistry.register(itemBlock.setRegistryName(getRegisterName()));
 		if (this.getOreName() != null)
 			OreDictionary.registerOre(this.getOreName(), this.getComponent());
 		return this;
@@ -37,7 +43,8 @@ public class RegBlock extends RegComponentBase<Block>
 			@Override
 			public void run()
 			{
-				getComponent().setCreativeTab(CreativeTabs.CREATIVE_TAB_ARRAY[getCreativeTabId()]);
+				if (getComponent().getCreativeTabToDisplayOn() == null)
+					getComponent().setCreativeTab(CreativeTabs.CREATIVE_TAB_ARRAY[getCreativeTabId()]);
 				Item item = Item.getItemFromBlock(getComponent());
 				Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0,
 						new ModelResourceLocation(getComponent().getRegistryName(), "inventory"));

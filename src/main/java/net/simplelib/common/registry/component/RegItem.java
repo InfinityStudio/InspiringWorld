@@ -23,7 +23,9 @@ public class RegItem extends RegComponentBase<Item>
 	@Override
 	public RegComponentBase<Item> register()
 	{
-		this.getComponent().setUnlocalizedName(getRegisterName()).setRegistryName(getRegisterName());
+		if (getComponent().getUnlocalizedName().equals("tile."))
+			getComponent().setUnlocalizedName(getRegisterName());
+		this.getComponent().setRegistryName(getRegisterName());
 		GameRegistry.register(this.getComponent());
 		if (getOreName() != null)
 			OreDictionary.registerOre(getOreName(), this.getComponent());
@@ -39,12 +41,11 @@ public class RegItem extends RegComponentBase<Item>
 			public void run()
 			{
 				Item item = getComponent();
-				item.setCreativeTab(CreativeTabs.CREATIVE_TAB_ARRAY[getCreativeTabId()]);
+				if (getComponent().getCreativeTab() == null)
+					item.setCreativeTab(CreativeTabs.CREATIVE_TAB_ARRAY[getCreativeTabId()]);
 				Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item,
-						0, new ModelResourceLocation(RegistryHelper.INSTANCE.currentMod() +
-								":" + getRegisterName(), "inventory"));
-				ModelBakery.registerItemVariants(item, new ResourceLocation(RegistryHelper.INSTANCE.currentMod(),
-						getRegisterName()));
+						0, new ModelResourceLocation(RegistryHelper.INSTANCE.currentMod() + ":" + getRegisterName(), "inventory"));
+				ModelBakery.registerItemVariants(item, new ResourceLocation(RegistryHelper.INSTANCE.currentMod(), getRegisterName()));
 			}
 		};
 	}

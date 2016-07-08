@@ -16,9 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import net.simplelib.HelperMod;
 import net.simplelib.common.DebugLogger;
 import net.simplelib.common.registry.RegContainer;
 import net.simplelib.common.registry.RegistryHelper;
@@ -83,7 +81,6 @@ public class RegDelegate
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		ComponentMaker maker = new ComponentMaker(RegistryHelper.INSTANCE.getAnnotationMap());
-//		ModRestriction.preInit(event);
 		for (RegContainer meta : RegistryHelper.INSTANCE)
 		{
 			RegistryHelper.INSTANCE.start(meta);
@@ -121,21 +118,14 @@ public class RegDelegate
 	public static class RegDelegateClient extends RegDelegate
 	{
 		@Override
-		protected void register(RegContainer meta)
+		protected void register(RegContainer container)
 		{
-			super.register(meta);
-			for (RegComponentBase regComponentBase : meta)
-				regComponentBase.getRegClient().run();
-//			if (Environment.debug())
-//			{
-//				FileReference.registerFile("all");
-//				FileReference.registerFile(meta.modid);
-//				LanguageReporter.instance().start(meta.modid, meta.langType());
-//					Local.trans(namespace.getComponent().getRegisterName());
-//				LanguageReporter.instance().end();
-//			}
+			super.register(container);
+			for (RegComponentBase base : container)
+			{
+				Runnable regClient = base.getRegClient();
+				if (regClient != null) regClient.run();
+			}
 		}
 	}
-
-
 }
