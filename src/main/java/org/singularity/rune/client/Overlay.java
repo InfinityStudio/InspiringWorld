@@ -29,15 +29,30 @@ public class Overlay extends Gui
 	@Instance
 	public static final Overlay INSTANCE = new Overlay();
 
-	private boolean render;
+	private boolean enable, reverse;
 	private int currentX, currentY;
 	private Polygon[] drawArr;
 	private Polygon range;
 	private float sensitivity = 0.3F;
+	private float factor;
 
-	public void setRender(boolean render)
+	public boolean isReverse()
 	{
-		this.render = render;
+		return reverse;
+	}
+
+	public void setReverse(boolean reverse)
+	{
+		this.reverse = reverse;
+		this.factor = sensitivity * (reverse ? -1 : 1);
+	}
+
+	public void setEnable(boolean enable)
+	{
+		if (this.enable != enable)
+			if (!this.enable)
+				this.currentX = currentY = 0;
+		this.enable = enable;
 	}
 
 	public float getSensitivity()
@@ -48,6 +63,7 @@ public class Overlay extends Gui
 	public void setSensitivity(float sensitivity)
 	{
 		this.sensitivity = sensitivity;
+		this.factor = sensitivity * (reverse ? -1 : 1);
 	}
 
 	{
@@ -57,8 +73,9 @@ public class Overlay extends Gui
 	@SubscribeEvent
 	public void mouse(MouseEvent event)
 	{
-		int x = (int) (currentX + event.getDx() * sensitivity);
-		int y = (int) (currentY - event.getDy() * sensitivity);
+		if (!enable) return;
+		int x = (int) (currentX + event.getDx() * factor);
+		int y = (int) (currentY - event.getDy() * factor);
 		if (range.contains(x, y))
 		{
 			currentX = x;
@@ -95,7 +112,7 @@ public class Overlay extends Gui
 	@SubscribeEvent
 	public void render(RenderGameOverlayEvent.Post post)
 	{
-		if (!render)
+		if (!enable)
 			return;
 		if (post.getType() != HOTBAR)
 			return;
@@ -106,6 +123,7 @@ public class Overlay extends Gui
 		Tessellator instance = Tessellator.getInstance();
 		VertexBuffer buffer = instance.getBuffer();
 		GlStateManager.enableAlpha();
+		GlStateManager.disableCull();
 		for (Polygon polygon : drawArr)
 		{
 			buffer.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_COLOR);
@@ -123,6 +141,7 @@ public class Overlay extends Gui
 					.endVertex();
 			instance.draw();
 		}
+		GlStateManager.enableCull();
 		GlStateManager.disableAlpha();
 
 	}

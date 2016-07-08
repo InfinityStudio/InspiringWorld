@@ -18,8 +18,13 @@ public abstract class RegComponentBase<T>
 	public RegComponentBase(String name, T wrap)
 	{
 		this.name = name;
-		this.regName = NameFormatter.upperTo_(name);
+		this.regName = handleRegisterName(name);
 		this.component = wrap;
+	}
+
+	protected String handleRegisterName(String name)
+	{
+		return NameFormatter.upperTo_(name);
 	}
 
 	public RegComponentBase<T> setOreName(String name)
