@@ -3,15 +3,17 @@ package api.simplelib.client;
 import com.google.common.annotations.Beta;
 import com.google.common.base.Joiner;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.settings.IKeyConflictContext;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * @author ci010
+ * @see KeyBinding
+ * @see org.lwjgl.input.Keyboard
  */
 @SideOnly(Side.CLIENT)
 public class KeyBindings
@@ -69,5 +71,32 @@ public class KeyBindings
 		if (!ArrayUtils.contains(Minecraft.getMinecraft().gameSettings.keyBindings, keyBinding))
 			Minecraft.getMinecraft().gameSettings.keyBindings = ArrayUtils.add(Minecraft.getMinecraft().gameSettings
 					.keyBindings, keyBinding);
+	}
+
+	public enum KeyEventType
+	{
+		PRESS, RELEASE
+	}
+
+	public static class KeyBindingEvent extends Event
+	{
+		private KeyBinding keyBinding;
+		private KeyEventType type;
+
+		public KeyBindingEvent(KeyBinding keyBinding, KeyEventType type)
+		{
+			this.keyBinding = keyBinding;
+			this.type = type;
+		}
+
+		public KeyEventType getType()
+		{
+			return type;
+		}
+
+		public KeyBinding getKeyBinding()
+		{
+			return keyBinding;
+		}
 	}
 }

@@ -1,4 +1,4 @@
-package net.simplelib.common.registry.annotation.field;
+package api.simplelib.registry.components;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

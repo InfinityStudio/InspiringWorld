@@ -1,10 +1,12 @@
 package api.simplelib.utils;
 
+import org.lwjgl.util.vector.Vector4f;
+
+import java.awt.*;
+import java.util.Iterator;
+
 import static java.lang.Math.abs;
 import static java.lang.Math.max;
-
-import java.awt.Color;
-import java.util.Iterator;
 
 /**
  * @author ci010
@@ -58,6 +60,15 @@ public class ColorIntUtil
 				((r & 0xFF) << 16) |
 				((g & 0xFF) << 8) |
 				(b & 0xFF);
+	}
+
+	public static Vector4f getColorInGLFloat(int rgba)
+	{
+		return new Vector4f(
+				(float) (rgba >> 16 & 255) / 255.0F,
+				(float) (rgba >> 8 & 255) / 255.0F,
+				(float) (rgba & 255) / 255.0F,
+				(float) (rgba >> 24 & 255) / 255.0F);
 	}
 
 	public static Color[] argbGradient(final Color start, final Color end, final int steps, final boolean keepA)

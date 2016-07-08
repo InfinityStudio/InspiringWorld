@@ -17,9 +17,11 @@ public class KeyBindingSelectionRune
 	public static final KeyBinding SHOW_RUNE_SELECT =
 			KeyBindings.create("show_rune", Keyboard.KEY_R, KeyBindings.GAMEPLAY, KeyConflictContext.IN_GAME);
 
+
 	@SubscribeEvent
+
 	public void keyBindingEvent(InputEvent.KeyInputEvent event)
 	{
-		Overlay.INSTANCE.setEnable(SHOW_RUNE_SELECT.isKeyDown());
+		Overlay.INSTANCE.setEnable(SHOW_RUNE_SELECT.isPressed());
 	}
 }

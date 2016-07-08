@@ -1,12 +1,12 @@
 package net.simplelib.common.registry.component;
 
+import api.simplelib.registry.components.OreDic;
 import api.simplelib.utils.TypeUtils;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.simplelib.common.DebugLogger;
-import net.simplelib.common.registry.annotation.field.OreDic;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

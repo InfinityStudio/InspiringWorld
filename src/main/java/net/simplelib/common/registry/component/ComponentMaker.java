@@ -4,13 +4,13 @@ import api.simplelib.Instance;
 import api.simplelib.registry.components.ArgumentHelper;
 import api.simplelib.registry.components.ComponentStruct;
 import api.simplelib.registry.components.Construct;
+import api.simplelib.registry.components.OreDic;
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.simplelib.common.DebugLogger;
-import net.simplelib.common.registry.annotation.field.OreDic;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

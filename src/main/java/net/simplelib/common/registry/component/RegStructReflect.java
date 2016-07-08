@@ -2,11 +2,11 @@ package net.simplelib.common.registry.component;
 
 import api.simplelib.registry.components.ComponentStruct;
 import api.simplelib.registry.components.ModCreativeTab;
+import api.simplelib.registry.components.OreDic;
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.simplelib.common.DebugLogger;
-import net.simplelib.common.registry.annotation.field.OreDic;
 
 import java.lang.reflect.Field;
 import java.util.List;
