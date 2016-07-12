@@ -1,13 +1,18 @@
 # InspiringWorld Mod Git Properties
 # Whitelist Mode
 /*
+
 # Git Files
 !.gitignore
+
 # GitHub Files
 !README.md
 !LICENSE
+
 # Java Files
 !src/
+!.editorconfig
+
 # Gradle Files
 !build.gradle
 !gradle/
