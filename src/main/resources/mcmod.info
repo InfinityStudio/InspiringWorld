@@ -1,0 +1,30 @@
+[
+{
+  "modid": "inspiringtech",
+  "name": "Inspiring Tech",
+  "description": "Inspiring World Mod Tech Part.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ustc_zzzz", "LasmGratel"],
+  "credits": "InfStudio",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+},
+{
+  "modid": "inspiringmagic",
+  "name": "Inspiring Magic",
+  "description": "Inspiring World Mod Magic Part.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["CI010", "Hookan"],
+  "credits": "InfStudio",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -22,6 +22,8 @@ minecraft {
     runDir = "run"
 	useDepAts = use_dep_ats
     mappings = mcp_version
+
+    replace "@version@", project.version
 }
 
 dependencies {
