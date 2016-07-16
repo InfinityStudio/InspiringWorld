@@ -5,6 +5,7 @@ import net.infstudio.inspiringworld.tech.common.CommonProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLStateEvent;
 
 public class ClientProxy extends CommonProxy {
 
@@ -23,5 +24,9 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void postInit(FMLPostInitializationEvent event) {
 	super.postInit(event);
+    }
+
+    public static <T extends FMLStateEvent> T event() {
+	return CommonProxy.event();
     }
 }
