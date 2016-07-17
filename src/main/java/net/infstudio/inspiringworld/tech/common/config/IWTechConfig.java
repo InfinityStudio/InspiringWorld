@@ -19,7 +19,7 @@ import java.io.File;
 
 import org.apache.logging.log4j.Logger;
 
-import net.infstudio.inspiringworld.tech.InspiringTech;
+import net.infstudio.inspiringworld.core.InspiringWorld;
 import net.infstudio.inspiringworld.tech.common.CommonProxy;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -36,9 +36,9 @@ public class IWTechConfig {
         FMLPreInitializationEvent event = CommonProxy.event();
         IWTechConfig.logger = event.getModLog();
 
-        IWTechConfig.configDir = new File(event.getModConfigurationDirectory(), InspiringTech.MODID);
+        IWTechConfig.configDir = new File(event.getModConfigurationDirectory(), InspiringWorld.MODID);
 
-        IWTechConfig.general = new Configuration(new File(IWTechConfig.configDir, "general.cfg"));
+        IWTechConfig.general = new Configuration(new File(IWTechConfig.configDir, "tech.cfg"));
         IWTechConfig.general.load();
 
         IWTechConfig.loadConfig();
