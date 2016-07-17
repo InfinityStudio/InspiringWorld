@@ -1,5 +1,19 @@
 [
 {
+  "modid": "inspiringworld",
+  "name": "Inspiring World",
+  "description": "Inspiring World Mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["CI010", "Hookan", "ustc_zzzz", "LasmGratel"],
+  "credits": "InfStudio",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+},
+{
   "modid": "inspiringtech",
   "name": "Inspiring Tech",
   "description": "Inspiring World Mod Tech Part.",

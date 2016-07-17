@@ -21,11 +21,12 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = InspiringMagic.MODID, version = InspiringMagic.VERSION, acceptedMinecraftVersions = InspiringMagic.MCVER)
+@Mod(modid = InspiringMagic.MODID, version = InspiringMagic.VERSION, acceptedMinecraftVersions = InspiringMagic.MC_VERSION, dependencies = InspiringMagic.DEPENDENCIES)
 public class InspiringMagic {
     public static final String MODID = "inspiringmagic";
     public static final String VERSION = "@version@";
-    public static final String MCVER = "@mcver@";
+    public static final String MC_VERSION = "1.10.2";
+    public static final String DEPENDENCIES = "required-after:inspiringworld";
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {

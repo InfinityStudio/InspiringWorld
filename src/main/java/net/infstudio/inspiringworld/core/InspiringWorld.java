@@ -17,10 +17,11 @@ package net.infstudio.inspiringworld.core;
 
 import net.minecraftforge.fml.common.Mod;
 
-@Mod(modid = InspiringWorld.MODID, version = InspiringWorld.VERSION, acceptedMinecraftVersions = InspiringWorld.MCVER)
+@Mod(modid = InspiringWorld.MODID, version = InspiringWorld.VERSION, acceptedMinecraftVersions = InspiringWorld.MC_VERSION)
 public class InspiringWorld {
     public static final String MODID = "inspiringworld";
     public static final String VERSION = "@version@";
-    public static final String MCVER = "@mcver@";
+    public static final String MC_VERSION = "1.10.2";
+
     // TODO external codes
 }

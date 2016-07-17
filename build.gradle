@@ -24,7 +24,6 @@ minecraft {
     mappings = mcp_version
 
     replace "@version@", project.version
-	replace "@mcver@", minecraft_version
 }
 
 sourceSets {

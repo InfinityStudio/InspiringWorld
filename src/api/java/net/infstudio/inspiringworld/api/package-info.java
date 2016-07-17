@@ -13,5 +13,5 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-@net.minecraftforge.fml.common.API(owner = "Infinity Studio", apiVersion = "@modver@", provides = "@modapiname@")
+@net.minecraftforge.fml.common.API(owner = "inspiringworld", apiVersion = "@version@", provides = "inspiringworld|API")
 package net.infstudio.inspiringworld.api;
