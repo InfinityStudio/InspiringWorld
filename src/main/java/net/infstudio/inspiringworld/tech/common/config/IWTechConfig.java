@@ -1,4 +1,18 @@
+/**
+ * InspiringWorld Mod for Minecraft.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package net.infstudio.inspiringworld.tech.common.config;
 
 import java.io.File;
@@ -19,24 +33,23 @@ public class IWTechConfig {
     private static Configuration general;
 
     public static void preInit() {
-	FMLPreInitializationEvent event = CommonProxy.event();
-	IWTechConfig.logger = event.getModLog();
+        FMLPreInitializationEvent event = CommonProxy.event();
+        IWTechConfig.logger = event.getModLog();
 
-	IWTechConfig.configDir = new File(event.getModConfigurationDirectory(), InspiringTech.MODID);
+        IWTechConfig.configDir = new File(event.getModConfigurationDirectory(), InspiringTech.MODID);
 
-	IWTechConfig.general = new Configuration(new File(IWTechConfig.configDir, "general.cfg"));
-	IWTechConfig.general.load();
+        IWTechConfig.general = new Configuration(new File(IWTechConfig.configDir, "general.cfg"));
+        IWTechConfig.general.load();
 
-	IWTechConfig.loadConfig();
+        IWTechConfig.loadConfig();
     }
 
     private static void loadConfig() {
-	// TODO
-
-	IWTechConfig.general.save();
+        // TODO Load configuration from file here
+        IWTechConfig.general.save();
     }
 
     public static Logger logger() {
-	return IWTechConfig.logger;
+        return IWTechConfig.logger;
     }
 }

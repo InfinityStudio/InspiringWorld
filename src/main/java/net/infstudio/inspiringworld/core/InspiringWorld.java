@@ -13,25 +13,15 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.infstudio.inspiringworld.tech.common.creativetab;
+package net.infstudio.inspiringworld.core;
 
-import net.infstudio.inspiringworld.tech.common.item.IWTechItems;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+import net.infstudio.inspiringworld.magic.InspiringMagic;
+import net.minecraftforge.fml.common.Mod;
 
-public class IWTechCreativeTabs {
-    public static CreativeTabs general;
-
-    public static void preInit() {
-	    IWTechItems.controller.setCreativeTab(IWTechCreativeTabs.general);
-    }
-
-    static {
-        IWTechCreativeTabs.general = new CreativeTabs("inspiringtech") {
-            @Override
-            public Item getTabIconItem() {
-            return IWTechItems.controller;
-            }
-        };
-    }
+@Mod(modid = InspiringWorld.MODID, version = InspiringWorld.VERSION, acceptedMinecraftVersions = InspiringWorld.MCVER)
+public class InspiringWorld {
+    public static final String MODID = "inspiringworld";
+    public static final String VERSION = "@version@";
+    public static final String MCVER = "@mcver@";
+    //TODO external codes
 }
