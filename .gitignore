@@ -12,6 +12,7 @@
 # Java Files
 !src/
 !.editorconfig
+!license-header.txt
 
 # Gradle Files
 !build.gradle
