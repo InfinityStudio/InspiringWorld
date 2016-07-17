@@ -22,11 +22,8 @@ minecraft {
     runDir = "run"
 	useDepAts = use_dep_ats
     mappings = mcp_version
-	
-	replace "@modid@", mod_id
-	replace "@modname@", mod_name
-	replace "@modver@", project.version
-	replace "@modapiname@", mod_api_name
+
+    replace "@version@", project.version
 }
 
 sourceSets {
