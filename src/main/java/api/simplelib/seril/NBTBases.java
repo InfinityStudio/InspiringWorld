@@ -147,7 +147,7 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 		}).add(new FullSerializer<Byte>()
 		{
 			@Override
-			public NBTBase.NBTPrimitive serialize(Byte data)
+			public NBTPrimitive serialize(Byte data)
 			{
 				return new NBTTagByte(data);
 			}
@@ -155,12 +155,12 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 			@Override
 			public Byte deserialize(NBTBase base)
 			{
-				return ((NBTBase.NBTPrimitive) base).getByte();
+				return ((NBTPrimitive) base).getByte();
 			}
 		}).add(new FullSerializer<Short>()
 		{
 			@Override
-			public NBTBase.NBTPrimitive serialize(Short data)
+			public NBTPrimitive serialize(Short data)
 			{
 				return new NBTTagShort(data);
 			}
@@ -168,12 +168,12 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 			@Override
 			public Short deserialize(NBTBase base)
 			{
-				return ((NBTBase.NBTPrimitive) base).getShort();
+				return ((NBTPrimitive) base).getShort();
 			}
 		}).add(new FullSerializer<Integer>()
 		{
 			@Override
-			public NBTBase.NBTPrimitive serialize(Integer data)
+			public NBTPrimitive serialize(Integer data)
 			{
 				return new NBTTagInt(data);
 			}
@@ -181,12 +181,12 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 			@Override
 			public Integer deserialize(NBTBase base)
 			{
-				return ((NBTBase.NBTPrimitive) base).getInt();
+				return ((NBTPrimitive) base).getInt();
 			}
 		}).add(new FullSerializer<Long>()
 		{
 			@Override
-			public NBTBase.NBTPrimitive serialize(Long data)
+			public NBTPrimitive serialize(Long data)
 			{
 				return new NBTTagLong(data);
 			}
@@ -194,12 +194,12 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 			@Override
 			public Long deserialize(NBTBase base)
 			{
-				return ((NBTBase.NBTPrimitive) base).getLong();
+				return ((NBTPrimitive) base).getLong();
 			}
 		}).add(new FullSerializer<Float>()
 		{
 			@Override
-			public NBTBase.NBTPrimitive serialize(Float data)
+			public NBTPrimitive serialize(Float data)
 			{
 				return new NBTTagFloat(data);
 			}
@@ -207,13 +207,13 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 			@Override
 			public Float deserialize(NBTBase base)
 			{
-				return ((NBTBase.NBTPrimitive) base).getFloat();
+				return ((NBTPrimitive) base).getFloat();
 			}
 
 		}).add(new FullSerializer<Double>()
 		{
 			@Override
-			public NBTBase.NBTPrimitive serialize(Double data)
+			public NBTPrimitive serialize(Double data)
 			{
 				return new NBTTagDouble(data);
 			}
@@ -221,7 +221,7 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 			@Override
 			public Double deserialize(NBTBase base)
 			{
-				return ((NBTBase.NBTPrimitive) base).getDouble();
+				return ((NBTPrimitive) base).getDouble();
 			}
 		}).add(new FullSerializer<byte[]>()
 		{
@@ -337,7 +337,7 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 			@Override
 			public JsonElement toJson(NBTBase base)
 			{
-				return new JsonPrimitive(NBTBase.NBTPrimitive.class.cast(base).getByte());
+				return new JsonPrimitive(NBTPrimitive.class.cast(base).getByte());
 			}
 		});
 		jsonBuilder.put(NBTBases.SHORT, new NBTToJson()
@@ -345,7 +345,7 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 			@Override
 			public JsonElement toJson(NBTBase base)
 			{
-				return new JsonPrimitive(NBTBase.NBTPrimitive.class.cast(base).getShort());
+				return new JsonPrimitive(NBTPrimitive.class.cast(base).getShort());
 			}
 		});
 		jsonBuilder.put(NBTBases.LONG, new NBTToJson()
@@ -353,7 +353,7 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 			@Override
 			public JsonElement toJson(NBTBase base)
 			{
-				return new JsonPrimitive(NBTBase.NBTPrimitive.class.cast(base).getLong());
+				return new JsonPrimitive(NBTPrimitive.class.cast(base).getLong());
 			}
 		});
 		jsonBuilder.put(NBTBases.INT, new NBTToJson()
@@ -361,7 +361,7 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 			@Override
 			public JsonElement toJson(NBTBase base)
 			{
-				return new JsonPrimitive(NBTBase.NBTPrimitive.class.cast(base).getInt());
+				return new JsonPrimitive(NBTPrimitive.class.cast(base).getInt());
 			}
 		});
 		jsonBuilder.put(NBTBases.FLOAT, new NBTToJson()
@@ -369,7 +369,7 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 			@Override
 			public JsonElement toJson(NBTBase base)
 			{
-				return new JsonPrimitive(NBTBase.NBTPrimitive.class.cast(base).getFloat());
+				return new JsonPrimitive(NBTPrimitive.class.cast(base).getFloat());
 			}
 		});
 		jsonBuilder.put(NBTBases.DOUBLE, new NBTToJson()
@@ -377,7 +377,7 @@ public class NBTBases implements NBTDeserializer.Base<Object>, NBTSerializer.Bas
 			@Override
 			public JsonElement toJson(NBTBase base)
 			{
-				return new JsonPrimitive(NBTBase.NBTPrimitive.class.cast(base).getDouble());
+				return new JsonPrimitive(NBTPrimitive.class.cast(base).getDouble());
 			}
 		});
 		jsonBuilder.put(NBTBases.STRING, new NBTToJson()
