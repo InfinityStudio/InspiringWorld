@@ -15,7 +15,3 @@
  */
 @net.minecraftforge.fml.common.API(owner = "Infinity Studio", apiVersion = "@modver@", provides = "@modapiname@")
 package net.infstudio.inspiringworld.api;
-
-
-
-

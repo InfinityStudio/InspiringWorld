@@ -15,7 +15,6 @@
  */
 package net.infstudio.inspiringworld.core;
 
-import net.infstudio.inspiringworld.magic.InspiringMagic;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod(modid = InspiringWorld.MODID, version = InspiringWorld.VERSION, acceptedMinecraftVersions = InspiringWorld.MCVER)
@@ -23,5 +22,5 @@ public class InspiringWorld {
     public static final String MODID = "inspiringworld";
     public static final String VERSION = "@version@";
     public static final String MCVER = "@mcver@";
-    //TODO external codes
+    // TODO external codes
 }

@@ -24,24 +24,24 @@ import net.minecraftforge.client.model.ModelLoader;
 public class IWTechItemRender {
 
     public static void preInit() {
-	    IWTechItemRender.registerItemRender(IWTechItems.controller, 0, "producer_controller");
-	    IWTechItemRender.registerItemRender(IWTechItems.controller, 1, "consumer_controller");
+        IWTechItemRender.registerItemRender(IWTechItems.controller, 0, "producer_controller");
+        IWTechItemRender.registerItemRender(IWTechItems.controller, 1, "consumer_controller");
     }
 
     private static void registerItemRender(Item item, int meta, String location) {
-	    ResourceLocation rl = new ResourceLocation(item.getRegistryName().getResourceDomain(), location);
-	    ModelLoader.setCustomModelResourceLocation(item, meta, ModelLoader.getInventoryVariant(rl.toString()));
+        ResourceLocation rl = new ResourceLocation(item.getRegistryName().getResourceDomain(), location);
+        ModelLoader.setCustomModelResourceLocation(item, meta, ModelLoader.getInventoryVariant(rl.toString()));
     }
 
     private static void registerItemRender(Block block, int meta, String location) {
-	    IWTechItemRender.registerItemRender(Item.getItemFromBlock(block), meta, location);
+        IWTechItemRender.registerItemRender(Item.getItemFromBlock(block), meta, location);
     }
 
     private static void registerItemRender(Item item) {
-	    IWTechItemRender.registerItemRender(item, 0, item.getRegistryName().getResourcePath());
+        IWTechItemRender.registerItemRender(item, 0, item.getRegistryName().getResourcePath());
     }
 
     private static void registerItemRender(Block block) {
-	    IWTechItemRender.registerItemRender(block, 0, block.getRegistryName().getResourcePath());
+        IWTechItemRender.registerItemRender(block, 0, block.getRegistryName().getResourcePath());
     }
 }

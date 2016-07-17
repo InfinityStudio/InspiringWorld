@@ -50,8 +50,7 @@ public class CommonProxy {
         CommonProxy.event = new WeakReference<FMLStateEvent>(event);
     }
 
-    public static <T extends FMLStateEvent> T event()
-    {
+    public static <T extends FMLStateEvent> T event() {
         @SuppressWarnings("unchecked")
         T result = (T) CommonProxy.event.get();
         return result;

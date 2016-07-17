@@ -23,14 +23,14 @@ public class IWTechCreativeTabs {
     public static CreativeTabs general;
 
     public static void preInit() {
-	    IWTechItems.controller.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.controller.setCreativeTab(IWTechCreativeTabs.general);
     }
 
     static {
         IWTechCreativeTabs.general = new CreativeTabs("inspiringtech") {
             @Override
             public Item getTabIconItem() {
-            return IWTechItems.controller;
+                return IWTechItems.controller;
             }
         };
     }
