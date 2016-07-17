@@ -22,6 +22,46 @@ minecraft {
     runDir = "run"
 	useDepAts = use_dep_ats
     mappings = mcp_version
+	
+	replace "@modid@", mod_id
+	replace "@modname@", mod_name
+	replace "@modver@", project.version
+	replace "@modapiname@", mod_api_name
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/api/java/'
+        }
+        resources {
+            srcDir "src/main/resources/"
+        }
+    }
+    api {
+        java {
+            srcDir 'src/api/java/'
+        }
+		resources {
+            srcDir "src/main/resources/"
+        }
+    }
+}
+
+task apiJar(type: Jar, dependsOn: sourceJar) {
+    from 'build/sources/api/java/'
+    baseName = mod_api_name
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from 'build/docs/javadoc/'
+    classifier = 'javadoc'
+}
+
+artifacts {
+    archives apiJar
+    archives javadocJar
+    archives sourceJar
 }
 
 dependencies {
