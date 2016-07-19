@@ -25,12 +25,12 @@ public class IWTechBlocks {
         // TODO
     }
 
-    private void registerBlock(Block block, ItemBlock itemBlock) {
+    private static void registerBlock(Block block, ItemBlock itemBlock) {
         GameRegistry.register(block);
         GameRegistry.register(itemBlock.setRegistryName(block.getRegistryName()));
     }
 
-    private void registerBlock(Block block) {
-        this.registerBlock(block, new ItemBlock(block));
+    private static void registerBlock(Block block) {
+        registerBlock(block, new ItemBlock(block));
     }
 }
