@@ -26,6 +26,7 @@ public class IWTechItemRender {
     public static void preInit() {
         IWTechItemRender.registerItemRender(IWTechItems.controller, 0, "producer_controller");
         IWTechItemRender.registerItemRender(IWTechItems.controller, 1, "consumer_controller");
+        IWTechItemRender.registerItemRender(IWTechItems.producerBomb);
     }
 
     private static void registerItemRender(Item item, int meta, String location) {

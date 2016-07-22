@@ -15,6 +15,7 @@
  */
 package net.infstudio.inspiringworld.tech.client;
 
+import net.infstudio.inspiringworld.tech.client.entity.IWTechEntityRender;
 import net.infstudio.inspiringworld.tech.client.item.IWTechItemRender;
 import net.infstudio.inspiringworld.tech.common.CommonProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -28,6 +29,7 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
         IWTechItemRender.preInit();
+        IWTechEntityRender.preInit();
     }
 
     @Override

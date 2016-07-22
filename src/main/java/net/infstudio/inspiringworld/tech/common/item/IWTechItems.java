@@ -20,9 +20,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class IWTechItems {
     public static Item controller = new ItemController().setRegistryName("controller");
+    public static Item producerBomb = new ItemProducerBomb().setRegistryName("producer_bomb");
 
     public static void preInit() {
         IWTechItems.registerItem(IWTechItems.controller);
+        IWTechItems.registerItem(IWTechItems.producerBomb);
     }
 
     public static void registerItem(Item item) {
