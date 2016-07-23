@@ -21,11 +21,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LootingLevelEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ItemProducerBomb extends Item {
 
@@ -33,6 +33,7 @@ public class ItemProducerBomb extends Item {
     {
         super();
         this.setUnlocalizedName(InspiringTech.MODID + "." + "producerBomb");
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Override
@@ -49,5 +50,15 @@ public class ItemProducerBomb extends Item {
             world.spawnEntityInWorld(bomb);
         }
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+    }
+
+    @SubscribeEvent
+    public void onLootingLevel(LootingLevelEvent event) {
+        if (event.getDamageSource() instanceof EntityDamageSource) {
+            EntityDamageSource source = (EntityDamageSource) event.getDamageSource();
+            if (source.getEntity() instanceof EntityProducerBomb) {
+                event.setLootingLevel(1);
+            }
+        }
     }
 }
