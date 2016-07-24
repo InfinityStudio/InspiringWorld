@@ -15,6 +15,7 @@
  */
 package net.infstudio.inspiringworld.tech.common.creativetab;
 
+import net.infstudio.inspiringworld.tech.common.block.IWTechBlocks;
 import net.infstudio.inspiringworld.tech.common.item.IWTechItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -25,6 +26,7 @@ public class IWTechCreativeTabs {
     public static void preInit() {
         IWTechItems.controller.setCreativeTab(IWTechCreativeTabs.general);
         IWTechItems.producerBomb.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechBlocks.blockSourceLight.setCreativeTab(IWTechCreativeTabs.general);
     }
 
     static {
