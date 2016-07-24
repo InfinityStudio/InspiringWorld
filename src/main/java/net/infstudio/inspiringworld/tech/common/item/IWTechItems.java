@@ -15,12 +15,13 @@
  */
 package net.infstudio.inspiringworld.tech.common.item;
 
+import net.infstudio.inspiringworld.tech.InspiringTech;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class IWTechItems {
-    public static Item controller = new ItemController().setRegistryName("controller");
-    public static Item producerBomb = new ItemProducerBomb().setRegistryName("producer_bomb");
+    public static Item controller = new ItemController().setRegistryName(InspiringTech.MODID, "controller");
+    public static Item producerBomb = new ItemSourceBomb().setRegistryName(InspiringTech.MODID, "producer_bomb");
 
     public static void preInit() {
         IWTechItems.registerItem(IWTechItems.controller);

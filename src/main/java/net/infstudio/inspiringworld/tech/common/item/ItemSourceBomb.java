@@ -16,7 +16,7 @@
 package net.infstudio.inspiringworld.tech.common.item;
 
 import net.infstudio.inspiringworld.tech.InspiringTech;
-import net.infstudio.inspiringworld.tech.common.entity.EntityProducerBomb;
+import net.infstudio.inspiringworld.tech.common.entity.EntitySourceBomb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -27,9 +27,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LootingLevelEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class ItemProducerBomb extends Item {
+public class ItemSourceBomb extends Item {
 
-    public ItemProducerBomb()
+    public ItemSourceBomb()
     {
         super();
         this.setUnlocalizedName(InspiringTech.MODID + "." + "producerBomb");
@@ -45,7 +45,7 @@ public class ItemProducerBomb extends Item {
         float v = 0.5f, p = 1.0F / (Item.itemRand.nextFloat() + 2);
         world.playSound(null, x, y, z, SoundEvents.ENTITY_EGG_THROW, SoundCategory.NEUTRAL, v, p);
         if (!world.isRemote) {
-            EntityProducerBomb bomb = new EntityProducerBomb(world, player);
+            EntitySourceBomb bomb = new EntitySourceBomb(world, player);
             bomb.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 2.0F, 1.0F);
             world.spawnEntityInWorld(bomb);
         }
@@ -56,7 +56,7 @@ public class ItemProducerBomb extends Item {
     public void onLootingLevel(LootingLevelEvent event) {
         if (event.getDamageSource() instanceof EntityDamageSource) {
             EntityDamageSource source = (EntityDamageSource) event.getDamageSource();
-            if (source.getEntity() instanceof EntityProducerBomb) {
+            if (source.getEntity() instanceof EntitySourceBomb) {
                 event.setLootingLevel(1);
             }
         }
