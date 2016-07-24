@@ -1,7 +1,7 @@
 package net.infstudio.inspiringworld.tech.common.world;
 
 import com.google.common.collect.Maps;
-import net.infstudio.inspiringworld.tech.common.entity.EntityProducerBomb;
+import net.infstudio.inspiringworld.tech.common.entity.EntitySourceBomb;
 import net.minecraft.enchantment.EnchantmentProtection;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * @author Blealtan
  */
-public class ProducerExplosion extends Explosion {
+public class SourceBombExplosion extends Explosion {
 
     private final World worldObj;
     private final double explosionX;
@@ -29,8 +29,8 @@ public class ProducerExplosion extends Explosion {
     private final float explosionSize;
     private final Map<EntityPlayer, Vec3d> playerKnockbackMap;
 
-    public ProducerExplosion(World worldIn, EntityProducerBomb bomb, double x, double y, double z,
-                             float size) {
+    public SourceBombExplosion(World worldIn, EntitySourceBomb bomb, double x, double y, double z,
+                               float size) {
         super(worldIn, bomb, x, y, z, size, false, true);
         this.playerKnockbackMap = Maps.<EntityPlayer, Vec3d>newHashMap();
         this.worldObj = worldIn;

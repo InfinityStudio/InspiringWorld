@@ -40,6 +40,6 @@ public class ItemController extends Item {
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         int i = stack.getMetadata();
-        return super.getUnlocalizedName() + "." + (i == 0 ? "producer" : "consumer");
+        return super.getUnlocalizedName() + "." + (i == 0 ? "source" : "abyss");
     }
 }

@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 public class IWTechEntities {
 
     public static void preInit() {
-        IWTechEntities.registerEntity(EntityProducerBomb.class, "ProducerBomb", Tracker.of(80, 4, true));
+        IWTechEntities.registerEntity(EntitySourceBomb.class, "ProducerBomb", Tracker.of(80, 4, true));
     }
 
     private static void registerEntity(Class<? extends Entity> entity, String name, Tracker tracker) {

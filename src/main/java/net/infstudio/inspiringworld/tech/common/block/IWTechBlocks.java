@@ -15,14 +15,21 @@
  */
 package net.infstudio.inspiringworld.tech.common.block;
 
+import net.infstudio.inspiringworld.tech.InspiringTech;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class IWTechBlocks {
 
+    public static final Material SOURCE_BLOCKS = new Material(MapColor.AIR);
+
+    public static Block blockSourceLight = new BlockSourceLight().setRegistryName(InspiringTech.MODID, "source_light");
+
     public static void preInit() {
-        // TODO
+        registerBlock(blockSourceLight);
     }
 
     private static void registerBlock(Block block, ItemBlock itemBlock) {

@@ -28,7 +28,7 @@ public class IWTechItems {
     public static Item consumerBoots = new ItemConsumerArmor.Boots().setRegistryName("consumer_boots");
 
     public static Item controller = new ItemController().setRegistryName("controller");
-    public static Item producerBomb = new ItemProducerBomb().setRegistryName("producer_bomb");
+    public static Item producerBomb = new ItemSourceBomb().setRegistryName("producer_bomb");
 
     public static void preInit() {
         IWTechItems.registerItem(IWTechItems.consumerHelmet);
