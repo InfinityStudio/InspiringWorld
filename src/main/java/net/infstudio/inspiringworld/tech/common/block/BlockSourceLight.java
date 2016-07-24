@@ -2,7 +2,6 @@ package net.infstudio.inspiringworld.tech.common.block;
 
 import net.infstudio.inspiringworld.tech.common.tileentity.TileEntitySourceLight;
 import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockPurpurSlab;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
