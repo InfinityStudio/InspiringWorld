@@ -24,6 +24,11 @@ import net.minecraftforge.client.model.ModelLoader;
 public class IWTechItemRender {
 
     public static void preInit() {
+        IWTechItemRender.registerItemRender(IWTechItems.consumerHelmet);
+        IWTechItemRender.registerItemRender(IWTechItems.consumerChestplate);
+        IWTechItemRender.registerItemRender(IWTechItems.consumerLeggings);
+        IWTechItemRender.registerItemRender(IWTechItems.consumerBoots);
+
         IWTechItemRender.registerItemRender(IWTechItems.controller, 0, "producer_controller");
         IWTechItemRender.registerItemRender(IWTechItems.controller, 1, "consumer_controller");
         IWTechItemRender.registerItemRender(IWTechItems.producerBomb);

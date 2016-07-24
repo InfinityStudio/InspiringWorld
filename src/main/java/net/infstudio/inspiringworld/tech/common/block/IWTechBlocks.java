@@ -31,6 +31,6 @@ public class IWTechBlocks {
     }
 
     private static void registerBlock(Block block) {
-        registerBlock(block, new ItemBlock(block));
+        IWTechBlocks.registerBlock(block, new ItemBlock(block));
     }
 }

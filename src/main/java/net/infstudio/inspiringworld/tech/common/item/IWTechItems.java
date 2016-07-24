@@ -16,13 +16,26 @@
 package net.infstudio.inspiringworld.tech.common.item;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class IWTechItems {
+    public static ArmorMaterial consumerArmorMaterial = ItemConsumerArmor.material;
+
+    public static Item consumerHelmet = new ItemConsumerArmor.Helmet().setRegistryName("consumer_helmet");
+    public static Item consumerChestplate = new ItemConsumerArmor.Chestplate().setRegistryName("consumer_chestplate");
+    public static Item consumerLeggings = new ItemConsumerArmor.Leggings().setRegistryName("consumer_leggings");
+    public static Item consumerBoots = new ItemConsumerArmor.Boots().setRegistryName("consumer_boots");
+
     public static Item controller = new ItemController().setRegistryName("controller");
     public static Item producerBomb = new ItemProducerBomb().setRegistryName("producer_bomb");
 
     public static void preInit() {
+        IWTechItems.registerItem(IWTechItems.consumerHelmet);
+        IWTechItems.registerItem(IWTechItems.consumerChestplate);
+        IWTechItems.registerItem(IWTechItems.consumerLeggings);
+        IWTechItems.registerItem(IWTechItems.consumerBoots);
+
         IWTechItems.registerItem(IWTechItems.controller);
         IWTechItems.registerItem(IWTechItems.producerBomb);
     }

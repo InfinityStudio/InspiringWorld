@@ -25,6 +25,11 @@ public class IWTechCreativeTabs {
     public static void preInit() {
         IWTechItems.controller.setCreativeTab(IWTechCreativeTabs.general);
         IWTechItems.producerBomb.setCreativeTab(IWTechCreativeTabs.general);
+
+        IWTechItems.consumerHelmet.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.consumerChestplate.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.consumerLeggings.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.consumerBoots.setCreativeTab(IWTechCreativeTabs.general);
     }
 
     static {
