@@ -15,7 +15,6 @@
  */
 package net.infstudio.inspiringworld.tech.common.block;
 
-import net.infstudio.inspiringworld.tech.InspiringTech;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -26,10 +25,10 @@ public class IWTechBlocks {
 
     public static final Material SOURCE_BLOCKS = new Material(MapColor.AIR);
 
-    public static Block blockSourceLight = new BlockSourceLight().setRegistryName(InspiringTech.MODID, "source_light");
+    public static Block blockSourceLight = new BlockSourceLight();
 
     public static void preInit() {
-        registerBlock(blockSourceLight);
+        IWTechBlocks.registerBlock(IWTechBlocks.blockSourceLight.setRegistryName("source_light"));
     }
 
     private static void registerBlock(Block block, ItemBlock itemBlock) {

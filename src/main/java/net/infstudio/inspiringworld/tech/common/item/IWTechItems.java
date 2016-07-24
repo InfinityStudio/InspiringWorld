@@ -20,24 +20,24 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class IWTechItems {
-    public static ArmorMaterial consumerArmorMaterial = ItemConsumerArmor.material;
+    public static final ArmorMaterial CONSUMER = ItemConsumerArmor.material;
 
-    public static Item consumerHelmet = new ItemConsumerArmor.Helmet().setRegistryName("consumer_helmet");
-    public static Item consumerChestplate = new ItemConsumerArmor.Chestplate().setRegistryName("consumer_chestplate");
-    public static Item consumerLeggings = new ItemConsumerArmor.Leggings().setRegistryName("consumer_leggings");
-    public static Item consumerBoots = new ItemConsumerArmor.Boots().setRegistryName("consumer_boots");
+    public static Item consumerHelmet = new ItemConsumerArmor.Helmet();
+    public static Item consumerChestplate = new ItemConsumerArmor.Chestplate();
+    public static Item consumerLeggings = new ItemConsumerArmor.Leggings();
+    public static Item consumerBoots = new ItemConsumerArmor.Boots();
 
-    public static Item controller = new ItemController().setRegistryName("controller");
-    public static Item producerBomb = new ItemSourceBomb().setRegistryName("producer_bomb");
+    public static Item controller = new ItemController();
+    public static Item producerBomb = new ItemSourceBomb();
 
     public static void preInit() {
-        IWTechItems.registerItem(IWTechItems.consumerHelmet);
-        IWTechItems.registerItem(IWTechItems.consumerChestplate);
-        IWTechItems.registerItem(IWTechItems.consumerLeggings);
-        IWTechItems.registerItem(IWTechItems.consumerBoots);
+        IWTechItems.registerItem(IWTechItems.consumerHelmet.setRegistryName("consumer_helmet"));
+        IWTechItems.registerItem(IWTechItems.consumerChestplate.setRegistryName("consumer_chestplate"));
+        IWTechItems.registerItem(IWTechItems.consumerLeggings.setRegistryName("consumer_leggings"));
+        IWTechItems.registerItem(IWTechItems.consumerBoots.setRegistryName("consumer_boots"));
 
-        IWTechItems.registerItem(IWTechItems.controller);
-        IWTechItems.registerItem(IWTechItems.producerBomb);
+        IWTechItems.registerItem(IWTechItems.controller.setRegistryName("controller"));
+        IWTechItems.registerItem(IWTechItems.producerBomb.setRegistryName("producer_bomb"));
     }
 
     public static void registerItem(Item item) {
