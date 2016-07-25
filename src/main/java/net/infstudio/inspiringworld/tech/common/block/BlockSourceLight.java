@@ -29,7 +29,7 @@ public class BlockSourceLight extends BlockContainer {
         this.setLightLevel(1.0F);
         this.setUnlocalizedName(InspiringTech.MODID + "." + "producerLight");
         this.setDefaultState(this.blockState.getBaseState().withProperty(IWTechBlocks.FACING, EnumFacing.NORTH)
-            .withProperty(IWTechBlocks.WORKING, Boolean.valueOf(true)));
+            .withProperty(IWTechBlocks.WORKING, true));
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -39,14 +39,13 @@ public class BlockSourceLight extends BlockContainer {
     }
 
     @Override
-    public EnumBlockRenderType getRenderType(IBlockState state)
-    {
+    public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
     }
 
     @Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
-        int meta, EntityLivingBase placer) {
+                                     int meta, EntityLivingBase placer) {
         IBlockState origin = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
         return origin.withProperty(IWTechBlocks.FACING, facing);
     }
@@ -54,9 +53,8 @@ public class BlockSourceLight extends BlockContainer {
     @Override
     public IBlockState getStateFromMeta(int meta) {
         IBlockState origin = this.getDefaultState();
-        EnumFacing facing = EnumFacing.values()[(meta & 0b0111) % 6];
-        Boolean working = Boolean.valueOf((meta & 0b1000) > 0);
-        return origin.withProperty(IWTechBlocks.FACING, facing).withProperty(IWTechBlocks.WORKING, working);
+        EnumFacing facing = EnumFacing.values()[(meta & 7) % 6];
+        return origin.withProperty(IWTechBlocks.FACING, facing).withProperty(IWTechBlocks.WORKING, (meta & 8) > 0);
     }
 
     @Override
@@ -70,26 +68,23 @@ public class BlockSourceLight extends BlockContainer {
     protected BlockStateContainer createBlockState() {
         // Do not change it to var args
         // Maybe it will be replaced to extended blockstates
-        return new BlockStateContainer(this, new IProperty<?>[] { IWTechBlocks.FACING, IWTechBlocks.WORKING });
+        return new BlockStateContainer(this, new IProperty<?>[]{IWTechBlocks.FACING, IWTechBlocks.WORKING});
     }
 
     @SubscribeEvent
     public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
         double distanceMin = Double.MAX_VALUE;
 
-        for (int i = -31; i <= 32; ++i) {
-            for (int j = -31; j <= 32; ++j) {
+        for (int i = -31; i <= 32; ++i)
+            for (int j = -31; j <= 32; ++j)
                 for (int k = -31; k <= 32; ++k) {
                     BlockPos pos = new BlockPos(event.getX() + i, event.getY() + j, event.getZ() + k);
-                    if (event.getWorld().getTileEntity(pos) instanceof TileEntitySourceLight) {
+                    IBlockState state = event.getWorld().getBlockState(pos);
+                    if (state.getBlock() instanceof BlockSourceLight && state.getValue(IWTechBlocks.WORKING))
                         distanceMin = Math.min(distanceMin, MathHelper.sqrt_double(i * i + j * j + k * k));
-                    }
                 }
-            }
-        }
 
-        if (event.getWorld().rand.nextDouble() * 32.0D > distanceMin) {
+        if (event.getWorld().rand.nextDouble() * 32.0D > distanceMin)
             event.setResult(Event.Result.DENY);
-        }
     }
 }
