@@ -1,10 +1,15 @@
 package net.infstudio.inspiringworld.tech.common.block;
 
+import net.infstudio.inspiringworld.tech.InspiringTech;
 import net.infstudio.inspiringworld.tech.common.tileentity.TileEntitySourceLight;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -15,12 +20,16 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * @author Blealtan
+ * @author ustc_zzzz
  */
 public class BlockSourceLight extends BlockContainer {
 
     public BlockSourceLight() {
         super(IWTechBlocks.SOURCE_BLOCKS);
         this.setLightLevel(1.0F);
+        this.setUnlocalizedName(InspiringTech.MODID + "." + "producerLight");
+        this.setDefaultState(this.blockState.getBaseState().withProperty(IWTechBlocks.FACING, EnumFacing.NORTH)
+            .withProperty(IWTechBlocks.WORKING, Boolean.valueOf(true)));
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -33,6 +42,35 @@ public class BlockSourceLight extends BlockContainer {
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
         return EnumBlockRenderType.MODEL;
+    }
+
+    @Override
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
+        int meta, EntityLivingBase placer) {
+        IBlockState origin = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+        return origin.withProperty(IWTechBlocks.FACING, facing);
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        IBlockState origin = this.getDefaultState();
+        EnumFacing facing = EnumFacing.values()[(meta & 0b0111) % 6];
+        Boolean working = Boolean.valueOf((meta & 0b1000) > 0);
+        return origin.withProperty(IWTechBlocks.FACING, facing).withProperty(IWTechBlocks.WORKING, working);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        int facing = state.getValue(IWTechBlocks.FACING).ordinal();
+        int working = state.getValue(IWTechBlocks.WORKING) ? 8 : 0;
+        return facing | working;
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState() {
+        // Do not change it to var args
+        // Maybe it will be replaced to extended blockstates
+        return new BlockStateContainer(this, new IProperty<?>[] { IWTechBlocks.FACING, IWTechBlocks.WORKING });
     }
 
     @SubscribeEvent

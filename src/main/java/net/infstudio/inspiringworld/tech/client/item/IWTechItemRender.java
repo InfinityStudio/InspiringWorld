@@ -15,6 +15,7 @@
  */
 package net.infstudio.inspiringworld.tech.client.item;
 
+import net.infstudio.inspiringworld.tech.common.block.IWTechBlocks;
 import net.infstudio.inspiringworld.tech.common.item.IWTechItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -32,6 +33,8 @@ public class IWTechItemRender {
         IWTechItemRender.registerItemRender(IWTechItems.controller, 0, "producer_controller");
         IWTechItemRender.registerItemRender(IWTechItems.controller, 1, "consumer_controller");
         IWTechItemRender.registerItemRender(IWTechItems.producerBomb);
+
+        IWTechItemRender.registerItemRender(IWTechBlocks.blockSourceLight);
     }
 
     private static void registerItemRender(Item item, int meta, String location) {
