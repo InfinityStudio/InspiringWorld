@@ -22,19 +22,19 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 
-public class IWTechItemRender {
+public class IWTechItemRenders {
 
     public static void preInit() {
-        IWTechItemRender.registerItemRender(IWTechItems.consumerHelmet);
-        IWTechItemRender.registerItemRender(IWTechItems.consumerChestplate);
-        IWTechItemRender.registerItemRender(IWTechItems.consumerLeggings);
-        IWTechItemRender.registerItemRender(IWTechItems.consumerBoots);
+        IWTechItemRenders.registerItemRender(IWTechItems.consumerHelmet);
+        IWTechItemRenders.registerItemRender(IWTechItems.consumerChestplate);
+        IWTechItemRenders.registerItemRender(IWTechItems.consumerLeggings);
+        IWTechItemRenders.registerItemRender(IWTechItems.consumerBoots);
 
-        IWTechItemRender.registerItemRender(IWTechItems.controller, 0, "producer_controller");
-        IWTechItemRender.registerItemRender(IWTechItems.controller, 1, "consumer_controller");
-        IWTechItemRender.registerItemRender(IWTechItems.producerBomb);
+        IWTechItemRenders.registerItemRender(IWTechItems.controller, 0, "producer_controller");
+        IWTechItemRenders.registerItemRender(IWTechItems.controller, 1, "consumer_controller");
+        IWTechItemRenders.registerItemRender(IWTechItems.producerBomb);
 
-        IWTechItemRender.registerItemRender(IWTechBlocks.blockSourceLight);
+        IWTechItemRenders.registerItemRender(IWTechBlocks.blockSourceLight);
     }
 
     private static void registerItemRender(Item item, int meta, String location) {
@@ -43,14 +43,14 @@ public class IWTechItemRender {
     }
 
     private static void registerItemRender(Block block, int meta, String location) {
-        IWTechItemRender.registerItemRender(Item.getItemFromBlock(block), meta, location);
+        IWTechItemRenders.registerItemRender(Item.getItemFromBlock(block), meta, location);
     }
 
     private static void registerItemRender(Item item) {
-        IWTechItemRender.registerItemRender(item, 0, item.getRegistryName().getResourcePath());
+        IWTechItemRenders.registerItemRender(item, 0, item.getRegistryName().getResourcePath());
     }
 
     private static void registerItemRender(Block block) {
-        IWTechItemRender.registerItemRender(block, 0, block.getRegistryName().getResourcePath());
+        IWTechItemRenders.registerItemRender(block, 0, block.getRegistryName().getResourcePath());
     }
 }
