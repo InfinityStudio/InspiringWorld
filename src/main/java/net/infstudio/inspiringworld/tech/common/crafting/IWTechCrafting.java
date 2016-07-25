@@ -15,7 +15,10 @@
  */
 package net.infstudio.inspiringworld.tech.common.crafting;
 
+import net.infstudio.inspiringworld.tech.common.block.IWTechBlocks;
 import net.infstudio.inspiringworld.tech.common.item.IWTechItems;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -27,5 +30,11 @@ public class IWTechCrafting {
             new Object[] { "###", "# #", "###", '#', "ingotGold" }));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IWTechItems.controller, 1, 1),
             new Object[] { "###", "# #", "###", '#', "gemLapis" }));
+        GameRegistry.addShapedRecipe(new ItemStack(IWTechItems.producerBomb, 8),
+            new Object[] { "###", "#*#", "###", '#', Blocks.TNT, '*', new ItemStack(IWTechItems.controller, 1, 0) });
+        GameRegistry.addShapedRecipe(new ItemStack(IWTechBlocks.blockSourceLight), new Object[] { "#*#", "*!*", "#*#",
+            '#', Items.GLOWSTONE_DUST, '*', Items.REDSTONE, '!', new ItemStack(IWTechItems.controller, 1, 0) });
+        GameRegistry.addShapedRecipe(new ItemStack(IWTechBlocks.blockSourceLight), new Object[] { "*#*", "#!#", "*#*",
+            '#', Items.GLOWSTONE_DUST, '*', Items.REDSTONE, '!', new ItemStack(IWTechItems.controller, 1, 0) });
     }
 }
