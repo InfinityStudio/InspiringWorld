@@ -6,9 +6,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 
-public class RenderProducerBomb extends RenderSnowball<EntitySourceBomb>
+public class RenderSourceBomb extends RenderSnowball<EntitySourceBomb>
 {
-    public RenderProducerBomb(RenderManager renderManagerIn)
+    public RenderSourceBomb(RenderManager renderManagerIn)
     {
         super(renderManagerIn, IWTechItems.producerBomb, Minecraft.getMinecraft().getRenderItem());
     }

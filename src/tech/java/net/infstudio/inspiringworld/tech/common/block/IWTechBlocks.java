@@ -34,7 +34,7 @@ public class IWTechBlocks {
     public static Block blockSourceLight = new BlockSourceLight();
 
     public static void preInit() {
-        IWTechBlocks.registerBlock(IWTechBlocks.blockSourceLight.setRegistryName("producer_light"));
+        IWTechBlocks.registerBlock(IWTechBlocks.blockSourceLight.setRegistryName("source_light"));
     }
 
     private static void registerBlock(Block block, ItemBlock itemBlock) {

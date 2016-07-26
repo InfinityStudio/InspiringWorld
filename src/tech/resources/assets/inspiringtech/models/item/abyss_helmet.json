@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "inspiringtech:items/producer_controller"
+        "layer0": "inspiringtech:items/abyss_helmet"
     }
 }

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "inspiringtech:items/consumer_leggings"
+        "layer0": "inspiringtech:items/abyss_leggings"
     }
 }

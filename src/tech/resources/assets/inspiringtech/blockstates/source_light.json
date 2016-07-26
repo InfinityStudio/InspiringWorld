@@ -1,0 +1,40 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "orientable"
+    },
+    "variants": {
+        "inventory": [{
+            "textures": {
+                "front": "inspiringtech:blocks/source_light_side",
+                "side": "inspiringtech:blocks/source_light_top",
+                "top": "inspiringtech:blocks/source_light_top"
+             },
+             "y": 180
+        }],
+        "facing": {
+            "up": {},
+            "down": {},
+            "east": { "y": 90 },
+            "north": {},
+            "south": { "y": 180 },
+            "west": { "y": 270 }
+        },
+        "working": {
+            "true": {
+                "textures": {
+                    "front": "inspiringtech:blocks/source_light_side",
+                    "side": "inspiringtech:blocks/source_light_top",
+                    "top": "inspiringtech:blocks/source_light_top"
+                 }
+            },
+            "false": {
+                "textures": {
+                    "front": "inspiringtech:blocks/source_light_side",
+                    "side": "inspiringtech:blocks/source_light_top",
+                    "top": "inspiringtech:blocks/source_light_top"
+                 }
+            }
+        }
+    }
+}

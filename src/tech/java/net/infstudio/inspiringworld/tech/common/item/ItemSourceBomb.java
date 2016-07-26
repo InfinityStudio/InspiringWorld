@@ -32,7 +32,7 @@ public class ItemSourceBomb extends Item {
     public ItemSourceBomb()
     {
         super();
-        this.setUnlocalizedName(InspiringTech.MODID + "." + "producerBomb");
+        this.setUnlocalizedName(InspiringTech.MODID + "." + "sourceBomb");
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -54,10 +54,12 @@ public class ItemSourceBomb extends Item {
 
     @SubscribeEvent
     public void onLootingLevel(LootingLevelEvent event) {
-        if (event.getDamageSource() instanceof EntityDamageSource) {
-            EntityDamageSource source = (EntityDamageSource) event.getDamageSource();
-            if (source.getEntity() instanceof EntitySourceBomb) {
-                event.setLootingLevel(1);
+        if (!event.getEntity().worldObj.isRemote) {
+            if (event.getDamageSource() instanceof EntityDamageSource) {
+                EntityDamageSource source = (EntityDamageSource) event.getDamageSource();
+                if (source.getEntity() instanceof EntitySourceBomb) {
+                    event.setLootingLevel(1);
+                }
             }
         }
     }

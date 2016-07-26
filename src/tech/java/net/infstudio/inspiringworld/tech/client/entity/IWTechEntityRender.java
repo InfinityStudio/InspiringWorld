@@ -2,7 +2,7 @@ package net.infstudio.inspiringworld.tech.client.entity;
 
 import com.google.common.base.Throwables;
 
-import net.infstudio.inspiringworld.tech.client.entity.render.RenderProducerBomb;
+import net.infstudio.inspiringworld.tech.client.entity.render.RenderSourceBomb;
 import net.infstudio.inspiringworld.tech.common.entity.EntitySourceBomb;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class IWTechEntityRender {
     public static void preInit() {
-        IWTechEntityRender.registerEntityRender(EntitySourceBomb.class, RenderProducerBomb.class);
+        IWTechEntityRender.registerEntityRender(EntitySourceBomb.class, RenderSourceBomb.class);
     }
 
     @SideOnly(Side.CLIENT)
