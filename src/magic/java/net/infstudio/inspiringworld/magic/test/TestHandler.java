@@ -1,6 +1,6 @@
 package net.infstudio.inspiringworld.magic.test;
 
-import net.infstudio.inspiringworld.magic.MagicRuneMod;
+import net.infstudio.inspiringworld.magic.InspiringMagic;
 import net.infstudio.inspiringworld.magic.repackage.api.simplelib.registry.ModHandler;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -13,17 +13,17 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  * @author ci010
  */
 @ModHandler
-public class TestHandler
-{
-	@SubscribeEvent
-	public void method(PlayerInteractEvent.RightClickEmpty empty)
-	{
-		System.out.println("mod handler fine!");
-		Item test = GameRegistry.findRegistry(Item.class).getValue(new ResourceLocation(MagicRuneMod.MODID, "test"));
-		if (test != null)
-			System.out.println("item exist!");
-		Block block = GameRegistry.findRegistry(Block.class).getValue(new ResourceLocation(MagicRuneMod.MODID, "test"));
-		if (block != null)
-			System.out.println("block exist!");
-	}
+public class TestHandler {
+    @SubscribeEvent
+    public void method(PlayerInteractEvent.RightClickEmpty empty) {
+        System.out.println("mod handler fine!");
+        Item i = GameRegistry.findRegistry(Item.class).getValue(new ResourceLocation(InspiringMagic.MODID, "test"));
+        if (i != null) {
+            System.out.println("item exist!");
+        }
+        Block b = GameRegistry.findRegistry(Block.class).getValue(new ResourceLocation(InspiringMagic.MODID, "test"));
+        if (b != null) {
+            System.out.println("block exist!");
+        }
+    }
 }
