@@ -31,7 +31,7 @@ public class IWTechBlocks {
 
     public static final Material SOURCE_BLOCKS = new Material(MapColor.AIR);
 
-    public static Block blockSourceLight = new BlockSourceLight();
+    public static final Block blockSourceLight = new BlockSourceLight();
 
     public static void preInit() {
         IWTechBlocks.registerBlock(IWTechBlocks.blockSourceLight.setRegistryName("producer_light"));

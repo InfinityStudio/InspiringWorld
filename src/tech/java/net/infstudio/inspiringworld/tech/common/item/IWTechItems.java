@@ -22,13 +22,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class IWTechItems {
     public static final ArmorMaterial CONSUMER = ItemConsumerArmor.material;
 
-    public static Item consumerHelmet = new ItemConsumerArmor.Helmet();
-    public static Item consumerChestplate = new ItemConsumerArmor.Chestplate();
-    public static Item consumerLeggings = new ItemConsumerArmor.Leggings();
-    public static Item consumerBoots = new ItemConsumerArmor.Boots();
+    public static final Item consumerHelmet = new ItemConsumerArmor.Helmet();
+    public static final Item consumerChestplate = new ItemConsumerArmor.Chestplate();
+    public static final Item consumerLeggings = new ItemConsumerArmor.Leggings();
+    public static final Item consumerBoots = new ItemConsumerArmor.Boots();
 
-    public static Item controller = new ItemController();
-    public static Item producerBomb = new ItemSourceBomb();
+    public static final Item controller = new ItemController();
+    public static final Item producerBomb = new ItemSourceBomb();
 
     public static void preInit() {
         IWTechItems.registerItem(IWTechItems.consumerHelmet.setRegistryName("consumer_helmet"));
