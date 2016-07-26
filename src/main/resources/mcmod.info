@@ -35,7 +35,7 @@
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["CI010", "Hookan"],
+  "authorList": ["Hookan", "CI010"],
   "credits": "InfStudio",
   "logoFile": "",
   "screenshots": [],
