@@ -29,9 +29,12 @@ minecraft {
 sourceSets {
     main {
         java {
-            srcDir 'src/api/java/'
+            if (!project.hasProperty('magiconly')) { srcDir 'src/tech/java/' }
+            if (!project.hasProperty('techonly')) { srcDir 'src/magic/java/' }
         }
         resources {
+            if (!project.hasProperty('magiconly')) { srcDir 'src/tech/resources/' }
+            if (!project.hasProperty('techonly')) { srcDir 'src/magic/resources/' }
             srcDir "src/main/resources/"
         }
     }
@@ -39,9 +42,10 @@ sourceSets {
         java {
             srcDir 'src/api/java/'
         }
-		resources {
-            srcDir "src/main/resources/"
-        }
+		resources null
+        // {
+        //     srcDir "src/main/resources/"
+        // }
     }
 }
 

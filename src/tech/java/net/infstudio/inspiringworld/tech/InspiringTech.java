@@ -29,7 +29,7 @@ public class InspiringTech {
     public static final String MODID = "inspiringtech";
     public static final String VERSION = "@version@";
     public static final String MC_VERSION = "1.10.2";
-    public static final String DEPENDENCIES = "required-after:inspiringworld";
+    public static final String DEPENDENCIES = ""; // "required-after:inspiringworld";
 
     @Instance(InspiringTech.MODID)
     public static InspiringTech instance;

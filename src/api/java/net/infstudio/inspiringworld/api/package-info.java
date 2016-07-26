@@ -15,3 +15,4 @@
  */
 @net.minecraftforge.fml.common.API(owner = "inspiringworld", apiVersion = "@version@", provides = "inspiringworld|API")
 package net.infstudio.inspiringworld.api;
+// TODO: it maybe cannot work, and should be split to magic and tech part
