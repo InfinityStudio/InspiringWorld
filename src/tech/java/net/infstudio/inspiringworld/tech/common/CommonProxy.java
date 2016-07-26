@@ -18,10 +18,12 @@ package net.infstudio.inspiringworld.tech.common;
 import java.lang.ref.WeakReference;
 
 import net.infstudio.inspiringworld.tech.common.block.IWTechBlocks;
+import net.infstudio.inspiringworld.tech.common.capability.IWTechCapablilties;
 import net.infstudio.inspiringworld.tech.common.config.IWTechConfig;
 import net.infstudio.inspiringworld.tech.common.crafting.IWTechCrafting;
 import net.infstudio.inspiringworld.tech.common.creativetab.IWTechCreativeTabs;
 import net.infstudio.inspiringworld.tech.common.entity.IWTechEntities;
+import net.infstudio.inspiringworld.tech.common.inventory.IWTechGuiElements;
 import net.infstudio.inspiringworld.tech.common.item.IWTechItems;
 import net.infstudio.inspiringworld.tech.common.tileentity.IWTechTileEntities;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -37,6 +39,7 @@ public class CommonProxy {
         CommonProxy.event = new WeakReference<FMLStateEvent>(event);
 
         IWTechConfig.preInit();
+        IWTechCapablilties.preInit();
         IWTechItems.preInit();
         IWTechBlocks.preInit();
         IWTechCreativeTabs.preInit();
@@ -48,6 +51,7 @@ public class CommonProxy {
         CommonProxy.event = new WeakReference<FMLStateEvent>(event);
 
         IWTechCrafting.init();
+        IWTechGuiElements.init();
     }
 
     public void postInit(FMLPostInitializationEvent event) {

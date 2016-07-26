@@ -24,12 +24,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = InspiringTech.MODID, version = InspiringTech.VERSION, acceptedMinecraftVersions = InspiringTech.MC_VERSION, dependencies = InspiringTech.DEPENDENCIES)
+@Mod(modid = InspiringTech.MODID, version = InspiringTech.VERSION, acceptedMinecraftVersions = InspiringTech.MC_VERSION, dependencies = InspiringTech.DEPENDENCIES, guiFactory = InspiringTech.GUI_HANDLER)
 public class InspiringTech {
     public static final String MODID = "inspiringtech";
     public static final String VERSION = "@version@";
     public static final String MC_VERSION = "1.10.2";
     public static final String DEPENDENCIES = ""; // "required-after:inspiringworld";
+    public static final String GUI_HANDLER = ""; // TODO: for config GUI factory;
 
     @Instance(InspiringTech.MODID)
     public static InspiringTech instance;
