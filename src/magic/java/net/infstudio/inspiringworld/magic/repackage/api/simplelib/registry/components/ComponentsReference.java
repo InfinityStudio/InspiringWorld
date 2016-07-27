@@ -8,14 +8,14 @@ import java.lang.annotation.Target;
 import net.infstudio.inspiringworld.magic.repackage.api.simplelib.registry.FreeConstruct;
 
 /**
- * <p>ALL the public static "available" fields in the class annotated by this will be registered.
+ * ALL the public static "available" fields in the class annotated by this will be registered.
  * A "available field" means it is an instance of:
  * <ul>
  * <li>{@link net.minecraft.block.Block}
  * <li>{@link net.minecraft.item.Item}
  * </ul>
  * Also, the field with the type annotated by {@link ComponentStruct} will be also treat as "available".
- * </p>
+ * <p>
  * <p>If the field is null and annotation {@link Construct} is presented, it will follow the {@link Construct} to
  * create a new instance to register.</p>
  * <p>If the field is null without annotation {@link Construct}, mod will try to find an instance by

@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 /**
  * The class annotated by this will be registered as a {@link net.minecraftforge.fml.common.network.IGuiHandler}
- * <p>This is equivalent with {@link NetworkRegistry#registerGuiHandler(Object, IGuiHandler)} <p/>
+ * <p>This is equivalent with {@link NetworkRegistry#registerGuiHandler(Object, IGuiHandler)} </p>
  *
  * @author ci010
  */
