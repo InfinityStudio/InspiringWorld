@@ -9,7 +9,7 @@ import net.infstudio.inspiringworld.magic.repackage.api.simplelib.LoadingDelegat
 import net.infstudio.inspiringworld.magic.repackage.api.simplelib.registry.ASMRegistryDelegate;
 import net.infstudio.inspiringworld.magic.repackage.api.simplelib.registry.ModHandler;
 import net.infstudio.inspiringworld.magic.repackage.api.simplelib.utils.TypeUtils;
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.DebugLogger;
+import net.infstudio.inspiringworld.magic.repackage.net.simplelib.DebugLogger;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.event.AttachCapabilitiesEvent;

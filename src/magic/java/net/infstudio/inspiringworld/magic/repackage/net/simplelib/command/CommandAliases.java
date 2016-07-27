@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 
 import net.infstudio.inspiringworld.magic.repackage.api.simplelib.Instance;
 import net.infstudio.inspiringworld.magic.repackage.api.simplelib.LoadingDelegate;
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.DebugLogger;
+import net.infstudio.inspiringworld.magic.repackage.net.simplelib.DebugLogger;
 import net.minecraft.command.ICommand;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;

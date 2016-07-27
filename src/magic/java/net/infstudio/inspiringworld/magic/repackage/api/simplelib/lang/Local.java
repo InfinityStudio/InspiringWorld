@@ -2,7 +2,7 @@ package net.infstudio.inspiringworld.magic.repackage.api.simplelib.lang;
 
 import com.google.common.collect.Maps;
 
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.registry.LanguageReporter;
+import net.infstudio.inspiringworld.magic.repackage.net.simplelib.registry.LanguageReporter;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.ITextComponent;

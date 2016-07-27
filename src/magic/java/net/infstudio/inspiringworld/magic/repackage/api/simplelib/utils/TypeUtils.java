@@ -5,8 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.HelperMod;
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.DebugLogger;
+import net.infstudio.inspiringworld.magic.repackage.net.simplelib.DebugLogger;
 
 /**
  * This class works for those who really don't want IDE warning in their code. Use this carefully please.

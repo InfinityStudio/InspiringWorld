@@ -1,9 +1,8 @@
 package net.infstudio.inspiringworld.magic.repackage.net.simplelib;
 
 import net.infstudio.inspiringworld.magic.repackage.api.simplelib.utils.Environment;
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.DebugLogger;
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.registry.RegistryBufferManager;
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.registry.RegistryHelper;
+import net.infstudio.inspiringworld.magic.repackage.net.simplelib.registry.RegistryBufferManager;
+import net.infstudio.inspiringworld.magic.repackage.net.simplelib.registry.RegistryHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.SidedProxy;
