@@ -30,7 +30,7 @@ public class IWTechCrafting {
             new Object[] { "###", "# #", "###", '#', "ingotGold" }));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IWTechItems.controller, 1, 1),
             new Object[] { "###", "# #", "###", '#', "gemLapis" }));
-        GameRegistry.addShapedRecipe(new ItemStack(IWTechItems.producerBomb, 8),
+        GameRegistry.addShapedRecipe(new ItemStack(IWTechItems.sourceBomb, 8),
             new Object[] { "###", "#*#", "###", '#', Blocks.TNT, '*', new ItemStack(IWTechItems.controller, 1, 0) });
         GameRegistry.addShapedRecipe(new ItemStack(IWTechBlocks.blockSourceLight), new Object[] { "#*#", "*!*", "#*#",
             '#', Items.GLOWSTONE_DUST, '*', Items.REDSTONE, '!', new ItemStack(IWTechItems.controller, 1, 0) });

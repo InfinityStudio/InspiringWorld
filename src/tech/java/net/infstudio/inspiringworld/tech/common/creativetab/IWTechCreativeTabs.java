@@ -30,12 +30,12 @@ public class IWTechCreativeTabs {
 
     public static void preInit() {
         IWTechItems.controller.setCreativeTab(IWTechCreativeTabs.general);
-        IWTechItems.producerBomb.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.sourceBomb.setCreativeTab(IWTechCreativeTabs.general);
 
-        IWTechItems.consumerHelmet.setCreativeTab(IWTechCreativeTabs.general);
-        IWTechItems.consumerChestplate.setCreativeTab(IWTechCreativeTabs.general);
-        IWTechItems.consumerLeggings.setCreativeTab(IWTechCreativeTabs.general);
-        IWTechItems.consumerBoots.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.abyssHelmet.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.abyssChestplate.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.abyssLeggings.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.abyssBoots.setCreativeTab(IWTechCreativeTabs.general);
 
         IWTechBlocks.blockSourceLight.setCreativeTab(IWTechCreativeTabs.general);
     }

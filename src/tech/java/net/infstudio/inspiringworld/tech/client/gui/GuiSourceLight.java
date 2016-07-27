@@ -11,7 +11,7 @@ import net.minecraftforge.items.IItemHandler;
 
 public class GuiSourceLight extends GuiContainer {
     private static final ResourceLocation GUI_TEXTURES = new ResourceLocation(InspiringTech.MODID,
-        "textures/gui/container/producer_light.png");
+        "textures/gui/container/source_light.png");
 
     public GuiSourceLight(EntityPlayer player, IItemHandler burningSlot, TileEntitySourceLight tileEntity) {
         super(new ContainerSourceLight(player, burningSlot, tileEntity));

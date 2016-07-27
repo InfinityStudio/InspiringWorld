@@ -8,7 +8,7 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 
 public class CapabilityInspiring implements IStorage<IInspiringTechHandler> {
     public static interface IInspiringTechHandler {
-        // TODO: handle producer and consumer
+        // TODO: handle source and abyss
     }
 
     @Override

@@ -20,24 +20,24 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class IWTechItems {
-    public static final ArmorMaterial CONSUMER = ItemAbyssArmor.material;
+    public static final ArmorMaterial ABYSS = ItemAbyssArmor.material;
 
-    public static final Item consumerHelmet = new ItemConsumerArmor.Helmet();
-    public static final Item consumerChestplate = new ItemConsumerArmor.Chestplate();
-    public static final Item consumerLeggings = new ItemConsumerArmor.Leggings();
-    public static final Item consumerBoots = new ItemConsumerArmor.Boots();
+    public static final Item abyssHelmet = new ItemAbyssArmor.Helmet();
+    public static final Item abyssChestplate = new ItemAbyssArmor.Chestplate();
+    public static final Item abyssLeggings = new ItemAbyssArmor.Leggings();
+    public static final Item abyssBoots = new ItemAbyssArmor.Boots();
 
     public static final Item controller = new ItemController();
-    public static final Item producerBomb = new ItemSourceBomb();
+    public static final Item sourceBomb = new ItemSourceBomb();
 
     public static void preInit() {
-        IWTechItems.registerItem(IWTechItems.consumerHelmet.setRegistryName("abyss_helmet"));
-        IWTechItems.registerItem(IWTechItems.consumerChestplate.setRegistryName("abyss_chestplate"));
-        IWTechItems.registerItem(IWTechItems.consumerLeggings.setRegistryName("abyss_leggings"));
-        IWTechItems.registerItem(IWTechItems.consumerBoots.setRegistryName("abyss_boots"));
+        IWTechItems.registerItem(IWTechItems.abyssHelmet.setRegistryName("abyss_helmet"));
+        IWTechItems.registerItem(IWTechItems.abyssChestplate.setRegistryName("abyss_chestplate"));
+        IWTechItems.registerItem(IWTechItems.abyssLeggings.setRegistryName("abyss_leggings"));
+        IWTechItems.registerItem(IWTechItems.abyssBoots.setRegistryName("abyss_boots"));
 
         IWTechItems.registerItem(IWTechItems.controller.setRegistryName("controller"));
-        IWTechItems.registerItem(IWTechItems.producerBomb.setRegistryName("source_bomb"));
+        IWTechItems.registerItem(IWTechItems.sourceBomb.setRegistryName("source_bomb"));
     }
 
     public static void registerItem(Item item) {

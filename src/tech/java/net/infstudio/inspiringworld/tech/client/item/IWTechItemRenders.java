@@ -25,14 +25,14 @@ import net.minecraftforge.client.model.ModelLoader;
 public class IWTechItemRenders {
 
     public static void preInit() {
-        IWTechItemRenders.registerItemRender(IWTechItems.consumerHelmet);
-        IWTechItemRenders.registerItemRender(IWTechItems.consumerChestplate);
-        IWTechItemRenders.registerItemRender(IWTechItems.consumerLeggings);
-        IWTechItemRenders.registerItemRender(IWTechItems.consumerBoots);
+        IWTechItemRenders.registerItemRender(IWTechItems.abyssHelmet);
+        IWTechItemRenders.registerItemRender(IWTechItems.abyssChestplate);
+        IWTechItemRenders.registerItemRender(IWTechItems.abyssLeggings);
+        IWTechItemRenders.registerItemRender(IWTechItems.abyssBoots);
 
-        IWTechItemRenders.registerItemRender(IWTechItems.controller, 0, "producer_controller");
-        IWTechItemRenders.registerItemRender(IWTechItems.controller, 1, "consumer_controller");
-        IWTechItemRenders.registerItemRender(IWTechItems.producerBomb);
+        IWTechItemRenders.registerItemRender(IWTechItems.controller, 0, "source_controller");
+        IWTechItemRenders.registerItemRender(IWTechItems.controller, 1, "abyss_controller");
+        IWTechItemRenders.registerItemRender(IWTechItems.sourceBomb);
 
         IWTechItemRenders.registerItemRender(IWTechBlocks.blockSourceLight);
     }

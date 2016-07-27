@@ -12,7 +12,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ItemAbyssArmor extends ItemArmor {
-    static ArmorMaterial material = EnumHelper.addArmorMaterial("CONSUMER", InspiringTech.MODID + ":" + "consumer", 10,
+    static ArmorMaterial material = EnumHelper.addArmorMaterial("ABYSS", InspiringTech.MODID + ":" + "abyss", 10,
         new int[] { 1, 3, 4, 2 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 
     private float reduction;
@@ -26,28 +26,28 @@ public class ItemAbyssArmor extends ItemArmor {
     public static class Helmet extends ItemAbyssArmor {
         public Helmet() {
             super(EntityEquipmentSlot.HEAD, 0.1f);
-            this.setUnlocalizedName("consumerHelmet");
+            this.setUnlocalizedName("abyssHelmet");
         }
     }
 
     public static class Chestplate extends ItemAbyssArmor {
         public Chestplate() {
             super(EntityEquipmentSlot.CHEST, 0.3f);
-            this.setUnlocalizedName("consumerChestplate");
+            this.setUnlocalizedName("abyssChestplate");
         }
     }
 
     public static class Leggings extends ItemAbyssArmor {
         public Leggings() {
             super(EntityEquipmentSlot.LEGS, 0.2f);
-            this.setUnlocalizedName("consumerLeggings");
+            this.setUnlocalizedName("abyssLeggings");
         }
     }
 
     public static class Boots extends ItemAbyssArmor {
         public Boots() {
             super(EntityEquipmentSlot.FEET, 0.1f);
-            this.setUnlocalizedName("consumerBoots");
+            this.setUnlocalizedName("abyssBoots");
         }
     }
 
