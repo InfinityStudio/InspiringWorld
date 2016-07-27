@@ -65,7 +65,7 @@ public class HelperMod
 	}
 
 	@Mod.EventHandler
-	void serverAboutStart(FMLServerAboutToStartEvent event) {RegistryBufferManager.instance().invoke(event);}
+	public void serverAboutStart(FMLServerAboutToStartEvent event) {RegistryBufferManager.instance().invoke(event);}
 
 	@Mod.EventHandler
 	public void serverStarting(FMLServerStartingEvent event)
