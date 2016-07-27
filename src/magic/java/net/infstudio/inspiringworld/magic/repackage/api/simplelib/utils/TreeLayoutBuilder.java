@@ -2,9 +2,6 @@ package net.infstudio.inspiringworld.magic.repackage.api.simplelib.utils;
 
 import com.google.common.base.Function;
 
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.CompiledLayout;
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.LayoutBuilder;
-
 import org.lwjgl.util.vector.Vector2f;
 
 import java.util.HashMap;

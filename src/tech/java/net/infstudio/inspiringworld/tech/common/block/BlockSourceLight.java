@@ -7,9 +7,12 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -44,8 +47,17 @@ public class BlockSourceLight extends BlockContainer {
     }
 
     @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+        EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if (!worldIn.isRemote) {
+            playerIn.openGui(InspiringTech.MODID, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        }
+        return true;
+    }
+
+    @Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
-                                     int meta, EntityLivingBase placer) {
+        int meta, EntityLivingBase placer) {
         IBlockState origin = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
         return origin.withProperty(IWTechBlocks.FACING, facing);
     }
@@ -73,20 +85,22 @@ public class BlockSourceLight extends BlockContainer {
 
     @SubscribeEvent
     public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
-        if (!event.getWorld().isRemote) {
-            double distanceMin = Double.MAX_VALUE;
+        double distanceMin = Double.MAX_VALUE;
 
-            for (int i = -31; i <= 32; ++i)
-                for (int j = -31; j <= 32; ++j)
-                    for (int k = -31; k <= 32; ++k) {
-                        BlockPos pos = new BlockPos(event.getX() + i, event.getY() + j, event.getZ() + k);
-                        IBlockState state = event.getWorld().getBlockState(pos);
-                        if (state.getBlock() instanceof BlockSourceLight && state.getValue(IWTechBlocks.WORKING))
-                            distanceMin = Math.min(distanceMin, MathHelper.sqrt_double(i * i + j * j + k * k));
+        for (int i = -31; i <= 32; ++i) {
+            for (int j = -31; j <= 32; ++j) {
+                for (int k = -31; k <= 32; ++k) {
+                    BlockPos pos = new BlockPos(event.getX() + i, event.getY() + j, event.getZ() + k);
+                    IBlockState state = event.getWorld().getBlockState(pos);
+                    if (state.getBlock() instanceof BlockSourceLight && state.getValue(IWTechBlocks.WORKING)) {
+                        distanceMin = Math.min(distanceMin, MathHelper.sqrt_double(i * i + j * j + k * k));
                     }
+                }
+            }
+        }
 
-            if (event.getWorld().rand.nextDouble() * 32.0D > distanceMin)
-                event.setResult(Event.Result.DENY);
+        if (event.getWorld().rand.nextDouble() * 32.0D > distanceMin) {
+            event.setResult(Event.Result.DENY);
         }
     }
 }

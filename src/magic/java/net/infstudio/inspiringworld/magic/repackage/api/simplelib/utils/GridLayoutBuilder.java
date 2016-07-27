@@ -2,8 +2,6 @@ package net.infstudio.inspiringworld.magic.repackage.api.simplelib.utils;
 
 import com.google.common.collect.Lists;
 
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.CompiledLayout;
-
 import org.lwjgl.util.vector.Vector2f;
 
 import java.util.List;

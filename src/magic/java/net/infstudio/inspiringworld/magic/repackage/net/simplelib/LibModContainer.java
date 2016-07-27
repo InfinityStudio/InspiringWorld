@@ -3,7 +3,6 @@ package net.infstudio.inspiringworld.magic.repackage.net.simplelib;
 import com.google.common.eventbus.EventBus;
 
 import net.infstudio.inspiringworld.magic.repackage.net.simplelib.client.loading.ExternalResource;
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.DebugLogger;
 import net.minecraftforge.fml.client.SplashProgress;
 import net.minecraftforge.fml.common.DummyModContainer;
 import net.minecraftforge.fml.common.LoadController;

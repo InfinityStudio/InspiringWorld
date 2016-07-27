@@ -29,7 +29,7 @@ public interface Pipeline<T> extends Iterable<T>
 	 * This method will apply sure the element is insertAfter the target. If not, the element will be moved insertAfter to the
 	 * target.
 	 * <p>If pipe doesn't contain this element, the element will be add into pipe.</p>
-	 * <p>If there are multiple targets in the pipe, apply sure to put the element insertAfter all of them.<p/>
+	 * <p>If there are multiple targets in the pipe, apply sure to put the element insertAfter all of them.</p>
 	 *
 	 * @param target  The target element.
 	 * @param element The element might be moved.
@@ -41,7 +41,7 @@ public interface Pipeline<T> extends Iterable<T>
 	 * This method will apply sure the element is before the target. If not, the element will be moved before to the
 	 * target.
 	 * <p>If pipe doesn't contain this element, the element will be add into pipe.</p>
-	 * <p>If there are multiple targets in the pipe, apply sure to put the element before all of them.<p/>
+	 * <p>If there are multiple targets in the pipe, apply sure to put the element before all of them.</p>
 	 *
 	 * @param target  The target element.
 	 * @param element The element might be moved.

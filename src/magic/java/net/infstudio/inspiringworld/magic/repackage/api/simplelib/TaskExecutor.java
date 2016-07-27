@@ -3,8 +3,6 @@ package net.infstudio.inspiringworld.magic.repackage.api.simplelib;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.*;
-import io.netty.util.internal.chmv8.ForkJoinPool;
-import net.infstudio.inspiringworld.magic.repackage.api.simplelib.io.IOSystem;
 import net.minecraft.world.storage.IThreadedFileIO;
 import net.minecraft.world.storage.ThreadedFileIOBase;
 import net.minecraftforge.common.MinecraftForge;

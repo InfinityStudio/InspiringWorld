@@ -3,10 +3,8 @@ package net.infstudio.inspiringworld.magic.repackage.api.simplelib;
 import com.google.common.base.Optional;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import io.netty.buffer.ByteBufInputStream;
 import net.infstudio.inspiringworld.magic.repackage.api.simplelib.utils.TypeUtils;
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.HelperMod;
-import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.DebugLogger;
+import net.infstudio.inspiringworld.magic.repackage.net.simplelib.DebugLogger;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import java.lang.annotation.ElementType;
