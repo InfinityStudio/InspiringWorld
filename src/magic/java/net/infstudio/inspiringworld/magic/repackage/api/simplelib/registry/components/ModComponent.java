@@ -1,7 +1,6 @@
 package net.infstudio.inspiringworld.magic.repackage.api.simplelib.registry.components;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -11,10 +10,9 @@ import java.lang.annotation.Target;
 /**
  * This annotation indicates that the class is a {@link net.minecraft.block.Block} or {@link net.minecraft.item.Item}.
  * and this class will be registered into Minecraft when game start.
- * <p/>
+ * <p>
  * <p>This is equivalent with
- * <li>{@link net.minecraftforge.fml.common.registry.GameRegistry#registerBlock(Block, String)}
- * <li>{@link net.minecraftforge.fml.common.registry.GameRegistry#registerItem(Item, String)}<p/>
+ * <li>{@link net.minecraftforge.fml.common.registry.GameRegistry#register(IForgeRegistryEntry)}}</p>
  *
  * @author ci010
  */

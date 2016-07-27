@@ -4,7 +4,7 @@ import java.lang.annotation.*;
 
 /**
  * This annotation indicates that the class is a specific structure with blocks/items.
- * The blocks/items will be registered if the class is annotated by {@link ModComponent}</li>
+ * The blocks/items will be registered if the class is annotated by {@link ModComponent}.
  *
  * @author ci010
  */

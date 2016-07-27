@@ -15,7 +15,7 @@ import net.infstudio.inspiringworld.magic.repackage.api.simplelib.registry.FreeC
  * <li>{@link net.minecraft.item.Item}
  * </ul>
  * Also, the field with the type annotated by {@link ComponentStruct} will be also treat as "available".
- * <p/>
+ * </p>
  * <p>If the field is null and annotation {@link Construct} is presented, it will follow the {@link Construct} to
  * create a new instance to register.</p>
  * <p>If the field is null without annotation {@link Construct}, mod will try to find an instance by

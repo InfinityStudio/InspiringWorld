@@ -7,18 +7,16 @@ import net.infstudio.inspiringworld.magic.repackage.net.simplelib.common.registr
 
 /**
  * The interface that inject the annotation data.
- * <p/>
  * See {@link ReflectionAnnotatedMaker#apply(Field)}
  *
  * @author CI010
  */
-public interface ArgumentHelper
-{
-	/**
-	 * Get all the data needed to construct from annotation.
-	 *
-	 * @param annotation
-	 * @return All the arguments needed to construct.
-	 */
-	Object[] getArguments(Annotation annotation);
+public interface ArgumentHelper {
+    /**
+     * Get all the data needed to construct from annotation.
+     *
+     * @param annotation
+     * @return All the arguments needed to construct.
+     */
+    Object[] getArguments(Annotation annotation);
 }

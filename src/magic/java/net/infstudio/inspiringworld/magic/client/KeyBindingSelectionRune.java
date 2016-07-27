@@ -19,7 +19,6 @@ public class KeyBindingSelectionRune
 
 
 	@SubscribeEvent
-
 	public void keyBindingEvent(InputEvent.KeyInputEvent event)
 	{
 		Overlay.INSTANCE.setEnable(SHOW_RUNE_SELECT.isPressed());

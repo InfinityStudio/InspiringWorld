@@ -119,7 +119,6 @@ public enum RegistryHelper implements Iterable<RegContainer>
 
 	/**
 	 * Register custom annotation for constructing object.
-	 * <p/>
 	 *
 	 * @param annotation The annotation used to catch constructing arguments.
 	 * @param helper     The helper will inject the annotation above.
