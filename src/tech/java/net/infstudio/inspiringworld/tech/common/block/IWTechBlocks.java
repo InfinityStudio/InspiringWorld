@@ -32,9 +32,11 @@ public class IWTechBlocks {
     public static final Material SOURCE_BLOCKS = new Material(MapColor.AIR);
 
     public static final Block blockSourceLight = new BlockSourceLight();
+    public static final Block blockEnderLeaves = new BlockEnderLeaves();
 
     public static void preInit() {
         IWTechBlocks.registerBlock(IWTechBlocks.blockSourceLight.setRegistryName("source_light"));
+        IWTechBlocks.registerBlock(IWTechBlocks.blockEnderLeaves.setRegistryName("ender_leaves"));
     }
 
     private static void registerBlock(Block block, ItemBlock itemBlock) {

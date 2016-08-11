@@ -26,6 +26,7 @@ import net.infstudio.inspiringworld.tech.common.entity.IWTechEntities;
 import net.infstudio.inspiringworld.tech.common.inventory.IWTechGuiElements;
 import net.infstudio.inspiringworld.tech.common.item.IWTechItems;
 import net.infstudio.inspiringworld.tech.common.tileentity.IWTechTileEntities;
+import net.infstudio.inspiringworld.tech.common.worldgen.IWTechWorldGenerators;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -52,6 +53,7 @@ public class CommonProxy {
 
         IWTechCrafting.init();
         IWTechGuiElements.init();
+        IWTechWorldGenerators.init();
     }
 
     public void postInit(FMLPostInitializationEvent event) {
