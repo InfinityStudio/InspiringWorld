@@ -15,6 +15,7 @@ public class IWTechEntities {
             tracker.updateFrequency, tracker.sendVelocityUpdates);
     }
 
+    @SuppressWarnings("unused")
     private static void registerEntityEgg(Class<? extends Entity> entity, int primary, int secondary) {
         EntityRegistry.registerEgg(entity, primary, secondary);
     }
