@@ -24,6 +24,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class IWTechBlocks {
     public static final IProperty<EnumFacing> FACING = PropertyDirection.create("facing");
@@ -37,6 +38,8 @@ public class IWTechBlocks {
     public static void preInit() {
         IWTechBlocks.registerBlock(IWTechBlocks.blockSourceLight.setRegistryName("source_light"));
         IWTechBlocks.registerBlock(IWTechBlocks.blockEnderLeaves.setRegistryName("ender_leaves"));
+
+        OreDictionary.registerOre("treeLeaves", blockEnderLeaves);
     }
 
     private static void registerBlock(Block block, ItemBlock itemBlock) {

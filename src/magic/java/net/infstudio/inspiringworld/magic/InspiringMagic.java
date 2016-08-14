@@ -33,7 +33,7 @@ public class InspiringMagic {
     public static final String MODID = "inspiringmagic";
     public static final String VERSION = "@version@";
     public static final String MC_VERSION = "1.10.2";
-    public static final String DEPENDENCIES = "required-after:inspiringworld";
+    public static final String DEPENDENCIES = "";
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {

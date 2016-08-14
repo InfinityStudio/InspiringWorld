@@ -46,6 +46,7 @@ public class CommonProxy {
         IWTechCreativeTabs.preInit();
         IWTechEntities.preInit();
         IWTechTileEntities.preInit();
+        IWTechWorldGenerators.preInit();
     }
 
     public void init(FMLInitializationEvent event) {
@@ -53,7 +54,6 @@ public class CommonProxy {
 
         IWTechCrafting.init();
         IWTechGuiElements.init();
-        IWTechWorldGenerators.init();
     }
 
     public void postInit(FMLPostInitializationEvent event) {
