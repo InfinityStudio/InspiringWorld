@@ -1,5 +1,7 @@
 # InspiringWorld
 
+[![Coverage Status](https://coveralls.io/repos/github/InfinityStudio/InspiringWorld/badge.svg?branch=master)](https://coveralls.io/github/InfinityStudio/InspiringWorld?branch=master)
+
 InspiringWorld Mod for Minecraft.
 
 ## Notice before contributing
