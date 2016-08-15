@@ -15,7 +15,7 @@ public class IWTechEntities {
 
         IWTechEntities.registerEntityEgg(EntityEnderSpider.class, 0xff000000, 0xffff0000);
 
-        IWTechEntities.registerSpawn(EntityEnderSpider.class, 10, 1, 4, EnumCreatureType.MONSTER);
+        IWTechEntities.registerSpawn(EntityEnderSpider.class, 20, 1, 4, EnumCreatureType.MONSTER);
     }
 
     private static void registerEntity(Class<? extends Entity> entity, String name, Tracker tracker) {

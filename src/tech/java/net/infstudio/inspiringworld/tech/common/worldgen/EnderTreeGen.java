@@ -144,7 +144,7 @@ public class EnderTreeGen extends WorldGenTrees {
             final Object oldValue = field.get(WorldGenTrees.class);
             field.set(oldValue, this);
         } catch (Throwable e) {
-            FMLLog.getLogger().warn("InspiringWorld EnderTree generator's reflection failed:\n", e);
+            FMLLog.getLogger().warn("InspiringWorld EnderTree generator's reflection failed:", e);
         }
     }
 }
