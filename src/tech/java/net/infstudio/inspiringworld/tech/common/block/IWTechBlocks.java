@@ -36,13 +36,16 @@ public class IWTechBlocks {
     public static final Block blockSourceLight = new BlockSourceLight();
     public static final Block blockEnderLeaves = new BlockEnderLeaves();
     public static final Block blockEnderSapling = new BlockEnderSapling();
+    public static final Block blockEnderVine = new BlockEnderVine();
 
     public static void preInit() {
         IWTechBlocks.registerBlock(IWTechBlocks.blockSourceLight.setRegistryName(InspiringTech.MODID, "source_light"));
         IWTechBlocks.registerBlock(IWTechBlocks.blockEnderLeaves.setRegistryName(InspiringTech.MODID, "ender_leaves"));
         IWTechBlocks.registerBlock(IWTechBlocks.blockEnderSapling.setRegistryName(InspiringTech.MODID, "ender_sapling"));
+        IWTechBlocks.registerBlock(IWTechBlocks.blockEnderVine.setRegistryName(InspiringTech.MODID, "ender_vine"));
 
         OreDictionary.registerOre("treeLeaves", blockEnderLeaves);
+        OreDictionary.registerOre("vine", blockEnderVine);
     }
 
     private static void registerBlock(Block block, ItemBlock itemBlock) {

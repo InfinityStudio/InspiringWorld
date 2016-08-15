@@ -8,7 +8,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class IWTechWorldGenerators {
 
     public static void preInit() {
-        new EnderTreeGen(false).applyToVanilla();
+        new EnderTreeNormalGen(false).applyToVanilla();
+        new EnderTreeSwampGen().applyToVanilla();
 
         GameRegistry.registerWorldGenerator(new EnderSpiderSpawnerGen(), 1);
     }

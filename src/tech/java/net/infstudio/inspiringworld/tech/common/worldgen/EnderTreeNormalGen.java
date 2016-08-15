@@ -15,21 +15,20 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeSavanna;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraftforge.fml.common.FMLLog;
 
 /**
  * @author Blealtan
  */
-public class EnderTreeGen extends WorldGenTrees {
+public class EnderTreeNormalGen extends WorldGenTrees {
 
     private final int minTreeHeight;
     private final IBlockState metaWood;
     private final IBlockState oakLeaves;
     private final IBlockState enderLeaves;
 
-    public EnderTreeGen(boolean notify) {
+    public EnderTreeNormalGen(boolean notify) {
         super(notify);
         this.minTreeHeight = 4;
         this.metaWood = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
@@ -40,7 +39,7 @@ public class EnderTreeGen extends WorldGenTrees {
 
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
-        boolean ender = rand.nextInt((worldIn.getBiomeGenForCoords(position) instanceof BiomeSavanna) ? 5 : 10) == 0;
+        boolean ender = rand.nextInt(10) == 0;
 
         int i = rand.nextInt(3) + this.minTreeHeight;
         boolean flag = true;
@@ -99,7 +98,6 @@ public class EnderTreeGen extends WorldGenTrees {
                                     if (state.getBlock().isAir(state, worldIn, blockpos) ||
                                         state.getBlock().isLeaves(state, worldIn, blockpos) ||
                                         state.getMaterial() == Material.VINE) {
-                                        // Hack XD
                                         this.setBlockAndNotifyAdequately(worldIn, blockpos,
                                             ender ? this.enderLeaves : this.oakLeaves);
                                     }

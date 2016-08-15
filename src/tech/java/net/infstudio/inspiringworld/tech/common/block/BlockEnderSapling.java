@@ -2,7 +2,7 @@ package net.infstudio.inspiringworld.tech.common.block;
 
 import java.util.Random;
 
-import net.infstudio.inspiringworld.tech.common.worldgen.EnderTreeGen;
+import net.infstudio.inspiringworld.tech.common.worldgen.EnderTreeNormalGen;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -23,7 +23,7 @@ public class BlockEnderSapling extends BlockSapling {
     @Override
     public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos)) return;
-        WorldGenerator worldgenerator = new EnderTreeGen(true);
+        WorldGenerator worldgenerator = new EnderTreeNormalGen(true);
         worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
         if (!worldgenerator.generate(worldIn, rand, pos))
             worldIn.setBlockState(pos, state, 4);
