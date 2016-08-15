@@ -129,9 +129,11 @@ public class EnderTreeGen extends WorldGenTrees {
         try {
             Field field = Biome.class.getDeclaredField("TREE_FEATURE");
             field.setAccessible(true);
+
             Field modifiersField = Field.class.getDeclaredField("modifiers");
             modifiersField.setAccessible(true);
             modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+
             final Object oldValue = field.get(WorldGenTrees.class);
             field.set(oldValue, this);
         } catch (Throwable e) {
