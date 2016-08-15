@@ -19,6 +19,7 @@ import net.infstudio.inspiringworld.tech.InspiringTech;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class IWTechItems {
     public static final ArmorMaterial ABYSS = ItemAbyssArmor.material;
@@ -31,6 +32,9 @@ public class IWTechItems {
     public static final Item controller = new ItemController();
     public static final Item sourceBomb = new ItemSourceBomb();
 
+    public static final Item enderIngot = new Item().setUnlocalizedName(InspiringTech.MODID + "." + "ingotEnder");
+    public static final Item enderPowder = new Item().setUnlocalizedName(InspiringTech.MODID + "." + "powderEnder");
+
     public static void preInit() {
         IWTechItems.registerItem(IWTechItems.abyssHelmet.setRegistryName(InspiringTech.MODID, "abyss_helmet"));
         IWTechItems.registerItem(IWTechItems.abyssChestplate.setRegistryName(InspiringTech.MODID, "abyss_chestplate"));
@@ -39,6 +43,12 @@ public class IWTechItems {
 
         IWTechItems.registerItem(IWTechItems.controller.setRegistryName(InspiringTech.MODID, "controller"));
         IWTechItems.registerItem(IWTechItems.sourceBomb.setRegistryName(InspiringTech.MODID, "source_bomb"));
+
+        IWTechItems.registerItem(IWTechItems.enderIngot.setRegistryName(InspiringTech.MODID, "ender_ingot"));
+        IWTechItems.registerItem(IWTechItems.enderPowder.setRegistryName(InspiringTech.MODID, "ender_powder"));
+
+        OreDictionary.registerOre("ingotEnder", IWTechItems.enderIngot);
+        OreDictionary.registerOre("powderEnder", IWTechItems.enderPowder);
     }
 
     public static void registerItem(Item item) {

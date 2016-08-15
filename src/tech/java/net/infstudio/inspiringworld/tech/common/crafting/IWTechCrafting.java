@@ -22,19 +22,41 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class IWTechCrafting {
 
     public static void init() {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IWTechItems.controller, 1, 0),
-            new Object[] { "###", "# #", "###", '#', "ingotGold" }));
+            "###", "# #", "###",
+            '#', "ingotGold")
+        );
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IWTechItems.controller, 1, 1),
-            new Object[] { "###", "# #", "###", '#', "gemLapis" }));
+            "###", "# #", "###",
+            '#', "gemLapis")
+        );
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(IWTechItems.enderPowder, 2),
+            "enderpearl")
+        );
+
         GameRegistry.addShapedRecipe(new ItemStack(IWTechItems.sourceBomb, 8),
-            new Object[] { "###", "#*#", "###", '#', Blocks.TNT, '*', new ItemStack(IWTechItems.controller, 1, 0) });
-        GameRegistry.addShapedRecipe(new ItemStack(IWTechBlocks.blockSourceLight), new Object[] { "#*#", "*!*", "#*#",
-            '#', Items.GLOWSTONE_DUST, '*', Items.REDSTONE, '!', new ItemStack(IWTechItems.controller, 1, 0) });
-        GameRegistry.addShapedRecipe(new ItemStack(IWTechBlocks.blockSourceLight), new Object[] { "*#*", "#!#", "*#*",
-            '#', Items.GLOWSTONE_DUST, '*', Items.REDSTONE, '!', new ItemStack(IWTechItems.controller, 1, 0) });
+            "###", "#*#", "###",
+            '#', Blocks.TNT,
+            '*', new ItemStack(IWTechItems.controller, 1, 0)
+        );
+        GameRegistry.addShapedRecipe(new ItemStack(IWTechBlocks.blockSourceLight),
+            "#*#", "*!*", "#*#",
+            '#', Items.GLOWSTONE_DUST,
+            '*', Items.REDSTONE,
+            '!', new ItemStack(IWTechItems.controller, 1, 0)
+        );
+        GameRegistry.addShapedRecipe(new ItemStack(IWTechBlocks.blockSourceLight),
+            "*#*", "#!#", "*#*",
+            '#', Items.GLOWSTONE_DUST,
+            '*', Items.REDSTONE,
+            '!', new ItemStack(IWTechItems.controller, 1, 0)
+        );
+
+        GameRegistry.addSmelting(IWTechItems.enderPowder, new ItemStack(IWTechItems.enderIngot), 0.35F);
     }
 }
