@@ -15,6 +15,7 @@
  */
 package net.infstudio.inspiringworld.tech.common.block;
 
+import net.infstudio.inspiringworld.tech.InspiringTech;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -34,10 +35,12 @@ public class IWTechBlocks {
 
     public static final Block blockSourceLight = new BlockSourceLight();
     public static final Block blockEnderLeaves = new BlockEnderLeaves();
+    public static final Block blockEnderSapling = new BlockEnderSapling();
 
     public static void preInit() {
-        IWTechBlocks.registerBlock(IWTechBlocks.blockSourceLight.setRegistryName("source_light"));
-        IWTechBlocks.registerBlock(IWTechBlocks.blockEnderLeaves.setRegistryName("ender_leaves"));
+        IWTechBlocks.registerBlock(IWTechBlocks.blockSourceLight.setRegistryName(InspiringTech.MODID, "source_light"));
+        IWTechBlocks.registerBlock(IWTechBlocks.blockEnderLeaves.setRegistryName(InspiringTech.MODID, "ender_leaves"));
+        IWTechBlocks.registerBlock(IWTechBlocks.blockEnderSapling.setRegistryName(InspiringTech.MODID, "ender_sapling"));
 
         OreDictionary.registerOre("treeLeaves", blockEnderLeaves);
     }

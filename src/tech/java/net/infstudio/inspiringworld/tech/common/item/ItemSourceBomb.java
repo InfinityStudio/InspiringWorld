@@ -29,8 +29,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ItemSourceBomb extends Item {
 
-    public ItemSourceBomb()
-    {
+    public ItemSourceBomb() {
         super();
         this.setUnlocalizedName(InspiringTech.MODID + "." + "sourceBomb");
         MinecraftForge.EVENT_BUS.register(this);

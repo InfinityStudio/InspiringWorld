@@ -29,14 +29,12 @@ public class BlockEnderLeaves extends BlockLeaves {
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
+    public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(DECAYABLE, (meta & 4) != 0).withProperty(CHECK_DECAY, (meta & 8) != 0);
     }
 
     @Override
-    public int getMetaFromState(IBlockState state)
-    {
+    public int getMetaFromState(IBlockState state) {
         int i = 0;
         if (state.getValue(DECAYABLE)) i |= 1;
         if (state.getValue(CHECK_DECAY)) i |= 2;

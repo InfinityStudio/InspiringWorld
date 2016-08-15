@@ -23,11 +23,6 @@ public class EntitySourceBomb extends EntityThrowable {
     @Override
     protected void onImpact(RayTraceResult result) {
         if (!this.worldObj.isRemote) {
-            EntityLivingBase entity = this.getThrower();
-            if (entity != null) {
-                String output = String.format("Boom! %f %f %f", this.posX, this.posY, this.posZ);
-                entity.addChatMessage(new TextComponentString(output));
-            }
             SourceBombExplosion explosion =
                 new SourceBombExplosion(this.worldObj, this, this.posX, this.posY, this.posZ, 5.0F);
             if (!net.minecraftforge.event.ForgeEventFactory.onExplosionStart(this.worldObj, explosion)) {

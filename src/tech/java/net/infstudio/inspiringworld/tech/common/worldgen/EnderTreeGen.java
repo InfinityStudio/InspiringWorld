@@ -5,7 +5,10 @@ import java.lang.reflect.Modifier;
 import java.util.Random;
 
 import net.infstudio.inspiringworld.tech.common.block.IWTechBlocks;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockOldLeaf;
+import net.minecraft.block.BlockOldLog;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -125,7 +128,11 @@ public class EnderTreeGen extends WorldGenTrees {
         }
     }
 
+    private static boolean appliedToVanilla = false;
+
     void applyToVanilla() {
+        if (appliedToVanilla) return;
+        appliedToVanilla = true;
         try {
             Field field = Biome.class.getDeclaredField("TREE_FEATURE");
             field.setAccessible(true);

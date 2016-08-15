@@ -15,6 +15,7 @@
  */
 package net.infstudio.inspiringworld.tech.common.item;
 
+import net.infstudio.inspiringworld.tech.InspiringTech;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -31,13 +32,13 @@ public class IWTechItems {
     public static final Item sourceBomb = new ItemSourceBomb();
 
     public static void preInit() {
-        IWTechItems.registerItem(IWTechItems.abyssHelmet.setRegistryName("abyss_helmet"));
-        IWTechItems.registerItem(IWTechItems.abyssChestplate.setRegistryName("abyss_chestplate"));
-        IWTechItems.registerItem(IWTechItems.abyssLeggings.setRegistryName("abyss_leggings"));
-        IWTechItems.registerItem(IWTechItems.abyssBoots.setRegistryName("abyss_boots"));
+        IWTechItems.registerItem(IWTechItems.abyssHelmet.setRegistryName(InspiringTech.MODID, "abyss_helmet"));
+        IWTechItems.registerItem(IWTechItems.abyssChestplate.setRegistryName(InspiringTech.MODID, "abyss_chestplate"));
+        IWTechItems.registerItem(IWTechItems.abyssLeggings.setRegistryName(InspiringTech.MODID, "abyss_leggings"));
+        IWTechItems.registerItem(IWTechItems.abyssBoots.setRegistryName(InspiringTech.MODID, "abyss_boots"));
 
-        IWTechItems.registerItem(IWTechItems.controller.setRegistryName("controller"));
-        IWTechItems.registerItem(IWTechItems.sourceBomb.setRegistryName("source_bomb"));
+        IWTechItems.registerItem(IWTechItems.controller.setRegistryName(InspiringTech.MODID, "controller"));
+        IWTechItems.registerItem(IWTechItems.sourceBomb.setRegistryName(InspiringTech.MODID, "source_bomb"));
     }
 
     public static void registerItem(Item item) {

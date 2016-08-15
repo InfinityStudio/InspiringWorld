@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ItemAbyssArmor extends ItemArmor {
     static ArmorMaterial material = EnumHelper.addArmorMaterial("ABYSS", InspiringTech.MODID + ":" + "abyss", 10,
-        new int[] { 1, 3, 4, 2 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
+        new int[]{1, 3, 4, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 
     private float reduction;
 
@@ -76,8 +76,7 @@ public class ItemAbyssArmor extends ItemArmor {
                                 player.experience = (player.experience + 1.0F) * (float) player.xpBarCap();
                                 player.removeExperienceLevel(1);
                             }
-                        }
-                        else {
+                        } else {
                             // Reduce the attack amount
                             event.setAmount(event.getAmount() - player.experienceTotal);
                             // Take the experience

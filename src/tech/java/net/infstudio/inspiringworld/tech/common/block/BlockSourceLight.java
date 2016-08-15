@@ -48,7 +48,7 @@ public class BlockSourceLight extends BlockContainer {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-        EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+                                    EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (!worldIn.isRemote) {
             playerIn.openGui(InspiringTech.MODID, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
         }
@@ -57,7 +57,7 @@ public class BlockSourceLight extends BlockContainer {
 
     @Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
-        int meta, EntityLivingBase placer) {
+                                     int meta, EntityLivingBase placer) {
         IBlockState origin = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
         return origin.withProperty(IWTechBlocks.FACING, facing);
     }
