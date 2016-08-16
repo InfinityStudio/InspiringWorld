@@ -1,11 +1,15 @@
 package net.infstudio.inspiringworld.tech.common.worldgen;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.Random;
 
 import net.infstudio.inspiringworld.tech.common.block.IWTechBlocks;
-import net.minecraft.block.*;
+import net.infstudio.inspiringworld.tech.common.config.IWTechConfig;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockOldLeaf;
+import net.minecraft.block.BlockOldLog;
+import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
@@ -14,8 +18,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenSwamp;
-import net.minecraft.world.gen.feature.WorldGenTrees;
-import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 /**
  * @author Blealtan
@@ -26,7 +30,7 @@ class EnderTreeSwampGen extends WorldGenSwamp {
         Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
     private static final IBlockState NORMAL_LEAF =
         Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK)
-            .withProperty(BlockOldLeaf.CHECK_DECAY, false);
+        .withProperty(BlockOldLeaf.CHECK_DECAY, false);
     private static final IBlockState ENDER_LEAF =
         IWTechBlocks.blockEnderLeaves.getDefaultState().withProperty(BlockOldLeaf.CHECK_DECAY, false);
 
@@ -37,13 +41,15 @@ class EnderTreeSwampGen extends WorldGenSwamp {
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
 
-        final IBlockState LEAF = rand.nextInt(5) == 0 ? ENDER_LEAF : NORMAL_LEAF;
+        final IBlockState LEAF = rand.nextInt(5) == 0 ? EnderTreeSwampGen.ENDER_LEAF : EnderTreeSwampGen.NORMAL_LEAF;
 
         int i;
 
         for (i = rand.nextInt(4) + 5;
-             worldIn.getBlockState(position.down()).getMaterial() == Material.WATER;
-             position = position.down());
+            worldIn.getBlockState(position.down()).getMaterial() == Material.WATER;
+            position = position.down()) {
+            ;
+        }
 
         boolean flag = true;
 
@@ -86,7 +92,7 @@ class EnderTreeSwampGen extends WorldGenSwamp {
             } else {
                 BlockPos down = position.down();
                 IBlockState state = worldIn.getBlockState(down);
-                boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, net.minecraft.util.EnumFacing.UP, ((net.minecraft.block.BlockSapling) Blocks.SAPLING));
+                boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling) Blocks.SAPLING);
 
                 if (isSoil && position.getY() < worldIn.getHeight() - i - 1) {
                     state.getBlock().onPlantGrow(state, worldIn, position.down(), position);
@@ -119,7 +125,7 @@ class EnderTreeSwampGen extends WorldGenSwamp {
                         Block block2 = iblockstate1.getBlock();
 
                         if (block2.isAir(iblockstate1, worldIn, upN) || block2.isLeaves(iblockstate1, worldIn, upN) || block2 == Blocks.FLOWING_WATER || block2 == Blocks.WATER) {
-                            this.setBlockAndNotifyAdequately(worldIn, position.up(l1), TRUNK);
+                            this.setBlockAndNotifyAdequately(worldIn, position.up(l1), EnderTreeSwampGen.TRUNK);
                         }
                     }
 
@@ -138,19 +144,19 @@ class EnderTreeSwampGen extends WorldGenSwamp {
                                     BlockPos blockpos1 = blockpos$mutableblockpos1.north();
                                     BlockPos blockpos2 = blockpos$mutableblockpos1.south();
 
-                                    if (rand.nextInt(4) == 0 && isAir(worldIn, blockpos3)) {
+                                    if (rand.nextInt(4) == 0 && this.isAir(worldIn, blockpos3)) {
                                         this.addVine(worldIn, blockpos3, BlockVine.EAST);
                                     }
 
-                                    if (rand.nextInt(4) == 0 && isAir(worldIn, blockpos4)) {
+                                    if (rand.nextInt(4) == 0 && this.isAir(worldIn, blockpos4)) {
                                         this.addVine(worldIn, blockpos4, BlockVine.WEST);
                                     }
 
-                                    if (rand.nextInt(4) == 0 && isAir(worldIn, blockpos1)) {
+                                    if (rand.nextInt(4) == 0 && this.isAir(worldIn, blockpos1)) {
                                         this.addVine(worldIn, blockpos1, BlockVine.SOUTH);
                                     }
 
-                                    if (rand.nextInt(4) == 0 && isAir(worldIn, blockpos2)) {
+                                    if (rand.nextInt(4) == 0 && this.isAir(worldIn, blockpos2)) {
                                         this.addVine(worldIn, blockpos2, BlockVine.NORTH);
                                     }
                                 }
@@ -173,7 +179,7 @@ class EnderTreeSwampGen extends WorldGenSwamp {
         this.setBlockAndNotifyAdequately(worldIn, pos, iblockstate);
         int i = 4;
 
-        for (pos = pos.down(); isAir(worldIn, pos) && i > 0; --i) {
+        for (pos = pos.down(); this.isAir(worldIn, pos) && i > 0; --i) {
             this.setBlockAndNotifyAdequately(worldIn, pos, iblockstate);
             pos = pos.down();
         }
@@ -187,20 +193,15 @@ class EnderTreeSwampGen extends WorldGenSwamp {
     private static boolean appliedToVanilla = false;
 
     void applyToVanilla() {
-        if (appliedToVanilla) return;
-        appliedToVanilla = true;
+        if (EnderTreeSwampGen.appliedToVanilla) {
+            return;
+        }
+        EnderTreeSwampGen.appliedToVanilla = true;
         try {
-            Field field = Biome.class.getDeclaredField("SWAMP_FEATURE");
-            field.setAccessible(true);
-
-            Field modifiersField = Field.class.getDeclaredField("modifiers");
-            modifiersField.setAccessible(true);
-            modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-
-            final Object oldValue = field.get(WorldGenTrees.class);
-            field.set(oldValue, this);
-        } catch (Throwable e) {
-            FMLLog.getLogger().warn("InspiringWorld EnderTree generator's reflection failed:", e);
+            Field fieldSwamp = ReflectionHelper.findField(Biome.class, "SWAMP_FEATURE", "field_76763_Q");
+            EnumHelper.setFailsafeFieldValue(fieldSwamp, null, this);
+        } catch (Exception e) {
+            IWTechConfig.logger().warn("InspiringWorld EnderTree generator's reflection failed:", e);
         }
     }
 }

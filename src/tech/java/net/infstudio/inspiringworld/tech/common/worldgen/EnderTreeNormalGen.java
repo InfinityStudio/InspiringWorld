@@ -1,10 +1,10 @@
 package net.infstudio.inspiringworld.tech.common.worldgen;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.Random;
 
 import net.infstudio.inspiringworld.tech.common.block.IWTechBlocks;
+import net.infstudio.inspiringworld.tech.common.config.IWTechConfig;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockOldLog;
@@ -16,7 +16,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenTrees;
-import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 /**
  * @author Blealtan
@@ -129,20 +130,15 @@ public class EnderTreeNormalGen extends WorldGenTrees {
     private static boolean appliedToVanilla = false;
 
     void applyToVanilla() {
-        if (appliedToVanilla) return;
-        appliedToVanilla = true;
+        if (EnderTreeNormalGen.appliedToVanilla) {
+            return;
+        }
+        EnderTreeNormalGen.appliedToVanilla = true;
         try {
-            Field field = Biome.class.getDeclaredField("TREE_FEATURE");
-            field.setAccessible(true);
-
-            Field modifiersField = Field.class.getDeclaredField("modifiers");
-            modifiersField.setAccessible(true);
-            modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-
-            final Object oldValue = field.get(WorldGenTrees.class);
-            field.set(oldValue, this);
-        } catch (Throwable e) {
-            FMLLog.getLogger().warn("InspiringWorld EnderTree generator's reflection failed:", e);
+            Field fieldTree = ReflectionHelper.findField(Biome.class, "TREE_FEATURE", "field_76757_N");
+            EnumHelper.setFailsafeFieldValue(fieldTree, null, this);
+        } catch (Exception e) {
+            IWTechConfig.logger().warn("InspiringWorld EnderTree generator's reflection failed:", e);
         }
     }
 }
