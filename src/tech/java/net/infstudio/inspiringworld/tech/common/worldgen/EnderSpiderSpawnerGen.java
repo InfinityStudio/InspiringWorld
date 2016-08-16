@@ -25,7 +25,7 @@ public class EnderSpiderSpawnerGen implements IWorldGenerator {
                 String name = "";
                 // Reflect to get the name
                 try {
-                    Method method = spawner.getClass().getMethod("getEntityNameToSpawn");
+                    Method method = MobSpawnerBaseLogic.class.getMethod("getEntityNameToSpawn");
                     method.setAccessible(true);
                     name = (String) method.invoke(spawner);
                 } catch (Throwable e) {

@@ -63,7 +63,7 @@ public class ItemAbyssArmor extends ItemArmor {
 
                 // Check Armor in Inventory
                 for (ItemStack stack : player.getArmorInventoryList()) {
-                    if (stack.getItem() == this) {
+                    if (stack != null && stack.getItem() == this) {
                         if (player.experienceTotal > event.getAmount()) {
                             float amount = event.getAmount();
                             // Reduce the attack amount
