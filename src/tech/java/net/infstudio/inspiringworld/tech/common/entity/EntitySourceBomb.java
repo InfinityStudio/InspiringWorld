@@ -4,8 +4,9 @@ import net.infstudio.inspiringworld.tech.common.world.SourceBombExplosion;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.ExplosionEvent;
 
 public class EntitySourceBomb extends EntityThrowable {
     public EntitySourceBomb(World worldIn) {
@@ -25,7 +26,7 @@ public class EntitySourceBomb extends EntityThrowable {
         if (!this.worldObj.isRemote) {
             SourceBombExplosion explosion =
                 new SourceBombExplosion(this.worldObj, this, this.posX, this.posY, this.posZ, 5.0F);
-            if (!net.minecraftforge.event.ForgeEventFactory.onExplosionStart(this.worldObj, explosion)) {
+            if (!MinecraftForge.EVENT_BUS.post(new ExplosionEvent.Start(this.worldObj, explosion))) {
                 explosion.doExplosionA();
                 explosion.doExplosionB(true);
             }
