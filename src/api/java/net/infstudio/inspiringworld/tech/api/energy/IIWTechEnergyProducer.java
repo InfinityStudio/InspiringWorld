@@ -1,5 +1,5 @@
 package net.infstudio.inspiringworld.tech.api.energy;
 
-public interface IIWTechEnergyProvider {
+public interface IIWTechEnergyProducer {
     // Nothing.
 }
