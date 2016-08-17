@@ -5,11 +5,7 @@ import java.util.Random;
 
 import net.infstudio.inspiringworld.tech.common.block.IWTechBlocks;
 import net.infstudio.inspiringworld.tech.common.config.IWTechConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockOldLeaf;
-import net.minecraft.block.BlockOldLog;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockVine;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
@@ -41,7 +37,7 @@ class EnderTreeSwampGen extends WorldGenSwamp {
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
 
-        final IBlockState LEAF = rand.nextInt(5) == 0 ? EnderTreeSwampGen.ENDER_LEAF : EnderTreeSwampGen.NORMAL_LEAF;
+        final boolean ender = rand.nextInt(5) == 0;
 
         int i;
 
@@ -112,7 +108,8 @@ class EnderTreeSwampGen extends WorldGenSwamp {
                                     state = worldIn.getBlockState(blockpos);
 
                                     if (state.getBlock().canBeReplacedByLeaves(state, worldIn, blockpos)) {
-                                        this.setBlockAndNotifyAdequately(worldIn, blockpos, LEAF);
+                                        this.setBlockAndNotifyAdequately(worldIn, blockpos,
+                                            ender ? ENDER_LEAF : NORMAL_LEAF);
                                     }
                                 }
                             }
@@ -145,19 +142,19 @@ class EnderTreeSwampGen extends WorldGenSwamp {
                                     BlockPos blockpos2 = blockpos$mutableblockpos1.south();
 
                                     if (rand.nextInt(4) == 0 && this.isAir(worldIn, blockpos3)) {
-                                        this.addVine(worldIn, blockpos3, BlockVine.EAST);
+                                        this.addVine(worldIn, blockpos3, BlockVine.EAST, ender);
                                     }
 
                                     if (rand.nextInt(4) == 0 && this.isAir(worldIn, blockpos4)) {
-                                        this.addVine(worldIn, blockpos4, BlockVine.WEST);
+                                        this.addVine(worldIn, blockpos4, BlockVine.WEST, ender);
                                     }
 
                                     if (rand.nextInt(4) == 0 && this.isAir(worldIn, blockpos1)) {
-                                        this.addVine(worldIn, blockpos1, BlockVine.SOUTH);
+                                        this.addVine(worldIn, blockpos1, BlockVine.SOUTH, ender);
                                     }
 
                                     if (rand.nextInt(4) == 0 && this.isAir(worldIn, blockpos2)) {
-                                        this.addVine(worldIn, blockpos2, BlockVine.NORTH);
+                                        this.addVine(worldIn, blockpos2, BlockVine.NORTH, ender);
                                     }
                                 }
                             }
@@ -174,8 +171,9 @@ class EnderTreeSwampGen extends WorldGenSwamp {
         }
     }
 
-    private void addVine(World worldIn, BlockPos pos, PropertyBool prop) {
-        IBlockState iblockstate = IWTechBlocks.blockEnderVine.getDefaultState().withProperty(prop, true);
+    private void addVine(World worldIn, BlockPos pos, PropertyBool prop, boolean ender) {
+        IBlockState iblockstate = ender ? IWTechBlocks.blockEnderVine.getDefaultState().withProperty(prop, true) :
+            Blocks.VINE.getDefaultState().withProperty(prop, true);
         this.setBlockAndNotifyAdequately(worldIn, pos, iblockstate);
         int i = 4;
 
