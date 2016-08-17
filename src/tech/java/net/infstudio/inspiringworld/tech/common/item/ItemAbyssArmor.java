@@ -72,8 +72,8 @@ public class ItemAbyssArmor extends ItemArmor {
                             int exp = (int) (amount * reduction);
                             player.experience -= exp / (float) player.xpBarCap();
                             for (player.experienceTotal -= exp; player.experience <= 0.0F;
-                                 player.experience /= (float) player.xpBarCap()) {
-                                player.experience = (player.experience + 1.0F) * (float) player.xpBarCap();
+                                 player.experience /= player.xpBarCap()) {
+                                player.experience = (player.experience + 1.0F) * player.xpBarCap();
                                 player.removeExperienceLevel(1);
                             }
                         } else {

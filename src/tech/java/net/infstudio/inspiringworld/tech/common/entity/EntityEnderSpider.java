@@ -40,8 +40,8 @@ public class EntityEnderSpider extends EntitySpider {
 
                 if (i > 0) {
                     ((EntityLivingBase) entityIn).knockBack(this, i,
-                        (double) MathHelper.sin(this.rotationYaw * 0.017453292F),
-                        (double) (-MathHelper.cos(this.rotationYaw * 0.017453292F)));
+                        MathHelper.sin(this.rotationYaw * 0.017453292F),
+                        (-MathHelper.cos(this.rotationYaw * 0.017453292F)));
                 }
             }
 
@@ -59,8 +59,8 @@ public class EntityEnderSpider extends EntitySpider {
                     player.experience -= exp / (float) player.xpBarCap();
                     for (player.experienceTotal -= exp;
                          player.experience <= 0.0F;
-                         player.experience /= (float) player.xpBarCap()) {
-                        player.experience = (player.experience + 1.0F) * (float) player.xpBarCap();
+                         player.experience /= player.xpBarCap()) {
+                        player.experience = (player.experience + 1.0F) * player.xpBarCap();
                         player.removeExperienceLevel(1);
                     }
                 }
