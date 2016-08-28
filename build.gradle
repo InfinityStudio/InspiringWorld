@@ -49,6 +49,13 @@ sourceSets {
     }
 }
 
+idea {
+    module {
+        sourceDirs += sourceSets.main.allSource.getSrcDirs()
+        sourceDirs += sourceSets.api.allSource.getSrcDirs()
+    }
+}
+
 task apiJar(type: Jar, dependsOn: sourceJar) {
     from 'build/sources/api/java/'
     baseName = mod_api_name
