@@ -1,5 +1,8 @@
 package net.infstudio.inspiringworld.tech.common.energy.network;
 
+import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphVertexIn;
+import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphVertexOut;
+
 /**
  * @author Blealtan
  */
@@ -31,7 +34,7 @@ public class NetworkGraphEdge {
     }
 
     public int getCapacity() {
-        return capacity;
+        return this.capacity;
     }
 
     public void setCapacity(int capacity) {
@@ -39,6 +42,6 @@ public class NetworkGraphEdge {
     }
 
     public int getCurrent() {
-        return current;
+        return this.current;
     }
 }

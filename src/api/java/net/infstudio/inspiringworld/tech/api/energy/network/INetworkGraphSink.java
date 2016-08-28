@@ -1,4 +1,4 @@
-package net.infstudio.inspiringworld.tech.logic.energynetwork;
+package net.infstudio.inspiringworld.tech.api.energy.network;
 
 /**
  * @author Blealtan

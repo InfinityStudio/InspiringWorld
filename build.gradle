@@ -17,6 +17,10 @@ version = System.getenv("BUILD_NUMBER") != null ? mod_version + "." + System.get
 group = mod_group
 archivesBaseName = mod_name
 
+def commonManifest = {
+    attributes 'FMLAT': 'inspiringworld_at.cfg'
+}
+
 minecraft {
     version = minecraft_version + "-" + forge_version
     runDir = "run"

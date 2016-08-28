@@ -2,6 +2,9 @@ package net.infstudio.inspiringworld.tech.common.energy.network;
 
 import java.util.List;
 
+import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphSink;
+import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphSource;
+
 /**
  * @author Blealtan
  */
@@ -10,11 +13,11 @@ public class NetworkController {
     private List<INetworkGraphSink> sinks;
 
     public List<INetworkGraphSource> getSources() {
-        return sources;
+        return this.sources;
     }
 
     public List<INetworkGraphSink> getSinks() {
-        return sinks;
+        return this.sinks;
     }
 
     public void update() {
