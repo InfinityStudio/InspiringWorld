@@ -24,19 +24,19 @@ public class IWTechCreativeTabs {
     public static final CreativeTabs general = new CreativeTabs("inspiringtech") {
         @Override
         public Item getTabIconItem() {
-            return IWTechItems.controller;
+            return IWTechItems.CONTROLLER;
         }
     };
 
     public static void preInit() {
-        IWTechItems.controller.setCreativeTab(IWTechCreativeTabs.general);
-        IWTechItems.sourceBomb.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.CONTROLLER.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.SOURCE_BOMB.setCreativeTab(IWTechCreativeTabs.general);
 
-        IWTechItems.abyssHelmet.setCreativeTab(IWTechCreativeTabs.general);
-        IWTechItems.abyssChestplate.setCreativeTab(IWTechCreativeTabs.general);
-        IWTechItems.abyssLeggings.setCreativeTab(IWTechCreativeTabs.general);
-        IWTechItems.abyssBoots.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.ABYSS_HELMET.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.ABYSS_CHESTPLATE.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.ABYSS_LEGGINGS.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.ABYSS_BOOTS.setCreativeTab(IWTechCreativeTabs.general);
 
-        IWTechBlocks.blockSourceLight.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechBlocks.BLOCK_SOURCE_LIGHT.setCreativeTab(IWTechCreativeTabs.general);
     }
 }

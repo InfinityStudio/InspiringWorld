@@ -27,36 +27,36 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 public class IWTechCrafting {
 
     public static void init() {
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IWTechItems.controller, 1, 0),
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IWTechItems.CONTROLLER, 1, 0),
             "###", "# #", "###",
             '#', "ingotGold")
         );
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IWTechItems.controller, 1, 1),
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(IWTechItems.CONTROLLER, 1, 1),
             "###", "# #", "###",
             '#', "gemLapis")
         );
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(IWTechItems.enderPowder, 2),
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(IWTechItems.ENDER_POWDER, 2),
             "enderpearl")
         );
 
-        GameRegistry.addShapedRecipe(new ItemStack(IWTechItems.sourceBomb, 8),
+        GameRegistry.addShapedRecipe(new ItemStack(IWTechItems.SOURCE_BOMB, 8),
             "###", "#*#", "###",
             '#', Blocks.TNT,
-            '*', new ItemStack(IWTechItems.controller, 1, 0)
+            '*', new ItemStack(IWTechItems.CONTROLLER, 1, 0)
         );
-        GameRegistry.addShapedRecipe(new ItemStack(IWTechBlocks.blockSourceLight),
+        GameRegistry.addShapedRecipe(new ItemStack(IWTechBlocks.BLOCK_SOURCE_LIGHT),
             "#*#", "*!*", "#*#",
             '#', Items.GLOWSTONE_DUST,
             '*', Items.REDSTONE,
-            '!', new ItemStack(IWTechItems.controller, 1, 0)
+            '!', new ItemStack(IWTechItems.CONTROLLER, 1, 0)
         );
-        GameRegistry.addShapedRecipe(new ItemStack(IWTechBlocks.blockSourceLight),
+        GameRegistry.addShapedRecipe(new ItemStack(IWTechBlocks.BLOCK_SOURCE_LIGHT),
             "*#*", "#!#", "*#*",
             '#', Items.GLOWSTONE_DUST,
             '*', Items.REDSTONE,
-            '!', new ItemStack(IWTechItems.controller, 1, 0)
+            '!', new ItemStack(IWTechItems.CONTROLLER, 1, 0)
         );
 
-        GameRegistry.addSmelting(IWTechItems.enderPowder, new ItemStack(IWTechItems.enderIngot), 0.35F);
+        GameRegistry.addSmelting(IWTechItems.ENDER_POWDER, new ItemStack(IWTechItems.ENDER_INGOT), 0.35F);
     }
 }

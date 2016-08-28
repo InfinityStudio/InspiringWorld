@@ -24,31 +24,31 @@ import net.minecraftforge.oredict.OreDictionary;
 public class IWTechItems {
     public static final ArmorMaterial ABYSS = ItemAbyssArmor.material;
 
-    public static final Item abyssHelmet = new ItemAbyssArmor.Helmet();
-    public static final Item abyssChestplate = new ItemAbyssArmor.Chestplate();
-    public static final Item abyssLeggings = new ItemAbyssArmor.Leggings();
-    public static final Item abyssBoots = new ItemAbyssArmor.Boots();
+    public static final Item ABYSS_HELMET = new ItemAbyssArmor.Helmet();
+    public static final Item ABYSS_CHESTPLATE = new ItemAbyssArmor.Chestplate();
+    public static final Item ABYSS_LEGGINGS = new ItemAbyssArmor.Leggings();
+    public static final Item ABYSS_BOOTS = new ItemAbyssArmor.Boots();
 
-    public static final Item controller = new ItemController();
-    public static final Item sourceBomb = new ItemSourceBomb();
+    public static final Item CONTROLLER = new ItemController();
+    public static final Item SOURCE_BOMB = new ItemSourceBomb();
 
-    public static final Item enderIngot = new Item().setUnlocalizedName(InspiringTech.MODID + "." + "ingotEnder");
-    public static final Item enderPowder = new Item().setUnlocalizedName(InspiringTech.MODID + "." + "powderEnder");
+    public static final Item ENDER_INGOT = new Item().setUnlocalizedName(InspiringTech.MODID + "." + "ingotEnder");
+    public static final Item ENDER_POWDER = new Item().setUnlocalizedName(InspiringTech.MODID + "." + "powderEnder");
 
     public static void preInit() {
-        IWTechItems.registerItem(IWTechItems.abyssHelmet.setRegistryName(InspiringTech.MODID, "abyss_helmet"));
-        IWTechItems.registerItem(IWTechItems.abyssChestplate.setRegistryName(InspiringTech.MODID, "abyss_chestplate"));
-        IWTechItems.registerItem(IWTechItems.abyssLeggings.setRegistryName(InspiringTech.MODID, "abyss_leggings"));
-        IWTechItems.registerItem(IWTechItems.abyssBoots.setRegistryName(InspiringTech.MODID, "abyss_boots"));
+        registerItem(ABYSS_HELMET.setRegistryName(InspiringTech.MODID, "abyss_helmet"));
+        registerItem(ABYSS_CHESTPLATE.setRegistryName(InspiringTech.MODID, "abyss_chestplate"));
+        registerItem(ABYSS_LEGGINGS.setRegistryName(InspiringTech.MODID, "abyss_leggings"));
+        registerItem(ABYSS_BOOTS.setRegistryName(InspiringTech.MODID, "abyss_boots"));
 
-        IWTechItems.registerItem(IWTechItems.controller.setRegistryName(InspiringTech.MODID, "controller"));
-        IWTechItems.registerItem(IWTechItems.sourceBomb.setRegistryName(InspiringTech.MODID, "source_bomb"));
+        registerItem(CONTROLLER.setRegistryName(InspiringTech.MODID, "controller"));
+        registerItem(SOURCE_BOMB.setRegistryName(InspiringTech.MODID, "source_bomb"));
 
-        IWTechItems.registerItem(IWTechItems.enderIngot.setRegistryName(InspiringTech.MODID, "ender_ingot"));
-        IWTechItems.registerItem(IWTechItems.enderPowder.setRegistryName(InspiringTech.MODID, "ender_powder"));
+        registerItem(ENDER_INGOT.setRegistryName(InspiringTech.MODID, "ender_ingot"));
+        registerItem(ENDER_POWDER.setRegistryName(InspiringTech.MODID, "ender_powder"));
 
-        OreDictionary.registerOre("ingotEnder", IWTechItems.enderIngot);
-        OreDictionary.registerOre("powderEnder", IWTechItems.enderPowder);
+        OreDictionary.registerOre("ingotEnder", ENDER_INGOT);
+        OreDictionary.registerOre("powderEnder", ENDER_POWDER);
     }
 
     public static void registerItem(Item item) {

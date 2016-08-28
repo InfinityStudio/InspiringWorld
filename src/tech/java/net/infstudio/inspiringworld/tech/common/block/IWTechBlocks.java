@@ -33,19 +33,20 @@ public class IWTechBlocks {
 
     public static final Material SOURCE_BLOCKS = new Material(MapColor.AIR);
 
-    public static final Block blockSourceLight = new BlockSourceLight();
-    public static final Block blockEnderLeaves = new BlockEnderLeaves();
-    public static final Block blockEnderSapling = new BlockEnderSapling();
-    public static final Block blockEnderVine = new BlockEnderVine();
+    public static final BlockSourceLight BLOCK_SOURCE_LIGHT = new BlockSourceLight();
+    public static final BlockEnderLeaves BLOCK_ENDER_LEAVES = new BlockEnderLeaves();
+    public static final BlockEnderSapling BLOCK_ENDER_SAPLING = new BlockEnderSapling();
+    public static final BlockEnderVine BLOCK_ENDER_WINE = new BlockEnderVine();
+    public static final BlockIWAntenna blockIWAntenna = new BlockIWAntenna();
 
     public static void preInit() {
-        IWTechBlocks.registerBlock(IWTechBlocks.blockSourceLight.setRegistryName(InspiringTech.MODID, "source_light"));
-        IWTechBlocks.registerBlock(IWTechBlocks.blockEnderLeaves.setRegistryName(InspiringTech.MODID, "ender_leaves"));
-        IWTechBlocks.registerBlock(IWTechBlocks.blockEnderSapling.setRegistryName(InspiringTech.MODID, "ender_sapling"));
-        IWTechBlocks.registerBlock(IWTechBlocks.blockEnderVine.setRegistryName(InspiringTech.MODID, "ender_vine"));
+        registerBlock(BLOCK_SOURCE_LIGHT.setRegistryName(InspiringTech.MODID, "source_light"));
+        registerBlock(BLOCK_ENDER_LEAVES.setRegistryName(InspiringTech.MODID, "ender_leaves"));
+        registerBlock(BLOCK_ENDER_SAPLING.setRegistryName(InspiringTech.MODID, "ender_sapling"));
+        registerBlock(BLOCK_ENDER_WINE.setRegistryName(InspiringTech.MODID, "ender_vine"));
 
-        OreDictionary.registerOre("treeLeaves", blockEnderLeaves);
-        OreDictionary.registerOre("vine", blockEnderVine);
+        OreDictionary.registerOre("treeLeaves", BLOCK_ENDER_LEAVES);
+        OreDictionary.registerOre("vine", BLOCK_ENDER_WINE);
     }
 
     private static void registerBlock(Block block, ItemBlock itemBlock) {
@@ -54,6 +55,6 @@ public class IWTechBlocks {
     }
 
     private static void registerBlock(Block block) {
-        IWTechBlocks.registerBlock(block, new ItemBlock(block));
+        registerBlock(block, new ItemBlock(block));
     }
 }

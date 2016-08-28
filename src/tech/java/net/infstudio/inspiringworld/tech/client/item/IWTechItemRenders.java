@@ -25,16 +25,16 @@ import net.minecraftforge.client.model.ModelLoader;
 public class IWTechItemRenders {
 
     public static void preInit() {
-        IWTechItemRenders.registerItemRender(IWTechItems.abyssHelmet);
-        IWTechItemRenders.registerItemRender(IWTechItems.abyssChestplate);
-        IWTechItemRenders.registerItemRender(IWTechItems.abyssLeggings);
-        IWTechItemRenders.registerItemRender(IWTechItems.abyssBoots);
+        registerItemRender(IWTechItems.ABYSS_HELMET);
+        registerItemRender(IWTechItems.ABYSS_CHESTPLATE);
+        registerItemRender(IWTechItems.ABYSS_LEGGINGS);
+        registerItemRender(IWTechItems.ABYSS_BOOTS);
 
-        IWTechItemRenders.registerItemRender(IWTechItems.controller, 0, "source_controller");
-        IWTechItemRenders.registerItemRender(IWTechItems.controller, 1, "abyss_controller");
-        IWTechItemRenders.registerItemRender(IWTechItems.sourceBomb);
+        registerItemRender(IWTechItems.CONTROLLER, 0, "source_controller");
+        registerItemRender(IWTechItems.CONTROLLER, 1, "abyss_controller");
+        registerItemRender(IWTechItems.SOURCE_BOMB);
 
-        IWTechItemRenders.registerItemRender(IWTechBlocks.blockSourceLight);
+        registerItemRender(IWTechBlocks.BLOCK_SOURCE_LIGHT);
     }
 
     private static void registerItemRender(Item item, int meta, String location) {
@@ -43,14 +43,14 @@ public class IWTechItemRenders {
     }
 
     private static void registerItemRender(Block block, int meta, String location) {
-        IWTechItemRenders.registerItemRender(Item.getItemFromBlock(block), meta, location);
+        registerItemRender(Item.getItemFromBlock(block), meta, location);
     }
 
     private static void registerItemRender(Item item) {
-        IWTechItemRenders.registerItemRender(item, 0, item.getRegistryName().getResourcePath());
+        registerItemRender(item, 0, item.getRegistryName().getResourcePath());
     }
 
     private static void registerItemRender(Block block) {
-        IWTechItemRenders.registerItemRender(block, 0, block.getRegistryName().getResourcePath());
+        registerItemRender(block, 0, block.getRegistryName().getResourcePath());
     }
 }

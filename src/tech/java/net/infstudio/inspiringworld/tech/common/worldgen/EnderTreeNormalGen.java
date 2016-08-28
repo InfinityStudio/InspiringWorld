@@ -35,7 +35,7 @@ public class EnderTreeNormalGen extends WorldGenTrees {
         this.metaWood = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
         this.oakLeaves = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT,
             BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, false);
-        this.enderLeaves = IWTechBlocks.blockEnderLeaves.getDefaultState();
+        this.enderLeaves = IWTechBlocks.BLOCK_ENDER_LEAVES.getDefaultState();
     }
 
     @Override

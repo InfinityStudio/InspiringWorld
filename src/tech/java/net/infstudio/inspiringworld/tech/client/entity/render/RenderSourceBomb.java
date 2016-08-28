@@ -10,6 +10,6 @@ public class RenderSourceBomb extends RenderSnowball<EntitySourceBomb>
 {
     public RenderSourceBomb(RenderManager renderManagerIn)
     {
-        super(renderManagerIn, IWTechItems.sourceBomb, Minecraft.getMinecraft().getRenderItem());
+        super(renderManagerIn, IWTechItems.SOURCE_BOMB, Minecraft.getMinecraft().getRenderItem());
     }
 }

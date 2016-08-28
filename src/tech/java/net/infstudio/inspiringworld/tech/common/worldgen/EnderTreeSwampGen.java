@@ -28,7 +28,7 @@ class EnderTreeSwampGen extends WorldGenSwamp {
         Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK)
         .withProperty(BlockOldLeaf.CHECK_DECAY, false);
     private static final IBlockState ENDER_LEAF =
-        IWTechBlocks.blockEnderLeaves.getDefaultState().withProperty(BlockOldLeaf.CHECK_DECAY, false);
+        IWTechBlocks.BLOCK_ENDER_LEAVES.getDefaultState().withProperty(BlockOldLeaf.CHECK_DECAY, false);
 
     EnderTreeSwampGen() {
         super();
@@ -172,7 +172,7 @@ class EnderTreeSwampGen extends WorldGenSwamp {
     }
 
     private void addVine(World worldIn, BlockPos pos, PropertyBool prop, boolean ender) {
-        IBlockState iblockstate = ender ? IWTechBlocks.blockEnderVine.getDefaultState().withProperty(prop, true) :
+        IBlockState iblockstate = ender ? IWTechBlocks.BLOCK_ENDER_WINE.getDefaultState().withProperty(prop, true) :
             Blocks.VINE.getDefaultState().withProperty(prop, true);
         this.setBlockAndNotifyAdequately(worldIn, pos, iblockstate);
         int i = 4;

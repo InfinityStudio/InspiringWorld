@@ -10,7 +10,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class IWTechTileEntities {
 
     public static void preInit() {
-        IWTechTileEntities.registerTileEntity(TileEntitySourceLight.class, "SourceLight");
+        registerTileEntity(TileEntitySourceLight.class, "SourceLight");
+        registerTileEntity(TileEntityIWAntenna.class, "IWAntenna");
     }
 
     public static void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id)

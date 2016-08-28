@@ -36,7 +36,7 @@ public class BlockEnderLeaves extends BlockLeaves {
                 for (int k = -4; k <= 4; ++k)
                     if (event.getWorld().getBlockState(
                         new BlockPos(event.getX() + i, event.getY() + j, event.getZ() + k)).getBlock()
-                        .equals(IWTechBlocks.blockEnderLeaves))
+                        .equals(IWTechBlocks.BLOCK_ENDER_LEAVES))
                         return;
         // Without nearby ender leaves, 50% chance to cancel it.
         if (event.getWorld().rand.nextBoolean()) {
