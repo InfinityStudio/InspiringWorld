@@ -21,7 +21,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 public class IWTechCreativeTabs {
-    public static final CreativeTabs general = new CreativeTabs("inspiringtech") {
+    public static final CreativeTabs GENERAL = new CreativeTabs("inspiringtech") {
         @Override
         public Item getTabIconItem() {
             return IWTechItems.CONTROLLER;
@@ -29,14 +29,18 @@ public class IWTechCreativeTabs {
     };
 
     public static void preInit() {
-        IWTechItems.CONTROLLER.setCreativeTab(IWTechCreativeTabs.general);
-        IWTechItems.SOURCE_BOMB.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.CONTROLLER.setCreativeTab(GENERAL);
+        IWTechItems.SOURCE_BOMB.setCreativeTab(GENERAL);
 
-        IWTechItems.ABYSS_HELMET.setCreativeTab(IWTechCreativeTabs.general);
-        IWTechItems.ABYSS_CHESTPLATE.setCreativeTab(IWTechCreativeTabs.general);
-        IWTechItems.ABYSS_LEGGINGS.setCreativeTab(IWTechCreativeTabs.general);
-        IWTechItems.ABYSS_BOOTS.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechItems.ABYSS_HELMET.setCreativeTab(GENERAL);
+        IWTechItems.ABYSS_CHESTPLATE.setCreativeTab(GENERAL);
+        IWTechItems.ABYSS_LEGGINGS.setCreativeTab(GENERAL);
+        IWTechItems.ABYSS_BOOTS.setCreativeTab(GENERAL);
 
-        IWTechBlocks.BLOCK_SOURCE_LIGHT.setCreativeTab(IWTechCreativeTabs.general);
+        IWTechBlocks.BLOCK_SOURCE_LIGHT.setCreativeTab(GENERAL);
+
+        IWTechBlocks.BLOCK_ANTENNA.setCreativeTab(GENERAL);
+        IWTechBlocks.BLOCK_SOURCE_ANTENNA.setCreativeTab(GENERAL);
+        IWTechBlocks.BLOCK_ABYSS_ANTENNA.setCreativeTab(GENERAL);
     }
 }

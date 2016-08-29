@@ -1,0 +1,16 @@
+{
+    "forge_marker": 1,
+    "default": {
+        "model": "end_rod"
+    },
+    "variants": {
+        "facing": {
+            "up": {},
+            "down": { "x": 180 },
+            "east": { "y": 90, "x": 90 },
+            "south": { "y": 180, "x": 90 },
+            "west": { "y": 270, "x": 90 },
+            "north": { "y": 0, "x": 90 }
+        }
+    }
+}

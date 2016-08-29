@@ -35,6 +35,10 @@ public class IWTechItemRenders {
         registerItemRender(IWTechItems.SOURCE_BOMB);
 
         registerItemRender(IWTechBlocks.BLOCK_SOURCE_LIGHT);
+
+        registerItemRender(IWTechBlocks.BLOCK_ANTENNA);
+        registerItemRender(IWTechBlocks.BLOCK_ABYSS_ANTENNA);
+        registerItemRender(IWTechBlocks.BLOCK_SOURCE_ANTENNA);
     }
 
     private static void registerItemRender(Item item, int meta, String location) {
