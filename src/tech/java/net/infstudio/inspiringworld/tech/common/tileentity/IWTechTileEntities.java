@@ -11,7 +11,9 @@ public class IWTechTileEntities {
 
     public static void preInit() {
         registerTileEntity(TileEntitySourceLight.class, "SourceLight");
-        registerTileEntity(TileEntityIWAntenna.class, "IWAntenna");
+        registerTileEntity(TileEntityAntenna.class, "Antenna");
+        registerTileEntity(TileEntitySourceAntenna.class, "SourceAntenna");
+        registerTileEntity(TileEntityAbyssAntenna.class, "AbyssAntenna");
     }
 
     public static void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id)

@@ -37,13 +37,18 @@ public class IWTechBlocks {
     public static final BlockEnderLeaves BLOCK_ENDER_LEAVES = new BlockEnderLeaves();
     public static final BlockEnderSapling BLOCK_ENDER_SAPLING = new BlockEnderSapling();
     public static final BlockEnderVine BLOCK_ENDER_WINE = new BlockEnderVine();
-    public static final BlockIWAntenna blockIWAntenna = new BlockIWAntenna();
+    public static final BlockAntenna BLOCK_ANTENNA = new BlockAntenna();
+    public static final BlockSourceAntenna BLOCK_SOURCE_ANTENNA = new BlockSourceAntenna();
+    public static final BlockAbyssAntenna BLOCK_ABYSS_ANTENNA = new BlockAbyssAntenna();
 
     public static void preInit() {
         registerBlock(BLOCK_SOURCE_LIGHT.setRegistryName(InspiringTech.MODID, "source_light"));
         registerBlock(BLOCK_ENDER_LEAVES.setRegistryName(InspiringTech.MODID, "ender_leaves"));
         registerBlock(BLOCK_ENDER_SAPLING.setRegistryName(InspiringTech.MODID, "ender_sapling"));
         registerBlock(BLOCK_ENDER_WINE.setRegistryName(InspiringTech.MODID, "ender_vine"));
+        registerBlock(BLOCK_ANTENNA.setRegistryName(InspiringTech.MODID, "antenna"));
+        registerBlock(BLOCK_SOURCE_ANTENNA.setRegistryName(InspiringTech.MODID, "source_antenna"));
+        registerBlock(BLOCK_ABYSS_ANTENNA.setRegistryName(InspiringTech.MODID, "abyss_antenna"));
 
         OreDictionary.registerOre("treeLeaves", BLOCK_ENDER_LEAVES);
         OreDictionary.registerOre("vine", BLOCK_ENDER_WINE);

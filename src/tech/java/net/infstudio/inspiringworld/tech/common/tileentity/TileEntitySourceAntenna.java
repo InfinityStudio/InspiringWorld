@@ -3,7 +3,7 @@ package net.infstudio.inspiringworld.tech.common.tileentity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 
-public class TileEntityIWAntenna extends TileEntity implements ITickable {
+public class TileEntitySourceAntenna extends TileEntity implements ITickable {
 
     @Override
     public void update() {
