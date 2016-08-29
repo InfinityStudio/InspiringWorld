@@ -5,9 +5,9 @@ package net.infstudio.inspiringworld.tech.api.energy.network;
  */
 public interface INetworkGraphVertex extends INetworkGraphVertexIn, INetworkGraphVertexOut {
     /**
-     Set energy flow passing this vertex. This method is called by the controller of this network, to tell the vertex
-     to deal with it's own work.
-     @param passed The size of energy flow.
+     Append extra energy flow passing this vertex. This method is called by the source of this one extensible path, to
+     tell the vertex to deal with it's own work.
+     @param passing The size of energy flow.
      */
-    void setPass(int passed);
+    void appendPass(int passing);
 }
