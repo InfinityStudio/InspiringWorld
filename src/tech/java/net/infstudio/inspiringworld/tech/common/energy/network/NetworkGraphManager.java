@@ -82,6 +82,8 @@ public class NetworkGraphManager {
      @param edge The edge to remove. Must be connected in a network when call this.
      */
     public static void removeEdge(INetworkGraphEdge edge) {
+        setToUpdateFromVertex(edge.getStart());
+
         edge.getStart().getEdgesOut().remove(edge);
         edge.getEnd().getEdgesIn().remove(edge);
 
@@ -124,6 +126,29 @@ public class NetworkGraphManager {
                     next.setPathPrevious(e);
                     bfsQueue.add(next);
                 }
+        }
+    }
+
+    /**
+     Update network start from specified vertex.
+     @param vertex Specified vertex in the network.
+     */
+    public static void setToUpdateFromVertex(INetworkGraphVertexBase vertex) {
+        bfsQueue.clear();
+        bfsQueue.add(vertex);
+        while (!bfsQueue.isEmpty()) {
+            INetworkGraphVertexBase v = bfsQueue.poll();
+            if (v instanceof INetworkGraphSource) {
+                ((INetworkGraphSource) v).setToUpdate(true);
+            }
+            if (v instanceof INetworkGraphVertexIn)
+                for (INetworkGraphEdge e : ((INetworkGraphVertexIn)v).getEdgesIn())
+                    if (v.getPathPrevious() != e)
+                        bfsQueue.add(e.getStart());
+            if (v instanceof INetworkGraphVertexOut)
+                for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut())
+                    if (v.getPathPrevious() != e)
+                        bfsQueue.add(e.getEnd());
         }
     }
 }
