@@ -3,7 +3,14 @@ package net.infstudio.inspiringworld.tech.common.energy.network;
 import java.util.Queue;
 
 import com.google.common.collect.Queues;
-import net.infstudio.inspiringworld.tech.api.energy.network.*;
+
+import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphAbyss;
+import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphEdge;
+import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphSource;
+import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphVertex;
+import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphVertexBase;
+import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphVertexIn;
+import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphVertexOut;
 
 /**
  * @author Blealtan
@@ -18,7 +25,9 @@ public class NetworkGraphManager {
      @param source The source node to update from
      */
     public static void updateFromSource(INetworkGraphSource source) {
-        if (!source.toUpdate()) return;
+        if (!source.toUpdate()) {
+            return;
+        }
 
         bfsQueue.clear();
         source.setPathPrevious(null);
@@ -40,27 +49,37 @@ public class NetworkGraphManager {
                 while (prev != null) {
                     if (prev.getEnd() == v1) {
                         // Append Consume Ratio
-                        if (flag) consume += v1.getConsumeRatio();
+                        if (flag) {
+                            consume += v1.getConsumeRatio();
+                        }
                         // Update Max Extend
-                        if (maxExtend > prev.getCapacity() - prev.getCurrent())
+                        if (maxExtend > prev.getCapacity() - prev.getCurrent()) {
                             maxExtend = prev.getCapacity() - prev.getCurrent();
+                        }
                         flag = true;
                         v1 = prev.getStart();
                     } else {
                         // Append Consume Ratio
-                        if (!flag) consume -= v1.getConsumeRatio();
+                        if (!flag) {
+                            consume -= v1.getConsumeRatio();
+                        }
                         // Update Max Extend
-                        if (maxExtend > prev.getCurrent())
+                        if (maxExtend > prev.getCurrent()) {
                             maxExtend = prev.getCurrent();
+                        }
                         flag = false;
                         v1 = prev.getEnd();
                     }
                     prev = v1.getPathPrevious();
-                    if (maxExtend == 0) break;
+                    if (maxExtend == 0) {
+                        break;
+                    }
                 }
 
                 // If no available space for larger flow, leave this path behind
-                if (maxExtend == 0) continue;
+                if (maxExtend == 0) {
+                    continue;
+                }
 
                 // Apply it
                 INetworkGraphVertexBase v2 = v;
@@ -68,12 +87,16 @@ public class NetworkGraphManager {
                 prev = v2.getPathPrevious();
                 while (prev != null) {
                     if (prev.getEnd() == v2) {
-                        if (flag && v2 instanceof INetworkGraphVertex) ((INetworkGraphVertex) v2).appendPass(maxExtend);
+                        if (flag && v2 instanceof INetworkGraphVertex) {
+                            ((INetworkGraphVertex) v2).appendPass(maxExtend);
+                        }
                         prev.setCurrent(prev.getCurrent() + maxExtend);
                         flag = true;
                         v2 = prev.getStart();
                     } else {
-                        if (flag && v2 instanceof INetworkGraphVertex) ((INetworkGraphVertex) v2).appendPass(-maxExtend);
+                        if (flag && v2 instanceof INetworkGraphVertex) {
+                            ((INetworkGraphVertex) v2).appendPass(-maxExtend);
+                        }
                         prev.setCurrent(prev.getCurrent() - maxExtend);
                         flag = false;
                         v2 = prev.getEnd();
@@ -88,20 +111,24 @@ public class NetworkGraphManager {
                 source.setToUpdate(true);
                 return;
             }
-            if (v instanceof INetworkGraphVertexIn)
-                for (INetworkGraphEdge e : ((INetworkGraphVertexIn)v).getEdgesIn())
+            if (v instanceof INetworkGraphVertexIn) {
+                for (INetworkGraphEdge e : ((INetworkGraphVertexIn)v).getEdgesIn()) {
                     if (v.getPathPrevious() != e) {
                         INetworkGraphVertexBase next = e.getStart();
                         next.setPathPrevious(e);
                         bfsQueue.add(next);
                     }
-            if (v instanceof INetworkGraphVertexOut)
-                for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut())
+                }
+            }
+            if (v instanceof INetworkGraphVertexOut) {
+                for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut()) {
                     if (v.getPathPrevious() != e) {
                         INetworkGraphVertexBase next = e.getEnd();
                         next.setPathPrevious(e);
                         bfsQueue.add(next);
                     }
+                }
+            }
         }
         source.setToUpdate(false);
     }
@@ -125,16 +152,18 @@ public class NetworkGraphManager {
                 ((INetworkGraphSource) v).setToUpdate(true);
                 for (INetworkGraphEdge prev = v.getPathPrevious();
                      prev != null;
-                     prev = prev.getEnd().getPathPrevious())
+                     prev = prev.getEnd().getPathPrevious()) {
                     prev.setCurrent(prev.getCurrent() - edge.getCurrent());
+                }
                 break;
             }
-            if (v instanceof INetworkGraphVertexIn)
+            if (v instanceof INetworkGraphVertexIn) {
                 for (INetworkGraphEdge e : ((INetworkGraphVertexIn)v).getEdgesIn()) {
                     INetworkGraphVertexBase next = e.getStart();
                     next.setPathPrevious(e);
                     bfsQueue.add(next);
                 }
+            }
         }
 
         bfsQueue.clear();
@@ -145,16 +174,18 @@ public class NetworkGraphManager {
             if (v instanceof INetworkGraphAbyss) {
                 for (INetworkGraphEdge prev = v.getPathPrevious();
                      prev != null;
-                     prev = prev.getStart().getPathPrevious())
+                     prev = prev.getStart().getPathPrevious()) {
                     prev.setCurrent(prev.getCurrent() - edge.getCurrent());
+                }
                 break;
             }
-            if (v instanceof INetworkGraphVertexOut)
+            if (v instanceof INetworkGraphVertexOut) {
                 for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut()) {
                     INetworkGraphVertexBase next = e.getEnd();
                     next.setPathPrevious(e);
                     bfsQueue.add(next);
                 }
+            }
         }
     }
 
@@ -170,14 +201,20 @@ public class NetworkGraphManager {
             if (v instanceof INetworkGraphSource) {
                 ((INetworkGraphSource) v).setToUpdate(true);
             }
-            if (v instanceof INetworkGraphVertexIn)
-                for (INetworkGraphEdge e : ((INetworkGraphVertexIn)v).getEdgesIn())
-                    if (v.getPathPrevious() != e)
+            if (v instanceof INetworkGraphVertexIn) {
+                for (INetworkGraphEdge e : ((INetworkGraphVertexIn)v).getEdgesIn()) {
+                    if (v.getPathPrevious() != e) {
                         bfsQueue.add(e.getStart());
-            if (v instanceof INetworkGraphVertexOut)
-                for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut())
-                    if (v.getPathPrevious() != e)
+                    }
+                }
+            }
+            if (v instanceof INetworkGraphVertexOut) {
+                for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut()) {
+                    if (v.getPathPrevious() != e) {
                         bfsQueue.add(e.getEnd());
+                    }
+                }
+            }
         }
     }
 }
