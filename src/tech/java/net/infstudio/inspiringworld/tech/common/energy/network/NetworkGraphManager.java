@@ -3,8 +3,10 @@ package net.infstudio.inspiringworld.tech.common.energy.network;
 import java.util.Queue;
 import java.util.Set;
 
+import com.google.common.base.Predicate;
 import com.google.common.collect.Queues;
 import com.google.common.collect.Sets;
+
 import net.infstudio.inspiringworld.tech.api.energy.network.*;
 
 /**
@@ -228,6 +230,39 @@ public class NetworkGraphManager {
             }
             if (v instanceof INetworkGraphVertexOut) {
                 for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut()) {
+                    INetworkGraphVertexBase next = e.getEnd();
+                    if (!bfsVisited.contains(next)) {
+                        bfsQueue.add(next);
+                        bfsVisited.add(next);
+                    }
+                }
+            }
+        }
+
+        bfsVisited.clear();
+        bfsQueue.clear();
+    }
+
+    public static void bfsForEach(INetworkGraphVertexBase vertex, Predicate<? super INetworkGraphVertexBase> function) {
+        bfsQueue.add(vertex);
+        bfsVisited.add(vertex);
+
+        while (!bfsQueue.isEmpty()) {
+            INetworkGraphVertexBase v = bfsQueue.poll();
+            if (!function.apply(v)) {
+                break;
+            }
+            if (v instanceof INetworkGraphVertexIn) {
+                for (INetworkGraphEdge e : ((INetworkGraphVertexIn) v).getEdgesIn()) {
+                    INetworkGraphVertexBase next = e.getStart();
+                    if (!bfsVisited.contains(next)) {
+                        bfsQueue.add(next);
+                        bfsVisited.add(next);
+                    }
+                }
+            }
+            if (v instanceof INetworkGraphVertexOut) {
+                for (INetworkGraphEdge e : ((INetworkGraphVertexOut) v).getEdgesOut()) {
                     INetworkGraphVertexBase next = e.getEnd();
                     if (!bfsVisited.contains(next)) {
                         bfsQueue.add(next);
