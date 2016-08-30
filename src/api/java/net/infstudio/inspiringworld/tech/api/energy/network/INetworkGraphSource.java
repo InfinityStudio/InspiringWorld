@@ -9,4 +9,6 @@ public interface INetworkGraphSource extends INetworkGraphVertexOut {
     void setToUpdate(boolean toUpdate);
 
     void appendConsume(int extra);
+
+    int getConsume();
 }

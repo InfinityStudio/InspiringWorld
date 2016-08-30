@@ -10,4 +10,6 @@ public interface INetworkGraphVertex extends INetworkGraphVertexIn, INetworkGrap
      @param passing The size of energy flow.
      */
     void appendPass(int passing);
+
+    int getPass();
 }

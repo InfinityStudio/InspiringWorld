@@ -3,7 +3,6 @@ package net.infstudio.inspiringworld.tech.common.tileentity;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
-
 import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphEdge;
 import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphSource;
 import net.infstudio.inspiringworld.tech.common.capability.IWTechCapablilties;
@@ -53,7 +52,6 @@ public class TileEntitySourceAntenna extends TileEntity implements ITickable {
         @Override
         public void setToUpdate(boolean b) {
             this.toUpdate = b;
-
         }
 
         @Override
@@ -61,6 +59,10 @@ public class TileEntitySourceAntenna extends TileEntity implements ITickable {
             TileEntitySourceAntenna.this.out += extra;
         }
 
+        @Override
+        public int getConsume() {
+            return TileEntitySourceAntenna.this.out;
+        }
     }
 
     @Override
