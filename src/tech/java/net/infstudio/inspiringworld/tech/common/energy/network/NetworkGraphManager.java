@@ -27,31 +27,33 @@ public class NetworkGraphManager {
 
             if (v instanceof INetworkGraphAbyss) {
                 int consume = 0;
-                boolean flag = true; // Last edge: Forward true, Backward false
+                INetworkGraphEdge prev;
+                boolean flag; // Last edge: Forward true, Backward false
                 int maxExtend = Integer.MAX_VALUE;
 
                 // Get max extending size
                 INetworkGraphVertexBase v1 = v;
-                INetworkGraphEdge prev1 = v1.getPathPrevious();
-                while (prev1 != null) {
-                    if (prev1.getEnd() == v1) {
+                flag = true;
+                prev = v1.getPathPrevious();
+                while (prev != null) {
+                    if (prev.getEnd() == v1) {
                         // Append Consume Ratio
                         if (flag) consume += v1.getConsumeRatio();
                         // Update Max Extend
-                        if (maxExtend > prev1.getCapacity() - prev1.getCurrent())
-                            maxExtend = prev1.getCapacity() - prev1.getCurrent();
+                        if (maxExtend > prev.getCapacity() - prev.getCurrent())
+                            maxExtend = prev.getCapacity() - prev.getCurrent();
                         flag = true;
-                        v1 = prev1.getStart();
+                        v1 = prev.getStart();
                     } else {
                         // Append Consume Ratio
                         if (!flag) consume -= v1.getConsumeRatio();
                         // Update Max Extend
-                        if (maxExtend > prev1.getCurrent())
-                            maxExtend = prev1.getCurrent();
+                        if (maxExtend > prev.getCurrent())
+                            maxExtend = prev.getCurrent();
                         flag = false;
-                        v1 = prev1.getEnd();
+                        v1 = prev.getEnd();
                     }
-                    prev1 = v1.getPathPrevious();
+                    prev = v1.getPathPrevious();
                     if (maxExtend == 0) break;
                 }
 
@@ -60,16 +62,21 @@ public class NetworkGraphManager {
 
                 // Apply it
                 INetworkGraphVertexBase v2 = v;
-                INetworkGraphEdge prev2 = v2.getPathPrevious();
-                while (prev2 != null) {
-                    if (prev2.getEnd() == v2) {
-                        prev2.setCurrent(prev2.getCurrent() + maxExtend);
-                        v2 = prev2.getStart();
+                flag = true;
+                prev = v2.getPathPrevious();
+                while (prev != null) {
+                    if (prev.getEnd() == v2) {
+                        if (flag && v2 instanceof INetworkGraphVertex) ((INetworkGraphVertex) v2).appendPass(maxExtend);
+                        prev.setCurrent(prev.getCurrent() + maxExtend);
+                        flag = true;
+                        v2 = prev.getStart();
                     } else {
-                        prev2.setCurrent(prev2.getCurrent() - maxExtend);
-                        v2 = prev2.getEnd();
+                        if (flag && v2 instanceof INetworkGraphVertex) ((INetworkGraphVertex) v2).appendPass(-maxExtend);
+                        prev.setCurrent(prev.getCurrent() - maxExtend);
+                        flag = false;
+                        v2 = prev.getEnd();
                     }
-                    prev2 = v2.getPathPrevious();
+                    prev = v2.getPathPrevious();
                 }
 
                 consume += source.getConsumeRatio();
