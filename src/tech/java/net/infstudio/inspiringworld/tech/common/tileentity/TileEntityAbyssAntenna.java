@@ -3,12 +3,14 @@ package net.infstudio.inspiringworld.tech.common.tileentity;
 import java.util.Set;
 
 import com.google.common.collect.Sets;
+
 import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphAbyss;
 import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphEdge;
 import net.infstudio.inspiringworld.tech.common.capability.IWTechCapablilties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 
 public class TileEntityAbyssAntenna extends TileEntity implements ITickable {
@@ -46,6 +48,11 @@ public class TileEntityAbyssAntenna extends TileEntity implements ITickable {
         @Override
         public void appendConsume(int extra) {
             TileEntityAbyssAntenna.this.in += extra;
+        }
+
+        @Override
+        public BlockPos getPosition() {
+            return TileEntityAbyssAntenna.this.pos;
         }
 
         @Override
