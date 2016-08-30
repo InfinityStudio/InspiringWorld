@@ -10,6 +10,8 @@ import net.infstudio.inspiringworld.tech.api.energy.network.*;
  */
 public class NetworkGraphManager {
 
+    private NetworkGraphManager() {}
+
     private static Queue<INetworkGraphVertexBase> bfsQueue = Queues.newArrayDeque();
 
     /**
