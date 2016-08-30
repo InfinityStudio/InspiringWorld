@@ -35,6 +35,8 @@ public class IWTechItems {
     public static final Item ENDER_INGOT = new Item().setUnlocalizedName(InspiringTech.MODID + "." + "ingotEnder");
     public static final Item ENDER_POWDER = new Item().setUnlocalizedName(InspiringTech.MODID + "." + "powderEnder");
 
+    public static final Item ENERGY_NETWORK_DEBUGGER = new ItemEnergyNetworkDebugger();
+
     public static void preInit() {
         registerItem(ABYSS_HELMET.setRegistryName(InspiringTech.MODID, "abyss_helmet"));
         registerItem(ABYSS_CHESTPLATE.setRegistryName(InspiringTech.MODID, "abyss_chestplate"));
@@ -46,6 +48,8 @@ public class IWTechItems {
 
         registerItem(ENDER_INGOT.setRegistryName(InspiringTech.MODID, "ender_ingot"));
         registerItem(ENDER_POWDER.setRegistryName(InspiringTech.MODID, "ender_powder"));
+
+        registerItem(ENERGY_NETWORK_DEBUGGER.setRegistryName(InspiringTech.MODID, "energy_network_debugger"));
 
         OreDictionary.registerOre("ingotEnder", ENDER_INGOT);
         OreDictionary.registerOre("powderEnder", ENDER_POWDER);
