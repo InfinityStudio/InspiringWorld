@@ -1,16 +1,11 @@
 package net.infstudio.inspiringworld.tech.common.energy.network;
 
 import java.util.Queue;
+import java.util.Set;
 
 import com.google.common.collect.Queues;
-
-import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphAbyss;
-import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphEdge;
-import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphSource;
-import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphVertex;
-import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphVertexBase;
-import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphVertexIn;
-import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphVertexOut;
+import com.google.common.collect.Sets;
+import net.infstudio.inspiringworld.tech.api.energy.network.*;
 
 /**
  * @author Blealtan
@@ -20,6 +15,7 @@ public class NetworkGraphManager {
     private NetworkGraphManager() {}
 
     private static Queue<INetworkGraphVertexBase> bfsQueue = Queues.newArrayDeque();
+    private static Set<INetworkGraphVertexBase> bfsVisited = Sets.newLinkedHashSet();
 
     /**
      @param source The source node to update from
@@ -29,9 +25,9 @@ public class NetworkGraphManager {
             return;
         }
 
-        bfsQueue.clear();
         source.setPathPrevious(null);
         bfsQueue.add(source);
+        bfsVisited.add(source);
 
         while (!bfsQueue.isEmpty()) {
             INetworkGraphVertexBase v = bfsQueue.poll();
@@ -109,28 +105,36 @@ public class NetworkGraphManager {
                 source.appendConsume(consume);
                 ((INetworkGraphAbyss) v).appendConsume(consume);
                 source.setToUpdate(true);
+
+                bfsVisited.clear();
+                bfsQueue.clear();
                 return;
             }
             if (v instanceof INetworkGraphVertexIn) {
                 for (INetworkGraphEdge e : ((INetworkGraphVertexIn)v).getEdgesIn()) {
-                    if (v.getPathPrevious() != e) {
-                        INetworkGraphVertexBase next = e.getStart();
+                    INetworkGraphVertexBase next = e.getStart();
+                    if (!bfsVisited.contains(next)) {
                         next.setPathPrevious(e);
                         bfsQueue.add(next);
+                        bfsVisited.add(next);
                     }
                 }
             }
             if (v instanceof INetworkGraphVertexOut) {
                 for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut()) {
-                    if (v.getPathPrevious() != e) {
-                        INetworkGraphVertexBase next = e.getEnd();
+                    INetworkGraphVertexBase next = e.getEnd();
+                    if (!bfsVisited.contains(next)) {
                         next.setPathPrevious(e);
                         bfsQueue.add(next);
+                        bfsVisited.add(next);
                     }
                 }
             }
         }
         source.setToUpdate(false);
+
+        bfsVisited.clear();
+        bfsQueue.clear();
     }
 
     /**
@@ -143,13 +147,13 @@ public class NetworkGraphManager {
         edge.getStart().getEdgesOut().remove(edge);
         edge.getEnd().getEdgesIn().remove(edge);
 
-        bfsQueue.clear();
         edge.getStart().setPathPrevious(null);
+
         bfsQueue.add(edge.getStart());
+        bfsVisited.add(edge.getStart());
         while (!bfsQueue.isEmpty()) {
             INetworkGraphVertexBase v = bfsQueue.poll();
             if (v instanceof INetworkGraphSource) {
-                ((INetworkGraphSource) v).setToUpdate(true);
                 for (INetworkGraphEdge prev = v.getPathPrevious();
                      prev != null;
                      prev = prev.getEnd().getPathPrevious()) {
@@ -160,15 +164,21 @@ public class NetworkGraphManager {
             if (v instanceof INetworkGraphVertexIn) {
                 for (INetworkGraphEdge e : ((INetworkGraphVertexIn)v).getEdgesIn()) {
                     INetworkGraphVertexBase next = e.getStart();
-                    next.setPathPrevious(e);
-                    bfsQueue.add(next);
+                    if (!bfsVisited.contains(next)) {
+                        next.setPathPrevious(e);
+                        bfsQueue.add(next);
+                        bfsVisited.add(next);
+                    }
                 }
             }
         }
 
+        bfsVisited.clear();
         bfsQueue.clear();
+
         edge.getEnd().setPathPrevious(null);
         bfsQueue.add(edge.getEnd());
+        bfsVisited.add(edge.getEnd());
         while (!bfsQueue.isEmpty()) {
             INetworkGraphVertexBase v = bfsQueue.poll();
             if (v instanceof INetworkGraphAbyss) {
@@ -182,11 +192,17 @@ public class NetworkGraphManager {
             if (v instanceof INetworkGraphVertexOut) {
                 for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut()) {
                     INetworkGraphVertexBase next = e.getEnd();
-                    next.setPathPrevious(e);
-                    bfsQueue.add(next);
+                    if (!bfsVisited.contains(next)) {
+                        next.setPathPrevious(e);
+                        bfsQueue.add(next);
+                        bfsVisited.add(next);
+                    }
                 }
             }
         }
+
+        bfsVisited.clear();
+        bfsQueue.clear();
     }
 
     /**
@@ -194,8 +210,8 @@ public class NetworkGraphManager {
      @param vertex Specified vertex in the network.
      */
     public static void setToUpdateFromVertex(INetworkGraphVertexBase vertex) {
-        bfsQueue.clear();
         bfsQueue.add(vertex);
+        bfsVisited.add(vertex);
         while (!bfsQueue.isEmpty()) {
             INetworkGraphVertexBase v = bfsQueue.poll();
             if (v instanceof INetworkGraphSource) {
@@ -203,18 +219,25 @@ public class NetworkGraphManager {
             }
             if (v instanceof INetworkGraphVertexIn) {
                 for (INetworkGraphEdge e : ((INetworkGraphVertexIn)v).getEdgesIn()) {
-                    if (v.getPathPrevious() != e) {
-                        bfsQueue.add(e.getStart());
+                    INetworkGraphVertexBase next = e.getStart();
+                    if (!bfsVisited.contains(next)) {
+                        bfsQueue.add(next);
+                        bfsVisited.add(next);
                     }
                 }
             }
             if (v instanceof INetworkGraphVertexOut) {
                 for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut()) {
-                    if (v.getPathPrevious() != e) {
-                        bfsQueue.add(e.getEnd());
+                    INetworkGraphVertexBase next = e.getEnd();
+                    if (!bfsVisited.contains(next)) {
+                        bfsQueue.add(next);
+                        bfsVisited.add(next);
                     }
                 }
             }
         }
+
+        bfsVisited.clear();
+        bfsQueue.clear();
     }
 }
