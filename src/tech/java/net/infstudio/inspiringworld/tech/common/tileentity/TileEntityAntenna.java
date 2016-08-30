@@ -10,6 +10,7 @@ import net.infstudio.inspiringworld.tech.common.capability.IWTechCapablilties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 
 public class TileEntityAntenna extends TileEntity implements ITickable {
@@ -53,6 +54,11 @@ public class TileEntityAntenna extends TileEntity implements ITickable {
         @Override
         public void appendPass(int passing) {
             TileEntityAntenna.this.pass += passing;
+        }
+
+        @Override
+        public BlockPos getPosition() {
+            return TileEntityAntenna.this.pos;
         }
     }
 

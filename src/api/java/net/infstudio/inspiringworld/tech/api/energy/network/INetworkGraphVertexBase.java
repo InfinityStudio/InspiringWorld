@@ -2,6 +2,8 @@ package net.infstudio.inspiringworld.tech.api.energy.network;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.util.math.BlockPos;
+
 /**
  * @author Blealtan
  */
@@ -15,4 +17,6 @@ public interface INetworkGraphVertexBase {
     INetworkGraphEdge getPathPrevious();
 
     void setPathPrevious(@Nullable INetworkGraphEdge v);
+
+    BlockPos getPosition();
 }

@@ -10,6 +10,7 @@ import net.infstudio.inspiringworld.tech.common.capability.IWTechCapablilties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 
 public class TileEntitySourceAntenna extends TileEntity implements ITickable {
@@ -53,7 +54,6 @@ public class TileEntitySourceAntenna extends TileEntity implements ITickable {
         @Override
         public void setToUpdate(boolean b) {
             this.toUpdate = b;
-
         }
 
         @Override
@@ -61,6 +61,10 @@ public class TileEntitySourceAntenna extends TileEntity implements ITickable {
             TileEntitySourceAntenna.this.out += extra;
         }
 
+        @Override
+        public BlockPos getPosition() {
+            return TileEntitySourceAntenna.this.pos;
+        }
     }
 
     @Override
