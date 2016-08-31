@@ -95,7 +95,7 @@ public class TileEntityAbyssAntenna extends TileEntity implements ITickable {
         // get producer
         EnumFacing facing = this.worldObj.getBlockState(this.pos).getValue(IWTechBlocks.FACING);
         TileEntity tileEntity = this.worldObj.getTileEntity(this.pos.offset(facing.getOpposite()));
-        if (tileEntity == null || tileEntity.hasCapability(IWTechCapablilties.ABYSS_ENERGY_PRODUCER, facing)) {
+        if (tileEntity == null || !tileEntity.hasCapability(IWTechCapablilties.ABYSS_ENERGY_PRODUCER, facing)) {
             this.worldObj.destroyBlock(this.pos, true);
             return;
         }

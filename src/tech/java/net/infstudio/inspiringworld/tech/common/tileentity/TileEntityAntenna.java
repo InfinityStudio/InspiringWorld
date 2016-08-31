@@ -101,7 +101,7 @@ public class TileEntityAntenna extends TileEntity implements ITickable {
         // get consumer
         EnumFacing facing = this.worldObj.getBlockState(this.pos).getValue(IWTechBlocks.FACING);
         TileEntity tileEntity = this.worldObj.getTileEntity(this.pos.offset(facing.getOpposite()));
-        if (tileEntity == null || tileEntity.hasCapability(IWTechCapablilties.ENERGY_CONSUMER, facing)) {
+        if (tileEntity == null || !tileEntity.hasCapability(IWTechCapablilties.ENERGY_CONSUMER, facing)) {
             this.worldObj.destroyBlock(this.pos, true);
             return;
         }

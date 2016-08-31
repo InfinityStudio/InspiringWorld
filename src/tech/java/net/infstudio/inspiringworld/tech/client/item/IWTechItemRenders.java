@@ -39,6 +39,8 @@ public class IWTechItemRenders {
         registerItemRender(IWTechBlocks.BLOCK_ANTENNA);
         registerItemRender(IWTechBlocks.BLOCK_ABYSS_ANTENNA);
         registerItemRender(IWTechBlocks.BLOCK_SOURCE_ANTENNA);
+
+        registerItemRender(IWTechBlocks.BLOCK_INSPIRING_FURNACE);
     }
 
     private static void registerItemRender(Item item, int meta, String location) {

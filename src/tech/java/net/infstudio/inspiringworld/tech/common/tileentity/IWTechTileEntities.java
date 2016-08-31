@@ -14,10 +14,10 @@ public class IWTechTileEntities {
         registerTileEntity(TileEntityAntenna.class, "Antenna");
         registerTileEntity(TileEntitySourceAntenna.class, "SourceAntenna");
         registerTileEntity(TileEntityAbyssAntenna.class, "AbyssAntenna");
+        registerTileEntity(TileEntityInspiringFurnace.class, "InspiringFurnace");
     }
 
-    public static void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id)
-    {
+    public static void registerTileEntity(Class<? extends TileEntity> tileEntityClass, String id) {
         GameRegistry.registerTileEntity(tileEntityClass, InspiringTech.MODID + ":" + id);
     }
 }

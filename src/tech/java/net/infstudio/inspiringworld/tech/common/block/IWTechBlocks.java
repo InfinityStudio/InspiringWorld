@@ -29,6 +29,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class IWTechBlocks {
     public static final IProperty<EnumFacing> FACING = PropertyDirection.create("facing");
+    public static final IProperty<EnumFacing> HORIZON = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
     public static final IProperty<Boolean> WORKING = PropertyBool.create("working");
 
     public static final Material SOURCE_BLOCKS = new Material(MapColor.AIR);
@@ -37,9 +38,12 @@ public class IWTechBlocks {
     public static final BlockEnderLeaves BLOCK_ENDER_LEAVES = new BlockEnderLeaves();
     public static final BlockEnderSapling BLOCK_ENDER_SAPLING = new BlockEnderSapling();
     public static final BlockEnderVine BLOCK_ENDER_WINE = new BlockEnderVine();
+
     public static final BlockAntenna BLOCK_ANTENNA = new BlockAntenna();
     public static final BlockSourceAntenna BLOCK_SOURCE_ANTENNA = new BlockSourceAntenna();
     public static final BlockAbyssAntenna BLOCK_ABYSS_ANTENNA = new BlockAbyssAntenna();
+
+    public static final BlockInspiringFurnace BLOCK_INSPIRING_FURNACE = new BlockInspiringFurnace();
 
     public static void preInit() {
         registerBlock(BLOCK_SOURCE_LIGHT.setRegistryName(InspiringTech.MODID, "source_light"));
@@ -49,6 +53,7 @@ public class IWTechBlocks {
         registerBlock(BLOCK_ANTENNA.setRegistryName(InspiringTech.MODID, "antenna"));
         registerBlock(BLOCK_SOURCE_ANTENNA.setRegistryName(InspiringTech.MODID, "source_antenna"));
         registerBlock(BLOCK_ABYSS_ANTENNA.setRegistryName(InspiringTech.MODID, "abyss_antenna"));
+        registerBlock(BLOCK_INSPIRING_FURNACE.setRegistryName(InspiringTech.MODID, "inspiring_furnace"));
 
         OreDictionary.registerOre("treeLeaves", BLOCK_ENDER_LEAVES);
         OreDictionary.registerOre("vine", BLOCK_ENDER_WINE);

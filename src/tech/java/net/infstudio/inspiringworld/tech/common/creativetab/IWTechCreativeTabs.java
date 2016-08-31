@@ -42,5 +42,7 @@ public class IWTechCreativeTabs {
         IWTechBlocks.BLOCK_ANTENNA.setCreativeTab(GENERAL);
         IWTechBlocks.BLOCK_SOURCE_ANTENNA.setCreativeTab(GENERAL);
         IWTechBlocks.BLOCK_ABYSS_ANTENNA.setCreativeTab(GENERAL);
+
+        IWTechBlocks.BLOCK_INSPIRING_FURNACE.setCreativeTab(GENERAL);
     }
 }
