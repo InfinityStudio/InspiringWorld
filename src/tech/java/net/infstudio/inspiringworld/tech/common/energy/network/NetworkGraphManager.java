@@ -1,12 +1,12 @@
 package net.infstudio.inspiringworld.tech.common.energy.network;
 
+import javax.annotation.Nullable;
 import java.util.Queue;
 import java.util.Set;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Queues;
 import com.google.common.collect.Sets;
-
 import net.infstudio.inspiringworld.tech.api.energy.network.*;
 
 /**
@@ -18,6 +18,7 @@ public class NetworkGraphManager {
 
     private static Queue<INetworkGraphVertexBase> bfsQueue = Queues.newArrayDeque();
     private static Set<INetworkGraphVertexBase> bfsVisited = Sets.newLinkedHashSet();
+    private static int temp;
 
     /**
      @param source The source node to update from
@@ -29,7 +30,6 @@ public class NetworkGraphManager {
 
         source.setPathPrevious(null);
         bfsQueue.add(source);
-        bfsVisited.add(source);
 
         while (!bfsQueue.isEmpty()) {
             INetworkGraphVertexBase v = bfsQueue.poll();
@@ -108,35 +108,42 @@ public class NetworkGraphManager {
                 ((INetworkGraphAbyss) v).appendConsume(consume);
                 source.setToUpdate(true);
 
-                bfsVisited.clear();
                 bfsQueue.clear();
                 return;
             }
             if (v instanceof INetworkGraphVertexIn) {
                 for (INetworkGraphEdge e : ((INetworkGraphVertexIn)v).getEdgesIn()) {
                     INetworkGraphVertexBase next = e.getStart();
-                    if (!bfsVisited.contains(next)) {
+                    if (!onPath(v, next)) {
                         next.setPathPrevious(e);
                         bfsQueue.add(next);
-                        bfsVisited.add(next);
                     }
                 }
             }
             if (v instanceof INetworkGraphVertexOut) {
                 for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut()) {
                     INetworkGraphVertexBase next = e.getEnd();
-                    if (!bfsVisited.contains(next)) {
+                    if (!onPath(v, next)) {
                         next.setPathPrevious(e);
                         bfsQueue.add(next);
-                        bfsVisited.add(next);
                     }
                 }
             }
         }
         source.setToUpdate(false);
 
-        bfsVisited.clear();
         bfsQueue.clear();
+    }
+
+    private static boolean onPath(INetworkGraphVertexBase pathEnd, INetworkGraphVertexBase toCheck) {
+        while (pathEnd != toCheck) {
+            INetworkGraphEdge prev = pathEnd.getPathPrevious();
+            if (prev == null) {
+                return false;
+            }
+            pathEnd = prev.getStart() == pathEnd ? prev.getEnd() : prev.getStart();
+        }
+        return true;
     }
 
     /**
@@ -149,62 +156,37 @@ public class NetworkGraphManager {
         edge.getStart().getEdgesOut().remove(edge);
         edge.getEnd().getEdgesIn().remove(edge);
 
-        edge.getStart().setPathPrevious(null);
+        temp = edge.getCurrent();
 
-        bfsQueue.add(edge.getStart());
-        bfsVisited.add(edge.getStart());
-        while (!bfsQueue.isEmpty()) {
-            INetworkGraphVertexBase v = bfsQueue.poll();
-            if (v instanceof INetworkGraphSource) {
-                for (INetworkGraphEdge prev = v.getPathPrevious();
+        bfsForEachVertex(edge.getStart(), new Predicate<INetworkGraphVertexBase>() {
+            @Override
+            public boolean apply(@Nullable INetworkGraphVertexBase input) {
+                if (!(input instanceof INetworkGraphSource)) {
+                    return true;
+                }
+                for (INetworkGraphEdge prev = input.getPathPrevious();
                      prev != null;
                      prev = prev.getEnd().getPathPrevious()) {
-                    prev.setCurrent(prev.getCurrent() - edge.getCurrent());
+                    prev.setCurrent(prev.getCurrent() - temp);
                 }
-                break;
+                return false;
             }
-            if (v instanceof INetworkGraphVertexIn) {
-                for (INetworkGraphEdge e : ((INetworkGraphVertexIn)v).getEdgesIn()) {
-                    INetworkGraphVertexBase next = e.getStart();
-                    if (!bfsVisited.contains(next)) {
-                        next.setPathPrevious(e);
-                        bfsQueue.add(next);
-                        bfsVisited.add(next);
-                    }
+        }, NetworkIterateType.BACKWARD);
+
+        bfsForEachVertex(edge.getEnd(), new Predicate<INetworkGraphVertexBase>() {
+            @Override
+            public boolean apply(@Nullable INetworkGraphVertexBase input) {
+                if (!(input instanceof INetworkGraphAbyss)) {
+                    return true;
                 }
-            }
-        }
-
-        bfsVisited.clear();
-        bfsQueue.clear();
-
-        edge.getEnd().setPathPrevious(null);
-        bfsQueue.add(edge.getEnd());
-        bfsVisited.add(edge.getEnd());
-        while (!bfsQueue.isEmpty()) {
-            INetworkGraphVertexBase v = bfsQueue.poll();
-            if (v instanceof INetworkGraphAbyss) {
-                for (INetworkGraphEdge prev = v.getPathPrevious();
+                for (INetworkGraphEdge prev = input.getPathPrevious();
                      prev != null;
                      prev = prev.getStart().getPathPrevious()) {
-                    prev.setCurrent(prev.getCurrent() - edge.getCurrent());
+                    prev.setCurrent(prev.getCurrent() - temp);
                 }
-                break;
+                return false;
             }
-            if (v instanceof INetworkGraphVertexOut) {
-                for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut()) {
-                    INetworkGraphVertexBase next = e.getEnd();
-                    if (!bfsVisited.contains(next)) {
-                        next.setPathPrevious(e);
-                        bfsQueue.add(next);
-                        bfsVisited.add(next);
-                    }
-                }
-            }
-        }
-
-        bfsVisited.clear();
-        bfsQueue.clear();
+        }, NetworkIterateType.FORWARD);
     }
 
     /**
@@ -212,26 +194,45 @@ public class NetworkGraphManager {
      @param vertex Specified vertex in the network.
      */
     public static void setToUpdateFromVertex(INetworkGraphVertexBase vertex) {
+        bfsForEachVertex(vertex, new Predicate<INetworkGraphVertexBase>() {
+            @Override
+            public boolean apply(@Nullable INetworkGraphVertexBase input) {
+                if (input instanceof INetworkGraphSource) {
+                    ((INetworkGraphSource) input).setToUpdate(true);
+                }
+                return true;
+            }
+        }, NetworkIterateType.TWO_WAY);
+    }
+
+    public static void bfsForEachVertex(INetworkGraphVertexBase vertex, Predicate<? super INetworkGraphVertexBase> function,
+                                        NetworkIterateType type) {
         bfsQueue.add(vertex);
         bfsVisited.add(vertex);
+        vertex.setPathPrevious(null);
+
         while (!bfsQueue.isEmpty()) {
             INetworkGraphVertexBase v = bfsQueue.poll();
-            if (v instanceof INetworkGraphSource) {
-                ((INetworkGraphSource) v).setToUpdate(true);
+            if (!function.apply(v)) {
+                break;
             }
-            if (v instanceof INetworkGraphVertexIn) {
-                for (INetworkGraphEdge e : ((INetworkGraphVertexIn)v).getEdgesIn()) {
+            if ((type == NetworkIterateType.TWO_WAY || type == NetworkIterateType.BACKWARD)
+                && v instanceof INetworkGraphVertexIn) {
+                for (INetworkGraphEdge e : ((INetworkGraphVertexIn) v).getEdgesIn()) {
                     INetworkGraphVertexBase next = e.getStart();
                     if (!bfsVisited.contains(next)) {
+                        next.setPathPrevious(e);
                         bfsQueue.add(next);
                         bfsVisited.add(next);
                     }
                 }
             }
-            if (v instanceof INetworkGraphVertexOut) {
-                for (INetworkGraphEdge e : ((INetworkGraphVertexOut)v).getEdgesOut()) {
+            if ((type == NetworkIterateType.TWO_WAY || type == NetworkIterateType.FORWARD)
+                && v instanceof INetworkGraphVertexOut) {
+                for (INetworkGraphEdge e : ((INetworkGraphVertexOut) v).getEdgesOut()) {
                     INetworkGraphVertexBase next = e.getEnd();
                     if (!bfsVisited.contains(next)) {
+                        next.setPathPrevious(e);
                         bfsQueue.add(next);
                         bfsVisited.add(next);
                     }
@@ -243,36 +244,9 @@ public class NetworkGraphManager {
         bfsQueue.clear();
     }
 
-    public static void bfsForEach(INetworkGraphVertexBase vertex, Predicate<? super INetworkGraphVertexBase> function) {
-        bfsQueue.add(vertex);
-        bfsVisited.add(vertex);
-
-        while (!bfsQueue.isEmpty()) {
-            INetworkGraphVertexBase v = bfsQueue.poll();
-            if (!function.apply(v)) {
-                break;
-            }
-            if (v instanceof INetworkGraphVertexIn) {
-                for (INetworkGraphEdge e : ((INetworkGraphVertexIn) v).getEdgesIn()) {
-                    INetworkGraphVertexBase next = e.getStart();
-                    if (!bfsVisited.contains(next)) {
-                        bfsQueue.add(next);
-                        bfsVisited.add(next);
-                    }
-                }
-            }
-            if (v instanceof INetworkGraphVertexOut) {
-                for (INetworkGraphEdge e : ((INetworkGraphVertexOut) v).getEdgesOut()) {
-                    INetworkGraphVertexBase next = e.getEnd();
-                    if (!bfsVisited.contains(next)) {
-                        bfsQueue.add(next);
-                        bfsVisited.add(next);
-                    }
-                }
-            }
-        }
-
-        bfsVisited.clear();
-        bfsQueue.clear();
+    public enum NetworkIterateType {
+        TWO_WAY,
+        FORWARD,
+        BACKWARD
     }
 }
