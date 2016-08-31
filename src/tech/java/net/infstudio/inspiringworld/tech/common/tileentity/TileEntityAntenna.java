@@ -4,9 +4,12 @@ import java.util.Set;
 
 import com.google.common.collect.Sets;
 
+import net.infstudio.inspiringworld.tech.api.energy.IIWTechEnergyConsumer;
 import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphEdge;
 import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphVertex;
+import net.infstudio.inspiringworld.tech.common.block.IWTechBlocks;
 import net.infstudio.inspiringworld.tech.common.capability.IWTechCapablilties;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -21,6 +24,8 @@ public class TileEntityAntenna extends TileEntity implements ITickable {
     protected Set<INetworkGraphEdge> edgesOut = Sets.newLinkedHashSet();
 
     protected int pass = 0;
+
+    protected IIWTechEnergyConsumer consumer;
 
     public class NetworkVertex implements INetworkGraphVertex {
 
@@ -67,6 +72,11 @@ public class TileEntityAntenna extends TileEntity implements ITickable {
         }
     }
 
+    protected int calculateEnergy() {
+        // TODO
+        return 20;
+    }
+
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         if (IWTechCapablilties.NETWORK_GRAPH_VERTEX.equals(capability)) {
@@ -85,6 +95,32 @@ public class TileEntityAntenna extends TileEntity implements ITickable {
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
+        if (this.worldObj.isRemote) {
+            return;
+        }
+        // get consumer
+        EnumFacing facing = this.worldObj.getBlockState(this.pos).getValue(IWTechBlocks.FACING);
+        TileEntity tileEntity = this.worldObj.getTileEntity(this.pos.offset(facing.getOpposite()));
+        if (tileEntity == null || tileEntity.hasCapability(IWTechCapablilties.ENERGY_CONSUMER, facing)) {
+            this.worldObj.destroyBlock(this.pos, true);
+            return;
+        }
+        this.consumer = tileEntity.getCapability(IWTechCapablilties.ENERGY_CONSUMER, facing);
+
+        // receive energy
+        int energy = this.calculateEnergy();
+        energy -= this.consumer.receiveEnergy(energy, false);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+        // TODO
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        // TODO
+        return super.writeToNBT(compound);
     }
 }

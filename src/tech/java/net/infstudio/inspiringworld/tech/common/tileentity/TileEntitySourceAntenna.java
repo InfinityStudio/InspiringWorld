@@ -4,8 +4,10 @@ import java.util.Set;
 
 import com.google.common.collect.Sets;
 
+import net.infstudio.inspiringworld.tech.api.energy.IIWTechSourceEnergyProducer;
 import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphEdge;
 import net.infstudio.inspiringworld.tech.api.energy.network.INetworkGraphSource;
+import net.infstudio.inspiringworld.tech.common.block.IWTechBlocks;
 import net.infstudio.inspiringworld.tech.common.capability.IWTechCapablilties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -20,6 +22,8 @@ public class TileEntitySourceAntenna extends TileEntity implements ITickable {
     protected Set<INetworkGraphEdge> edgesOut = Sets.newLinkedHashSet();
 
     protected int out = 0;
+
+    protected IIWTechSourceEnergyProducer producer;
 
     public class NetworkSource implements INetworkGraphSource {
 
@@ -71,6 +75,11 @@ public class TileEntitySourceAntenna extends TileEntity implements ITickable {
         }
     }
 
+    protected int calculateEnergy() {
+        // TODO
+        return 20;
+    }
+
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         if (IWTechCapablilties.NETWORK_GRAPH_VERTEX.equals(capability)) {
@@ -89,6 +98,20 @@ public class TileEntitySourceAntenna extends TileEntity implements ITickable {
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
+        if (this.worldObj.isRemote) {
+            return;
+        }
+        // get producer
+        EnumFacing facing = this.worldObj.getBlockState(this.pos).getValue(IWTechBlocks.FACING);
+        TileEntity tileEntity = this.worldObj.getTileEntity(this.pos.offset(facing.getOpposite()));
+        if (tileEntity == null || tileEntity.hasCapability(IWTechCapablilties.SOURCE_ENERGY_PRODUCER, facing)) {
+            this.worldObj.destroyBlock(this.pos, true);
+            return;
+        }
+        this.producer = tileEntity.getCapability(IWTechCapablilties.SOURCE_ENERGY_PRODUCER, facing);
+
+        // receive energy
+        int energy = this.calculateEnergy();
+        energy -= this.producer.extractSourceEnergy(energy, false);
     }
 }
