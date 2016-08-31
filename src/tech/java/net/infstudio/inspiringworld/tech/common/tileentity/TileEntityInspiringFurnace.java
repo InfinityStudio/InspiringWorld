@@ -80,19 +80,22 @@ public class TileEntityInspiringFurnace extends TileEntity implements ITickable 
     public void update() {
         if (this.worldObj.isRemote) {
             return;
-        }
-        if (this.energyContained > 0) {
+        } else if (this.energyContained > 0) {
             this.energyContained -= 1;
             this.progress += 0.005f;
             if (this.progress >= 1) {
-                ItemStack stack = FurnaceRecipes.instance().getSmeltingResult(this.inputStack.extractItem(0, 1, true));
-                if (stack != null && this.outputStack.insertItem(0, stack, true) == null) {
-                    this.inputStack.extractItem(0, 1, false);
-                    this.outputStack.insertItem(0, stack, false);
-                    this.progress = 0;
-                } else {
-                    this.progress = 1;
+                ItemStack inputStack = this.inputStack.extractItem(0, 1, true);
+                if (inputStack != null) {
+                    ItemStack outputStack = FurnaceRecipes.instance().getSmeltingResult(inputStack);
+                    if (this.outputStack.insertItem(0, outputStack, true) == null) {
+                        inputStack = this.inputStack.extractItem(0, 1, false);
+                        outputStack = FurnaceRecipes.instance().getSmeltingResult(inputStack);
+                        this.outputStack.insertItem(0, outputStack, false);
+                        this.progress = 0;
+                        return;
+                    }
                 }
+                this.progress = 1;
             }
         } else {
             this.progress = Math.max(0, this.progress - 0.025f);
