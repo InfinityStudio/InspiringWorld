@@ -78,27 +78,25 @@ public class TileEntityInspiringFurnace extends TileEntity implements ITickable 
 
     @Override
     public void update() {
-        if (this.worldObj.isRemote) {
-            return;
-        } else if (this.energyContained > 0) {
-            this.energyContained -= 1;
-            this.progress += 0.005f;
-            if (this.progress >= 1) {
-                ItemStack inputStack = this.inputStack.extractItem(0, 1, true);
-                if (inputStack != null) {
-                    ItemStack outputStack = FurnaceRecipes.instance().getSmeltingResult(inputStack);
-                    if (this.outputStack.insertItem(0, outputStack, true) == null) {
-                        inputStack = this.inputStack.extractItem(0, 1, false);
-                        outputStack = FurnaceRecipes.instance().getSmeltingResult(inputStack);
-                        this.outputStack.insertItem(0, outputStack, false);
-                        this.progress = 0;
-                        return;
+        if (!this.worldObj.isRemote) {
+            if (this.energyContained > 0) {
+                this.energyContained -= 1;
+                this.progress = Math.min(this.progress + 0.005f, 1);
+                if (this.progress >= 1) {
+                    ItemStack inputStack = this.inputStack.extractItem(0, 1, true);
+                    if (inputStack != null) {
+                        ItemStack outputStack = FurnaceRecipes.instance().getSmeltingResult(inputStack);
+                        if (this.outputStack.insertItem(0, outputStack, true) == null) {
+                            inputStack = this.inputStack.extractItem(0, 1, false);
+                            outputStack = FurnaceRecipes.instance().getSmeltingResult(inputStack);
+                            this.outputStack.insertItem(0, outputStack, false);
+                            this.progress = 0;
+                        }
                     }
                 }
-                this.progress = 1;
+            } else {
+                this.progress = Math.max(0, this.progress - 0.025f);
             }
-        } else {
-            this.progress = Math.max(0, this.progress - 0.025f);
         }
     }
 
