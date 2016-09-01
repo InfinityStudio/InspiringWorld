@@ -23,7 +23,7 @@ public class HelperMod
 	@Mod.Instance(MODID)
 	public static HelperMod instance;
 
-	@SidedProxy(modId = MODID, serverSide = "net.simplelib.CommonProxy", clientSide = "net.simplelib.client.ClientProxy")
+	@SidedProxy(modId = MODID, serverSide = "net.infstudio.inspiringworld.magic.repackage.net.simplelib.CommonProxy", clientSide = "net.infstudio.inspiringworld.magic.repackage.net.simplelib.client.ClientProxy")
 	public static CommonProxy proxy;
 
 	@Mod.EventHandler
