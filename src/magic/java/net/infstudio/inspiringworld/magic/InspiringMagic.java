@@ -15,13 +15,17 @@
  */
 package net.infstudio.inspiringworld.magic;
 
+import net.infstudio.inspiringworld.magic.common.CommonProxy;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
@@ -34,16 +38,29 @@ public class InspiringMagic {
     public static final String VERSION = "@version@";
     public static final String MC_VERSION = "1.10.2";
     public static final String DEPENDENCIES = "";
-
+    
+    @Instance(InspiringMagic.MODID)
+    public static InspiringMagic instance;
+    
+    @SidedProxy(clientSide = "net.infstudio.inspiringworld.magic.client.ClientProxy"
+                , serverSide = "net.infstudio.inspiringworld.magic.common.CommonProxy")
+    public static CommonProxy proxy;
+    
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        proxy.preInit(event);
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-
+        proxy.init(event);
     }
 
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        proxy.postInit(event);
+    }
+    
     @SubscribeEvent//TODO register this after finish
     public void handleDropping(LivingDropsEvent event) {
         event.getEntity().worldObj.rand.nextDouble();//the possibility
